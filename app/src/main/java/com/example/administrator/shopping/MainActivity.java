@@ -1,12 +1,15 @@
 package com.example.administrator.shopping;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.entity.GoodsEntity;
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView lv_goods;
     private Handler handler;
+    private TextView ivpicture;
 
     private GoodsDao goodsDao;
     private List<GoodsEntity> goodsList;
@@ -35,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SettingActivity.activityList.add(this);
+        SettingActivity.activityList.add(this);//用来退出应用
 
         lv_goods = findViewById(R.id.lv_goods);
         initView();
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ShopActivity.class);
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -69,7 +73,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+       // setupViews();//TextView显示图片
     }
+
+   /* private void setupViews() {
+        ivpicture = (TextView) findViewById(R.id.iv_picture);
+        ivpicture.append(Html.fromHtml("<img src='" + R.drawable.lajiao+"'/>", imageGetter, null));
+    }
+
+    Html.ImageGetter imageGetter = new Html.ImageGetter() {
+
+        @Override
+        public Drawable getDrawable(String source) {
+            int id = Integer.parseInt(source);
+            Drawable drawable = getResources().getDrawable(id);
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),drawable.getIntrinsicHeight());
+            return drawable;
+        }
+    };*/
+
 
     private void initView() {
         mainHandler = new Handler(getMainLooper());//获取主线程

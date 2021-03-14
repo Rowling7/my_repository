@@ -121,4 +121,6 @@ public class GoodsEntity {
     public void setFormat(String format) {
         this.format = format;
     }
+
+
 }

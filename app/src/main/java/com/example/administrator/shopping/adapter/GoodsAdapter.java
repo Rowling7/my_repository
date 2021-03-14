@@ -57,10 +57,10 @@ public class GoodsAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.goods_list_item, null);
             viewHolder = new ViewHolder();
 
-            viewHolder.iv_picture = convertView.findViewById(R.id.iv_picture);
+           // viewHolder.iv_picture = convertView.findViewById(R.id.iv_picture);
             viewHolder.tv_title = convertView.findViewById(R.id.tv_title);
             viewHolder.tv_price2 = convertView.findViewById(R.id.tv_price2);
-           // viewHolder.btn_addshop = convertView.findViewById(R.id.btn_addshop);
+            // viewHolder.btn_addshop = convertView.findViewById(R.id.btn_addshop);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -70,8 +70,7 @@ public class GoodsAdapter extends BaseAdapter {
         GoodsEntity goods = goodsList.get(position);
         viewHolder.tv_title.setText(goods.getName());
         viewHolder.tv_price2.setText(goods.getPrice());
-        viewHolder.iv_picture.setBackgroundResource(Integer.parseInt(goods.getPicture()));
-
+      //  viewHolder.iv_picture.setText("<img src='" + goods.getPicture()+"'/>");
 
         return convertView;
     }
@@ -80,7 +79,8 @@ public class GoodsAdapter extends BaseAdapter {
         private TextView tv_title;
         private TextView tv_price;
         private TextView tv_price2;
-        private ImageView iv_picture;
+        // private ImageView iv_picture;
+        private TextView iv_picture;
         private Button btn_addshop;
     }
 }

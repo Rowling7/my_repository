@@ -14,7 +14,7 @@ public class GoodsDao extends DbOpenHelper {
         List<GoodsEntity> list = new ArrayList<>();
         try {
             getConnection();
-            String sql = "select uuid,name,price  from goods";
+            String sql = "select * from goods";
             pStmt = conn.prepareStatement(sql);
             rs = pStmt.executeQuery();
             while (rs.next()) {

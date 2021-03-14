@@ -31,15 +31,15 @@ public class ShopActivity extends Activity{
     private  String[] prices={
             "44.98元","52.90元","26.90元","28.80元","24.80元","29.80元","48.80元","20.00元","49.90元","21.80元","32.50元","16.50元","27.50元","69.90元","12.90元"
     };
-    private int[] icons={
-            R.drawable.shengnvguo,R.drawable.sanhuali,
-            R.drawable.dayejinqiancao, R.drawable.nuoyumi,
+    private int[] icons={R.drawable.lajiao,
+            R.drawable.shengnvguo,R.drawable.sanhuali,R.drawable.luohanguo,
+            R.drawable.nuoyumi,R.drawable.dayejinqiancao,
             R.drawable.wucaijiao, R.drawable.gegen,
             R.drawable.wumingwogan, R.drawable.baixiangguo,
             R.drawable.bajiaodaliao, R.drawable.muguasigan,
             R.drawable.fuzhu, R.drawable.shatianyouzi,
-            R.drawable.dayutou, R.drawable.lajiao,
-            R.drawable.luohanguo,};
+            R.drawable.dayutou,
+            };
     private android.view.LayoutInflater LayoutInflater;
 
     protected void onCreate(Bundle savedInstanceState) {
