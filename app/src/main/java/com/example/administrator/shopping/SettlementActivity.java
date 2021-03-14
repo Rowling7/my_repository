@@ -9,7 +9,7 @@ import android.widget.Button;
 public class SettlementActivity extends AppCompatActivity {
 
    /* private Button btnSettlement;
-    public Intent intent = null;*/
+    public Intent intent = null; */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

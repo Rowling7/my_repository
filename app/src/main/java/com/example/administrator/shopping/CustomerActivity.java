@@ -21,7 +21,7 @@ public class CustomerActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_customer);
         initView();
 
-        //检查更新
+        // 检查更新
 
         /* tvUpdate = findViewById(R.id.tv_update);
         tvUpdate.setOnClickListener(new View.OnClickListener() { //弹出消息

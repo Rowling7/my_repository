@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class MySqlHelp {
 
-    public static int conncetMysql() {  //连接数据库
+    public static int conncetMysql() {  // 连接数据库
         final String CLS = "com.mysql.jdbc.Driver";
         final String URL = "jdbc:mysql://172.30.243.110:3306/bishe?useUnicode=true&characterEncoding=utf8";
         final String USER = "root";

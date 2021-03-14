@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.administrator.shopping.Entity.GoodsEntity;
+import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.R;
 
 import java.util.List;
@@ -57,7 +57,7 @@ public class GoodsAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.goods_list_item, null);
             viewHolder = new ViewHolder();
 
-           // viewHolder.iv_picture = convertView.findViewById(R.id.iv_picture);
+            viewHolder.iv_picture = convertView.findViewById(R.id.iv_picture);
             viewHolder.tv_title = convertView.findViewById(R.id.tv_title);
             viewHolder.tv_price2 = convertView.findViewById(R.id.tv_price2);
            // viewHolder.btn_addshop = convertView.findViewById(R.id.btn_addshop);
@@ -70,7 +70,7 @@ public class GoodsAdapter extends BaseAdapter {
         GoodsEntity goods = goodsList.get(position);
         viewHolder.tv_title.setText(goods.getName());
         viewHolder.tv_price2.setText(goods.getPrice());
-       // viewHolder.iv_picture.setBackgroundResource(goods.getPicture());
+        viewHolder.iv_picture.setBackgroundResource(Integer.parseInt(goods.getPicture()));
 
 
         return convertView;

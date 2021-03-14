@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.administrator.shopping.bean.ShopBean;
+import com.example.administrator.shopping.entity.ShopBean;
 import com.example.administrator.shopping.utils.DBUtils;
 
 import java.util.ArrayList;

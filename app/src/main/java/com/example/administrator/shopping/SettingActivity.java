@@ -9,7 +9,6 @@ import android.widget.Button;
 
 /*import com.example.administrator.shopping.utils.CommonUtils;*/
 
-import com.example.administrator.shopping.Entity.GoodsEntity;
 import com.example.administrator.shopping.utils.ToastUtils;
 
 import java.util.LinkedList;

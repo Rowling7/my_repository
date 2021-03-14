@@ -3,7 +3,6 @@ package com.example.administrator.shopping;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-/*import com.example.administrator.shopping.adapter.LvUserinfoAdapter;*/
 
 public class AddressActivity extends AppCompatActivity implements View.OnClickListener {
 

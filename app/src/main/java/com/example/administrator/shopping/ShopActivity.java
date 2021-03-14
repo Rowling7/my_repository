@@ -120,9 +120,9 @@ public class ShopActivity extends Activity{
                 public void onClick(View v) {
                     boolean n = mSQLiteHelper.insertData(titles[position],prices[position],icons[position]);
                     if(n){
-                        Toast.makeText(ShopActivity.this,"加入购物车成功",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ShopActivity.this,"加入购物车 成功",Toast.LENGTH_SHORT).show();
                     }else {
-                        Toast.makeText(ShopActivity.this,"加入购物车失败",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ShopActivity.this,"加入购物车 失败",Toast.LENGTH_SHORT).show();
                     }
 
                 }

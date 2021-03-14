@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.example.administrator.shopping.Dao.GoodsDao;
-import com.example.administrator.shopping.Entity.GoodsEntity;
+import com.example.administrator.shopping.dao.GoodsDao;
+import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.adapter.GoodsAdapter;
 
 import java.util.List;

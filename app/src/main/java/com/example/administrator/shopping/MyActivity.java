@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-/*import com.example.administrator.shopping.Dao.EntityUserDao;
+/*import com.example.administrator.shopping.dao.EntityUserDao;
 import com.example.administrator.shopping.Entity.EntityUserEntity;*/
 import com.example.administrator.shopping.utils.ToastUtils;
 

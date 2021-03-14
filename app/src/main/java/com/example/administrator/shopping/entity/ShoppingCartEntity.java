@@ -1,4 +1,4 @@
-package com.example.administrator.shopping.Entity;
+package com.example.administrator.shopping.entity;
 
 public class ShoppingCartEntity {
 

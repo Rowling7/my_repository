@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.shopping.R;
-import com.example.administrator.shopping.bean.ShopBean;
+import com.example.administrator.shopping.entity.ShopBean;
 
 import java.util.List;
 

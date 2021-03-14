@@ -1,4 +1,4 @@
-package com.example.administrator.shopping.bean;
+package com.example.administrator.shopping.entity;
 
 public class ShopBean {
     private String id;

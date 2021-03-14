@@ -1,8 +1,7 @@
-package com.example.administrator.shopping.Dao;
+package com.example.administrator.shopping.dao;
 
-import com.example.administrator.shopping.Entity.EntityUserEntity;
+import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.database.DbOpenHelper;
-import com.example.administrator.shopping.utils.DBUtils;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

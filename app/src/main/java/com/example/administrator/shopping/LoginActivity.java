@@ -14,8 +14,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.administrator.shopping.Dao.EntityUserDao;
-import com.example.administrator.shopping.Entity.EntityUserEntity;
+import com.example.administrator.shopping.dao.EntityUserDao;
+import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.utils.ToastUtils;
 
 

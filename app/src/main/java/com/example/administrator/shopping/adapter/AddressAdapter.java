@@ -9,8 +9,8 @@ import com.example.administrator.shopping.Impl.OnEditBtnClickListener;
 
 public class AddressAdapter  extends BaseAdapter {
 
-    private OnEditBtnClickListener onEditBtnClickListener;   // 修改按钮点击事件的监听实例
-    private OnDelBtnClickListener onDelBtnClickListener;     // 删除按钮点击事件的监听实例
+    private OnEditBtnClickListener onEditBtnClickListener;   //修改按钮点击事件的监听实例
+    private OnDelBtnClickListener onDelBtnClickListener;     //删除按钮点击事件的监听实例
 
 
 

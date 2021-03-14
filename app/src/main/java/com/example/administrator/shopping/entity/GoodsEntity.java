@@ -1,9 +1,9 @@
-package com.example.administrator.shopping.Entity;
+package com.example.administrator.shopping.entity;
 
 public class GoodsEntity {
     private String uuid;
     private String price;
-    private int  picture;
+    private String picture;
     private String suppiler;
     private String name;
     private String production_date;
@@ -50,11 +50,11 @@ public class GoodsEntity {
         this.price = price;
     }
 
-    public int getPicture() {
+    public String getPicture() {
         return picture;
     }
 
-    public void setPicture(int picture) {
+    public void setPicture(String picture) {
         this.picture = picture;
     }
 

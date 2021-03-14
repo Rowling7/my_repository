@@ -1,6 +1,5 @@
 package com.example.administrator.shopping;
 
-import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.administrator.shopping.Dao.EntityUserDao;
-import com.example.administrator.shopping.Entity.EntityUserEntity;
+import com.example.administrator.shopping.dao.EntityUserDao;
+import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.utils.ToastUtils;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {

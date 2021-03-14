@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.administrator.shopping.adapter.ShopAdapter;
-import com.example.administrator.shopping.bean.ShopBean;
+import com.example.administrator.shopping.entity.ShopBean;
 import com.example.administrator.shopping.database.SQLiteHelper;
 
 import java.util.List;
