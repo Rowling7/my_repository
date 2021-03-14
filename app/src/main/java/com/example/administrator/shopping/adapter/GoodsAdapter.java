@@ -70,7 +70,7 @@ public class GoodsAdapter extends BaseAdapter {
         GoodsEntity goods = goodsList.get(position);
         viewHolder.tv_title.setText(goods.getName());
         viewHolder.tv_price2.setText(goods.getPrice());
-       // viewHolder.iv_picture.setBackgroundResource(goods.getPicture());
+        viewHolder.iv_picture.setBackgroundResource(goods.getPicture());
 
 
         return convertView;
