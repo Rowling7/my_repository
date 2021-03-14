@@ -75,7 +75,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             }
         });
         //跳转至mysql首页
-        /*imgHome = findViewById(R.id.img_home);
+        imgHome = findViewById(R.id.img_home);
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,10 +83,10 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 intent = new Intent(MyActivity.this, MainActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
         //跳转至slqite首页
-        imgHome = findViewById(R.id.img_home);
+     /*   imgHome = findViewById(R.id.img_home);
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +95,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
             }
         });
-
+*/
 
         imgCart = findViewById(R.id.img_cart);
         imgCart.setOnClickListener(new View.OnClickListener() {

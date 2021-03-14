@@ -71,7 +71,7 @@ public class ShoplistActivity extends AppCompatActivity {
         });
 
         //跳转至mysql首页
-        /*imgHome = findViewById(R.id.img_home);
+        imgHome = findViewById(R.id.img_home);
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,9 +79,9 @@ public class ShoplistActivity extends AppCompatActivity {
                 intent = new Intent(ShoplistActivity.this,MainActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
         //跳转至slqite首页
-        imgHome = findViewById(R.id.img_home);
+       /* imgHome = findViewById(R.id.img_home);
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,7 +89,8 @@ public class ShoplistActivity extends AppCompatActivity {
                 intent = new Intent(ShoplistActivity.this,ShopActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
+
         imgCart = findViewById(R.id.img_cart);
         imgCart.setOnClickListener(new View.OnClickListener() {
             @Override
