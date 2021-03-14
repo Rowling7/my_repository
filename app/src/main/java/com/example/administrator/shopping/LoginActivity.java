@@ -117,7 +117,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 ToastUtils.showMsg(LoginActivity.this, "登录成功");
                                 // 跳转到“我的”界面
 
-                                Intent intent = new Intent(LoginActivity.this, CustomerActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MyActivity.class);
+                                intent.putExtra("passValue", et_UserName.getText().toString());
                                 startActivity(intent);
                                /* if (userType = admin) {
                                     Intent intent = new Intent(LoginActivity.this, AdminActivity.class);

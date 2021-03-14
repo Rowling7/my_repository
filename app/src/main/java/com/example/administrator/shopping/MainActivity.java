@@ -11,7 +11,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.administrator.shopping.adapter.AddressAdapter;
+import com.example.administrator.shopping.dao.AddressDao;
 import com.example.administrator.shopping.dao.GoodsDao;
+import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.adapter.GoodsAdapter;
 
@@ -19,18 +22,25 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    /*跳转用*/
     private ImageView imgMy;
     private ImageView imgHome;
     private ImageView imgCart;
 
-    private ListView lv_goods;
     private Handler handler;
     private TextView ivpicture;
 
+    /*商品列表*/
+    private ListView lv_goods;
     private GoodsDao goodsDao;
     private List<GoodsEntity> goodsList;
     private GoodsAdapter goodsAdapter;
+    /*地址列表*/
+    private ListView lv_address;
+    private AddressDao addressDao;
+    private List<EntityUserEntity> addressList;
+    private AddressAdapter addressAdapter;
+
 
     private Handler mainHandler;     // 主线程
 
@@ -40,10 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SettingActivity.activityList.add(this);//用来退出应用
-
-        lv_goods = findViewById(R.id.lv_goods);
         initView();
-        loadGoodsDb();
 
         imgMy = findViewById(R.id.img_my);
         imgMy.setOnClickListener(new View.OnClickListener() {
@@ -68,12 +75,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = null;
-                intent = new Intent(MainActivity.this,ShoplistActivity.class);
+                intent = new Intent(MainActivity.this, ShoplistActivity.class);
                 startActivity(intent);
             }
         });
 
-       // setupViews();//TextView显示图片
+        /*填充列表*/
+        lv_goods = findViewById(R.id.lv_goods);
+        loadGoodsDb();
+
+        lv_address = findViewById(R.id.lv_address);
+     //   loadAddressDb();
+        // setupViews();//TextView显示图片
     }
 
    /* private void setupViews() {
@@ -96,8 +109,10 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         mainHandler = new Handler(getMainLooper());//获取主线程
         goodsDao = new GoodsDao();
+        addressDao = new AddressDao();
     }
 
+    /*填充商品列表*/
     private void loadGoodsDb() {
         new Thread(new Runnable() {
             @Override
@@ -122,4 +137,30 @@ public class MainActivity extends AppCompatActivity {
             goodsAdapter.notifyDataSetChanged();
         }
     }
+
+    /*填充地址列表*/
+    /*private void loadAddressDb() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                addressList = addressDao.getAllAddressList();
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        showAddressLvData();
+                    }
+                });
+            }
+        }).start();
+    }
+
+    private void showAddressLvData() {
+        if (addressAdapter == null) {
+            addressAdapter = new AddressAdapter(this, addressList);
+            lv_address.setAdapter(addressAdapter);
+        } else {
+            addressAdapter.setAddressList(addressList);
+            addressAdapter.notifyDataSetChanged();
+        }
+    }*/
 }

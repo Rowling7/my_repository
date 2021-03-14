@@ -6,27 +6,55 @@
     android:padding="16dp">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/rl_address"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/iv"
-        android:layout_centerVertical="true">
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:text="地址"
-            android:textSize="20sp"
-            android:textColor="#000000"/>
-    </RelativeLayout>
-    <Button
-        android:id="@+id/addshop"
-        android:text="加入购物车"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:textSize="10sp"
-        android:layout_alignParentRight="true"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/shape_corner"
-        android:textColor="#000"/>
+        android:orientation="horizontal"
+        android:layout_centerVertical="true">
+
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/address" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="dizhi "
+            android:textColor="#FF62"
+            android:textSize="20sp" />
+
+
+        //修改地址
+
+        <ImageView
+            android:id="@+id/iv_edit"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/delete"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"/>
+
+        <ImageView
+            android:id="@+id/iv_del"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_toLeftOf="@id/iv_edit"
+            android:src="@mipmap/change" />
+
+    </RelativeLayout>
+
 </RelativeLayout>

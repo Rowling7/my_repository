@@ -329,7 +329,7 @@
             android:src="@mipmap/address" />
 
         <TextView
-            android:id="@+id/tv_address"
+            android:id="@+id/tv_addressn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"

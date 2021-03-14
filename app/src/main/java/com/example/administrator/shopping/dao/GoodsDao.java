@@ -1,5 +1,6 @@
 package com.example.administrator.shopping.dao;
 
+
 import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.database.DbOpenHelper;
 
@@ -32,4 +33,6 @@ public class GoodsDao extends DbOpenHelper {
         }
         return list;
     }
+
+
 }

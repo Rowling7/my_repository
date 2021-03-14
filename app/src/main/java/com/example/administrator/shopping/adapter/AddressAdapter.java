@@ -1,18 +1,30 @@
 package com.example.administrator.shopping.adapter;
 
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnEditBtnClickListener;
+import com.example.administrator.shopping.R;
+import com.example.administrator.shopping.entity.EntityUserEntity;
+import com.example.administrator.shopping.entity.GoodsEntity;
 
-public class AddressAdapter  extends BaseAdapter {
+import java.util.List;
+
+public class AddressAdapter extends BaseAdapter {
+
+    private Context context;//上下文信息 谁是操作源对象
+    private List<EntityUserEntity> addressList;//地址的数据集合
 
     private OnEditBtnClickListener onEditBtnClickListener;   //修改按钮点击事件的监听实例
     private OnDelBtnClickListener onDelBtnClickListener;     //删除按钮点击事件的监听实例
-
-
 
     public void setOnEditBtnClickListener(OnEditBtnClickListener onEditBtnClickListener) {
         this.onEditBtnClickListener = onEditBtnClickListener;
@@ -24,21 +36,56 @@ public class AddressAdapter  extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return addressList.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public Object getItem(int position) {
+        return addressList.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return 0;
+    public long getItemId(int position) {
+        return position;
     }
 
+    public AddressAdapter(Context context, List<EntityUserEntity> addressList) {
+        this.context = context;
+        this.addressList = addressList;
+        Log.i("数据适配器", "地址数量：" + addressList.size());
+    }
+
+    public void setAddressList(List<EntityUserEntity> addressList) {
+        this.addressList = addressList;
+    }
+
+
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+    public View getView(int position, View convertView, ViewGroup viewGroup) {
+        ViewHolder viewHolder = null;
+
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.address_list_item, null);
+            viewHolder = new ViewHolder();
+
+
+            viewHolder.tv_address = convertView.findViewById(R.id.tv_address);
+            viewHolder.iv_edit = convertView.findViewById(R.id.iv_edit);
+            viewHolder.iv_del = convertView.findViewById(R.id.iv_del);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        //数据填充
+        EntityUserEntity address = addressList.get(position);
+        viewHolder.tv_address.setText(address.getAddress());
+        return convertView;
+    }
+
+    private class ViewHolder {
+        private TextView tv_address;
+        private ImageView iv_edit;
+        private ImageView iv_del;
     }
 }
