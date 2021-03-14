@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorbackground"
+    tools:context=".ShoppingCartActivity">
+
+    <TextView
+        android:id="@+id/tv_cart"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorbackground"
+        android:gravity="center"
+        android:text="购物车"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <ListView
+        android:id="@+id/lv_goods"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_cart"
+        android:layout_above="@+id/ll_jiesuan"
+        android:cacheColorHint="#00000000"
+        android:divider="#E4e4e4"
+        android:dividerHeight="1dp"
+        android:fadingEdge="none"
+        android:listSelector="#00000000"
+        android:scrollbars="none"
+        android:background="@color/colorbackground"/>
+
+    <LinearLayout
+        android:id="@+id/ll_jiesuan"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_above="@+id/ll_bottomBar"
+        android:gravity="right"
+        android:background="@color/colorSilver">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="总金额："
+            android:textColor="@color/colorBlack"
+            android:textSize="10pt"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btn_settlement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@color/colorPurple"
+            android:text="结算" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/shape_corner">
+
+            <ImageView
+                android:id="@+id/img_home"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_weight="1"
+                android:src="@mipmap/home" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="首页"
+                android:textColor="#000000"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_cart"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_weight="1"
+                android:src="@mipmap/cart" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="购物车"
+                android:textColor="#000000"
+                android:textSize="10sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_my"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_weight="1"
+                android:src="@mipmap/my" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="我"
+                android:textColor="#000000"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
