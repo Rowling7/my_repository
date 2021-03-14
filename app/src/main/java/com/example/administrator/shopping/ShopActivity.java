@@ -24,16 +24,22 @@ public class ShopActivity extends Activity{
     SQLiteHelper mSQLiteHelper;
     String id;
     TextView Shopping_name,content;
+
     private String[] titles={
-            "商品1","商品2","商品3","商品4","商品5","商品6","商品7","商品8","商品9"
-    };
+            "辣椒","圣女果","三华李", "罗汉果","糯玉米","大叶金钱草","五彩椒","葛根","武鸣沃柑","百香果","八角大料","木瓜丝干","腐竹","沙田柚子","大芋头"
+                };
     private  String[] prices={
-            "14元","6元","12元","23元","45元","29元","21元","12元","13元"
+            "44.98元","52.90元","26.90元","28.80元","24.80元","29.80元","48.80元","20.00元","49.90元","21.80元","32.50元","16.50元","27.50元","69.90元","12.90元"
     };
-    private int[] icons={R.drawable.food1,R.drawable.food2,R.drawable.food3,
-            R.drawable.food4,R.drawable.food5,
-            R.drawable.food6,R.drawable.food7,
-            R.drawable.food8,R.drawable.food9,};
+    private int[] icons={
+            R.drawable.shengnvguo,R.drawable.sanhuali,
+            R.drawable.dayejinqiancao, R.drawable.nuoyumi,
+            R.drawable.wucaijiao, R.drawable.gegen,
+            R.drawable.wumingwogan, R.drawable.baixiangguo,
+            R.drawable.bajiaodaliao, R.drawable.muguasigan,
+            R.drawable.fuzhu, R.drawable.shatianyouzi,
+            R.drawable.dayutou, R.drawable.lajiao,
+            R.drawable.luohanguo,};
     private android.view.LayoutInflater LayoutInflater;
 
     protected void onCreate(Bundle savedInstanceState) {
