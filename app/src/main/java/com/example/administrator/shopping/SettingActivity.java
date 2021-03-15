@@ -59,7 +59,7 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        btnAdmin2 = findViewById(R.id.btn_admin2);
+        /*btnAdmin2 = findViewById(R.id.btn_admin2);
         btnAdmin2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,7 +67,7 @@ public class SettingActivity extends AppCompatActivity {
                 intent = new Intent(SettingActivity.this, ShopActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         btnBussiness2 = findViewById(R.id.btn_bussiness2);
         btnBussiness2.setOnClickListener(new View.OnClickListener() {

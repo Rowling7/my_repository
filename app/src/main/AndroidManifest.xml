@@ -27,8 +27,6 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MyActivity" />
-        <activity android:name=".ShopActivity" />
-        <activity android:name=".ShoplistActivity" />
     </application>
 
 </manifest>

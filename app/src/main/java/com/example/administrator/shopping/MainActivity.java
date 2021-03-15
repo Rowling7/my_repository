@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
         imgMy = findViewById(R.id.img_my);
         imgMy.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, MyActivity.class);
@@ -66,17 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        //跳转到sqlite购物车
-       /* imgCart = findViewById(R.id.img_cart);
-        imgCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = null;
-                intent = new Intent(MainActivity.this, ShoplistActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
         /*跳转到mysql购物车*/
         imgCart = findViewById(R.id.img_cart);
