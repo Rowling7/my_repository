@@ -7,11 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import com.example.administrator.shopping.R;
 import com.example.administrator.shopping.entity.ShoppingCartEntity;
-
 import java.util.List;
+
+//自定义购物车适配器
 
 public class ShoppingCartAdapter extends BaseAdapter {
 
@@ -60,10 +60,10 @@ public class ShoppingCartAdapter extends BaseAdapter {
         }
 
         //数据填充
-       /* ShoppingCartEntity cartList = cartList.get(position);
-        viewHolder.title.setText(cartList.getName());
-        viewHolder.price.setText(cartList.getPrice());
-     */
+        ShoppingCartEntity item = cartList.get(position);
+        viewHolder.title.setText(item.getName());
+        viewHolder.price.setText(item.getPrice());
+
         return convertView;
     }
     private class ViewHolder {

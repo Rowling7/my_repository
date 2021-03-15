@@ -7,22 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.R;
-
 import java.util.List;
 
 //自定义商品适配器
-
 
 public class GoodsAdapter extends BaseAdapter {
 
     private Context context;//上下文信息 谁是操作源对象
     private List<GoodsEntity> goodsList;//商品的数据集合
-
 
     public GoodsAdapter(Context context, List<GoodsEntity> goodsList) {
         this.context = context;

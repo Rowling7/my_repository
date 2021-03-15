@@ -41,14 +41,15 @@
         android:layout_marginTop="45dp"
         android:cacheColorHint="#00000000"
         android:divider="@color/colorSilver"
+        android:layout_above="@+id/ll_s"
         android:dividerHeight="1dp"
         android:fadingEdge="none"
         android:listSelector="#00000000"
         android:scrollbars="none"
-        android:background="@color/colorbackground"
-        android:layout_marginBottom="50dp">
+        android:background="@color/colorbackground">
     </ListView>
     <LinearLayout
+        android:id="@+id/ll_s"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/ll_bottomBar"

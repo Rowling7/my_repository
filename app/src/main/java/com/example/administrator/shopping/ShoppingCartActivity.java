@@ -33,6 +33,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private ShoppingCartAdapter shoppingCartAdapter;
     private Handler mainHandler;     // 主线程
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +92,6 @@ public class ShoppingCartActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = getIntent();
                 final String userNameForCart = intent.getStringExtra("passValueForCart");//MyActivity的传值
-                Log.i("0", "userNameForCart：" + userNameForCart);
                 cartList=shoppingCartDao.getCartListById(userNameForCart);
                 mainHandler.post(new Runnable() {
                     @Override
@@ -106,6 +106,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private void showCartLvData() {
         if (shoppingCartAdapter == null) {
             shoppingCartAdapter = new ShoppingCartAdapter(this, cartList);
+            lv_cartList.setAdapter(shoppingCartAdapter);
         } else {
             shoppingCartAdapter.setShoppingCartList(cartList);
             shoppingCartAdapter.notifyDataSetChanged();

@@ -93,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
         /*填充列表*/
         lv_goods = findViewById(R.id.lv_goods);
         loadGoodsDb();
-
-
         // setupViews();//TextView显示图片
     }
 
