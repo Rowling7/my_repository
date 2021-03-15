@@ -71,7 +71,7 @@ public class EntityUserDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "INSERT INTO `bishe`.`entityuser`(`PASSWORD`, `USERNAME` ,`SEX`,`PHONE`, `AGE`,`ADDRESS`) VALUES (?,?,?,?,?,?)";
+            String sql = "INSERT INTO entityuser(PASSWORD, USERNAME, SEX, PHONE, AGE, ADDRESS,UUID) VALUES (?,?,?,?,?,?,?)";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, entityUserEntity.getPassword());
             pStmt.setString(2, entityUserEntity.getUserName());
@@ -79,6 +79,7 @@ public class EntityUserDao extends DbOpenHelper {
             pStmt.setString(4, entityUserEntity.getPhone());
             pStmt.setString(5, entityUserEntity.getAge());
             pStmt.setString(6, entityUserEntity.getAddress());
+            pStmt.setString(7, entityUserEntity.getPhone());
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
