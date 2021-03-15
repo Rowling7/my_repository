@@ -29,7 +29,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     private ImageView imgLogin;
     private ImageView imgSetting;
     private TextView tvAddress;
-    private TextView tvUpdate;
+    private TextView tv_Update;
     private TextView tv_userName;
 
     private String Name;
@@ -47,6 +47,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         final String userName2 = intent.getStringExtra("passValue");//登陆后的传值
         tv_userName.setText("ID:    " + userName2);
 
+        mainHandler = new Handler(getMainLooper());
         /*ImageView back = (ImageView) findViewById(R.id.go_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,8 +143,8 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        /*tvUpdate.findViewById(R.id.tv_update);
-        tvUpdate.setOnClickListener(new View.OnClickListener() { //弹出消息
+       /* tv_Update.findViewById(R.id.tv_update);
+        tv_Update.setOnClickListener(new View.OnClickListener() { //弹出消息
             @Override
             public void onClick(View view) {
                 ToastUtils.showMsg(MyActivity.this, "正在检查更新！");
@@ -157,11 +158,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             }
         });*/
 
-
     }
-
-
-
 
     @Override
     public void onClick(View view) {

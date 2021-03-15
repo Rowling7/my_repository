@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/colorbackground"
     android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     tools:context=".AddressActivity">
     <!--
     top栏
@@ -34,7 +36,34 @@
         android:id="@+id/lv_address"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/ll_insAddress"
         android:layout_below="@+id/ll_toopbar"
+        android:layout_marginBottom="5dp"
         android:fadingEdge="none" />
+
+
+    <!--添加地址-->
+    <LinearLayout
+        android:id="@+id/ll_insAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+
+        android:onClick="btn_on_click"
+
+        <Button
+            android:id="@+id/btn_insAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPurple"
+            android:text="添加地址" />
+
+    </LinearLayout>
 
 </RelativeLayout>

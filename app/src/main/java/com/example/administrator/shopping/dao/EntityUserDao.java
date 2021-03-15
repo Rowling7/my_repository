@@ -113,6 +113,26 @@ public class EntityUserDao extends DbOpenHelper {
         return list;
     }
 
+
+    /*insert———添加地址*/
+    public static int insAddress(EntityUserEntity entityUserEntity) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "INSERT INTO entityuser(ADDRESS) VALUES (?)where username = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, entityUserEntity.getPassword());
+            pStmt.setString(2, entityUserEntity.getUserName());
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+
     /*update*/
     public static int updateAddress(EntityUserEntity entityUserEntity) {
         int iRow = 0;
