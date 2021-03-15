@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -39,8 +40,8 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
 
         tv_userName=findViewById(R.id.tv_userName);
         Intent intent = getIntent();
-        Name = intent.getStringExtra("passValue");//登陆后的传值
-        tv_userName.setText("ID:    " + Name);
+        final String userName2 = intent.getStringExtra("passValue");//登陆后的传值
+        tv_userName.setText("ID:    " + userName2);
 
         /*ImageView back = (ImageView) findViewById(R.id.go_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +90,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             public void onClick(View view) {
                 Intent intent = null;
                 intent = new Intent(MyActivity.this, ShoplistActivity.class);
+                intent.putExtra("passValue", userName2);
                 startActivity(intent);
             }
         });
@@ -119,6 +121,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             public void onClick(View view) {
                 Intent intent = null;
                 intent = new Intent(MyActivity.this, AddressActivity.class);
+                intent.putExtra("passValue2", userName2);
                 startActivity(intent);
             }
         });

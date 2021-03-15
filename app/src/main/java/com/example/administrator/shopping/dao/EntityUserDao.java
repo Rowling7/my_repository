@@ -1,8 +1,9 @@
 package com.example.administrator.shopping.dao;
 
+import android.util.Log;
+
 import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.database.DbOpenHelper;
-import com.example.administrator.shopping.entity.GoodsEntity;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class EntityUserDao extends DbOpenHelper {
 
-    /*login*/
+    /*login——登录*/
     public static EntityUserEntity login(String UserName, String Password) {//Activity 传值过来
         EntityUserEntity entityUserEntity = null;
         try {
@@ -65,12 +66,12 @@ public class EntityUserDao extends DbOpenHelper {
         return list;
     }
 
-    /*insert*/
+    /*insert———注册*/
     public static int insertUser(EntityUserEntity entityUserEntity) {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "insert into entityuser(password,userName,sex,phone,age,address) values(?,?,?,?,?,?)";
+            String sql = "INSERT INTO `bishe`.`entityuser`(`PASSWORD`, `USERNAME` ,`SEX`,`PHONE`, `AGE`,`ADDRESS`) VALUES (?,?,?,?,?,?)";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, entityUserEntity.getPassword());
             pStmt.setString(2, entityUserEntity.getUserName());
@@ -78,7 +79,6 @@ public class EntityUserDao extends DbOpenHelper {
             pStmt.setString(4, entityUserEntity.getPhone());
             pStmt.setString(5, entityUserEntity.getAge());
             pStmt.setString(6, entityUserEntity.getAddress());
-           // pStmt.setString(7, entityUserEntity.getArea());
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -88,36 +88,15 @@ public class EntityUserDao extends DbOpenHelper {
         return iRow;
     }
 
-    // 查询所有地址信息
-   /* public List<EntityUserEntity> getAddressListByid() {
-        List<EntityUserEntity> list = new ArrayList<EntityUserEntity>();
-        EntityUserEntity item=null;
-        try {
-            getConnection();
-            String sql = "select ADDRESS from ENTITYUSER";
-            pStmt = conn.prepareStatement(sql);
-            rs = pStmt.executeQuery();
-            while (rs.next()) {
-                item = new EntityUserEntity();
-                item.setUuid(rs.getString("uuid"));
-                item.setAddress(rs.getString("password"));
-              //  item.setAge(rs.getString("age"));
-                list.add(item);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            closeAll();
-        }
-        return list;
-    }*/
-
-    public List<EntityUserEntity> getAddressListByid() {
+    /*查询用户地址*/
+    public List<EntityUserEntity> getAddressListByid(String username3) {
         List<EntityUserEntity> list = new ArrayList<>();
         try {
             getConnection();
-            String sql = "select * from entityuser";
+            String sql = "SELECT *FROM entityuser\n" +
+                    "WHERE USERNAME=?";
             pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, username3);
             rs = pStmt.executeQuery();
             while (rs.next()) {
                 EntityUserEntity item = new EntityUserEntity();
@@ -168,7 +147,10 @@ public class EntityUserDao extends DbOpenHelper {
         return iRow;
     }
 
-
+    /*购物车 查询语句*/
+   /* String sql = "SELECT name,price FROM shoppingcart \n" +
+            "LEFT JOIN goods on shoppingcart.GOODS_UUID= goods.UUID\n" +
+            "WHERE USERNAME=?";*/
     /*delete---->更改isexist为0*/
     public int deletebyuuid(EntityUserEntity entityUserEntity) {
         int iRow = 0;

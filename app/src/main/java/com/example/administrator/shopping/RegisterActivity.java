@@ -1,5 +1,6 @@
 package com.example.administrator.shopping;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         et_age = findViewById(R.id.et_age);
         et_sex = findViewById(R.id.et_sex);
         // et_area = findViewById(R.id.et_area);
+        mainHandler = new Handler(getMainLooper());
     }
 
     public void btn_on_click(View view) {
@@ -72,10 +74,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            /*ToastUtils.showMsg(RegisterActivity.this, "注册成功");
+                            ToastUtils.showMsg(RegisterActivity.this, "注册成功,即将登录");
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            startActivity(intent);*/
-                            //setResult(1);
+                            startActivity(intent);
+                            setResult(1);
                             finish();
                         }
                     });

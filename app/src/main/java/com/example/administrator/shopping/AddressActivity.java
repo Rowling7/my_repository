@@ -27,6 +27,8 @@ import java.util.List;
 
 public class AddressActivity extends AppCompatActivity implements View.OnClickListener {
 
+
+    private TextView tv_userName;
     private Handler handler;
     /*地址列表*/
     private ListView lv_address;
@@ -48,6 +50,11 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
 
         SettingActivity.activityList.add(this);
 
+       // tv_userName= findViewById(R.id.tv_userName);
+        //Intent intent = getIntent();
+        //String username3 = intent.getStringExtra("passValue");//登陆后的传值
+      //  tv_userName.setText("ID:    " + username3);
+
         initView();
         lv_address = findViewById(R.id.lv_address);
         loadAddress();
@@ -63,8 +70,6 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
         mainHandler = new Handler(getMainLooper());//获取主线程
         entityUserDao = new EntityUserDao();
 
-
-
     }
 
     /*填充地址列表*/
@@ -72,7 +77,9 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
         new Thread(new Runnable() {
             @Override
             public void run() {
-                addressList = entityUserDao.getAddressListByid();
+                Intent intent = getIntent();
+                String username3 = intent.getStringExtra("passValue2");//登陆后的传值
+                addressList = entityUserDao.getAddressListByid(username3);
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {

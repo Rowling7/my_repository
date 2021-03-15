@@ -8,12 +8,14 @@ public class ShoppingCartEntity {
     private String Shop_uuid;
     private String isExist;
 
+    private String name;
+    private String price;
 
 
-
-    public  ShoppingCartEntity(){
+    public ShoppingCartEntity() {
 
     }
+
     @Override
     public String toString() {
         return "ShoppingCartEntity{" +
@@ -22,7 +24,25 @@ public class ShoppingCartEntity {
                 ", goods_uuid='" + goods_uuid + '\'' +
                 ", Shop_uuid='" + Shop_uuid + '\'' +
                 ", isExist='" + isExist + '\'' +
+                ", name='" + name + '\'' +
+                ", price='" + price + '\'' +
                 '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public Long getUuid() {

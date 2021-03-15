@@ -64,7 +64,7 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = null;
-                intent = new Intent(SettingActivity.this, MainActivity.class);
+                intent = new Intent(SettingActivity.this, ShopActivity.class);
                 startActivity(intent);
             }
         });

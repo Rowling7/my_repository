@@ -35,7 +35,7 @@ public class EntityUserAdapter extends BaseAdapter {
     public EntityUserAdapter(Context context, List<EntityUserEntity> addressList) {
         this.context = context;
         this.addressList = addressList;
-        Log.i("数据适配器", "地址数量：" + addressList.size());
+        Log.i("0", "地址数量：" + addressList.size());
     }
 
     public void setAddressList(List<EntityUserEntity> addressList) {
