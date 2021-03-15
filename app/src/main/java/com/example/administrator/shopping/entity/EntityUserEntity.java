@@ -2,7 +2,7 @@ package com.example.administrator.shopping.entity;
 
 
 public class EntityUserEntity {
-    private String uuid;
+    private long uuid;
     //private Long uuid;
     private String userName;
     private String phone;
@@ -39,15 +39,15 @@ public class EntityUserEntity {
     public void setPassword(String password) {
         this.password = password;
     }
-    public String getUuid() {
+
+    public long getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(long uuid) {
         this.uuid = uuid;
     }
-
-    /*public long getUuid() {
+ /*public long getUuid() {
         return uuid;
     }
 

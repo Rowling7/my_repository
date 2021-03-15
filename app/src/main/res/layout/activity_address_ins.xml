@@ -22,7 +22,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+   <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -31,15 +31,51 @@
         android:gravity="center">
 
         <EditText
-            android:id="@+id/et_addressEdited"
+            android:id="@+id/et_userName"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint=" "
+            android:hint="已登录用户名（必填）"
             android:maxLines="1"
             android:padding="5dp"
             android:textColor="@color/colorBlack"
             android:textSize="16dp" />
     </LinearLayout>
+    <!-- <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+
+        android:layout_marginRight="10dp"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="填写手机号（必填）"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp" />
+    </LinearLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/et_addressEdited"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="填写新地址（必填）"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp" />
+    </LinearLayout>
+
 
     <!-- android:onClick="btn_on_click"-->
     <LinearLayout
@@ -56,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@color/colorPurple"
-
+            android:onClick="btn_on_click"
             android:text="确     认" />
     </LinearLayout>
 

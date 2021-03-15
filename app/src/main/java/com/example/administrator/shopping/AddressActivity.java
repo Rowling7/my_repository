@@ -16,9 +16,12 @@ import android.widget.TextView;
 
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnEditBtnClickListener;
+import com.example.administrator.shopping.adapter.AddressAdapter;
 import com.example.administrator.shopping.adapter.EntityUserAdapter;
+import com.example.administrator.shopping.dao.AddressDao;
 import com.example.administrator.shopping.dao.EntityUserDao;
 import com.example.administrator.shopping.dao.GoodsDao;
+import com.example.administrator.shopping.entity.AddressEntity;
 import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.utils.ToastUtils;
 
@@ -36,9 +39,9 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
     /*地址列表*/
     private ListView lv_address;
     private Button btn_insAddress;
-    private EntityUserDao entityUserDao;
-    private List<EntityUserEntity> addressList;
-    private EntityUserAdapter entityUserAdapter;
+    private AddressDao addressDao;
+    private List<AddressEntity> addressList;
+    private AddressAdapter addressAdapter;
 
 
     private ImageView iv_edit;
@@ -53,6 +56,8 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
 
         SettingActivity.activityList.add(this);
 
+        Intent intent = getIntent();
+        final String userNameForInAd = intent.getStringExtra("passValue2");//登陆后的传值
         // tv_userName= findViewById(R.id.tv_userName);
         //Intent intent = getIntent();
         //String username3 = intent.getStringExtra("passValue");//登陆后的传值
@@ -69,8 +74,9 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
         btn_insAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = null;
+                Intent intent=null;
                 intent = new Intent(AddressActivity.this, AddressInsActivity.class);
+                intent.putExtra("passValueForInsAd", userNameForInAd);
                 startActivity(intent);
             }
         });
@@ -81,7 +87,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
 
     private void initView() {
         mainHandler = new Handler(getMainLooper());//获取主线程
-        entityUserDao = new EntityUserDao();
+        addressDao = new AddressDao();
 
     }
 
@@ -92,7 +98,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
             public void run() {
                 Intent intent = getIntent();
                 String username3 = intent.getStringExtra("passValue2");//登陆后的传值
-                addressList = entityUserDao.getAddressListByid(username3);
+                addressList = addressDao.getAddressListByid(username3);
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -104,20 +110,20 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void showAddressLvData() {
-        if (entityUserAdapter == null) {
-            entityUserAdapter = new EntityUserAdapter(this, addressList);
-            lv_address.setAdapter(entityUserAdapter);
+        if (addressAdapter == null) {
+            addressAdapter = new AddressAdapter(this, addressList);
+            lv_address.setAdapter(addressAdapter);
         } else {
-            entityUserAdapter.setAddressList(addressList);
-            entityUserAdapter.notifyDataSetChanged();
+            addressAdapter.setAddressList(addressList);
+            addressAdapter.notifyDataSetChanged();
         }
 
         // 修改按钮的操作
-        entityUserAdapter.setOnEditBtnClickListener(new OnEditBtnClickListener() {
+        addressAdapter.setOnEditBtnClickListener(new OnEditBtnClickListener() {
             @Override
             public void onEditBtnClick(View view, int position) {
                 // 修改按钮的操作
-                EntityUserEntity item = addressList.get(position);
+                AddressEntity item = addressList.get(position);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("userEdit", (Serializable) item);
                 Intent intent = new Intent(AddressActivity.this, AddressEditActity.class);

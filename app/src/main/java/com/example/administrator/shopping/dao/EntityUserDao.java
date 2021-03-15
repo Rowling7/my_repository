@@ -24,7 +24,7 @@ public class EntityUserDao extends DbOpenHelper {
             rs = pStmt.executeQuery();//回传数据
             if (rs.next()) {
                 entityUserEntity = new EntityUserEntity();
-                entityUserEntity.setUuid(rs.getString("uuid"));
+                entityUserEntity.setUuid(rs.getLong("uuid"));
                 entityUserEntity.setUserName(UserName);
                 entityUserEntity.setPassword(Password);
             }
@@ -49,7 +49,7 @@ public class EntityUserDao extends DbOpenHelper {
                     if (rs != null) {
                         while (rs.next()) {
                             EntityUserEntity u = new EntityUserEntity();
-                            u.setUuid(rs.getString("uuid"));
+                            u.setUuid(rs.getLong("uuid"));
                             u.setPassword(rs.getString("password"));
                             u.setUserName(rs.getString("name"));
                             u.setUserType(rs.getString("usertype"));
@@ -89,48 +89,6 @@ public class EntityUserDao extends DbOpenHelper {
         return iRow;
     }
 
-    /*查询用户地址*/
-    public List<EntityUserEntity> getAddressListByid(String username3) {
-        List<EntityUserEntity> list = new ArrayList<>();
-        try {
-            getConnection();
-            String sql = "SELECT *FROM entityuser\n" +
-                    "WHERE USERNAME=?";
-            pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1, username3);
-            rs = pStmt.executeQuery();
-            while (rs.next()) {
-                EntityUserEntity item = new EntityUserEntity();
-                item.setUuid(rs.getString("uuid"));
-                item.setAddress(rs.getString("address"));
-                list.add(item);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            closeAll();
-        }
-        return list;
-    }
-
-
-    /*insert———添加地址*/
-    public static int insAddress(EntityUserEntity entityUserEntity) {
-        int iRow = 0;
-        try {
-            getConnection();   // 取得连接信息
-            String sql = "INSERT INTO entityuser(ADDRESS) VALUES (?)where username = ?";
-            pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1, entityUserEntity.getPassword());
-            pStmt.setString(2, entityUserEntity.getUserName());
-            iRow = pStmt.executeUpdate();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            closeAll();
-        }
-        return iRow;
-    }
 
 
     /*update*/

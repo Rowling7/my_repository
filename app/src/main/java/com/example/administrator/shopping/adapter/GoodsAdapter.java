@@ -7,9 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.R;
+
 import java.util.List;
 
 //自定义商品适配器
@@ -52,7 +55,7 @@ public class GoodsAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.goods_list_item, null);
             viewHolder = new ViewHolder();
 
-           // viewHolder.iv_picture = convertView.findViewById(R.id.iv_picture);
+            //viewHolder.iv_picture = convertView.findViewById(R.id.iv_picture);//1/2
             viewHolder.tv_title = convertView.findViewById(R.id.tv_title);
             viewHolder.tv_price2 = convertView.findViewById(R.id.tv_price2);
             // viewHolder.btn_addshop = convertView.findViewById(R.id.btn_addshop);
@@ -65,7 +68,7 @@ public class GoodsAdapter extends BaseAdapter {
         GoodsEntity goods = goodsList.get(position);
         viewHolder.tv_title.setText(goods.getName());
         viewHolder.tv_price2.setText(goods.getPrice());
-      //  viewHolder.iv_picture.setText("<img src='" + goods.getPicture()+"'/>");
+       // viewHolder.iv_picture.setBackgroundResource(goods.getPicture());2/2
 
         return convertView;
     }
@@ -74,8 +77,8 @@ public class GoodsAdapter extends BaseAdapter {
         private TextView tv_title;
         private TextView tv_price;
         private TextView tv_price2;
-        // private ImageView iv_picture;
-        private TextView iv_picture;
+        private ImageView iv_picture;
+        //private TextView iv_picture;
         private Button btn_addshop;
     }
 }
