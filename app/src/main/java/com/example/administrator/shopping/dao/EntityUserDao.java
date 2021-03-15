@@ -134,13 +134,31 @@ public class EntityUserDao extends DbOpenHelper {
     }
 
     /*update*/
-    public int updatePassword(EntityUserEntity entityUserEntity) {
+    public static int updateAddress(EntityUserEntity entityUserEntity) {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "update entityuser set password=? where userName=?";
+            String sql = "update entityuser set address=? where username=?";
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(2, entityUserEntity.getPassword());
+            pStmt.setString(1, entityUserEntity.getAddress());
+            pStmt.setString(2, entityUserEntity.getUserName());
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+    /*DELETE*/
+    public static int delAddress(EntityUserEntity entityUserEntity) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "UPDATE `bishe`.`entityuser` SET  `ADDRESS` = null  WHERE USERNAME = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, entityUserEntity.getUserName());
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();

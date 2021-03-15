@@ -6,12 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
+import com.example.administrator.shopping.Impl.OnEditBtnClickListener;
 import com.example.administrator.shopping.R;
 import com.example.administrator.shopping.entity.EntityUserEntity;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class EntityUserAdapter extends BaseAdapter {
@@ -20,7 +21,7 @@ public class EntityUserAdapter extends BaseAdapter {
     private List<EntityUserEntity> addressList;//地址的数据集合
 
 
-   /* private OnEditBtnClickListener onEditBtnClickListener;   //修改按钮点击事件的监听实例
+    private OnEditBtnClickListener onEditBtnClickListener;   //修改按钮点击事件的监听实例
     private OnDelBtnClickListener onDelBtnClickListener;     //删除按钮点击事件的监听实例
 
     public void setOnEditBtnClickListener(OnEditBtnClickListener onEditBtnClickListener) {
@@ -29,7 +30,7 @@ public class EntityUserAdapter extends BaseAdapter {
 
     public void setOnDelBtnClickListener(OnDelBtnClickListener onDelBtnClickListener) {
         this.onDelBtnClickListener = onDelBtnClickListener;
-    }*/
+    }
 
     public EntityUserAdapter(Context context, List<EntityUserEntity> addressList) {
         this.context = context;
@@ -58,14 +59,14 @@ public class EntityUserAdapter extends BaseAdapter {
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
+    public View getView(final int position, View convertView, ViewGroup viewGroup) {
         ViewHolder viewHolder = null;
 
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.address_list_item, null);
             viewHolder = new ViewHolder();
             viewHolder.tv_address=convertView.findViewById(R.id.tv_address);
-            //  viewHolder.iv_edit = convertView.findViewById(R.id.iv_edit);
+            viewHolder.iv_edit = convertView.findViewById(R.id.iv_edit);
             // viewHolder.iv_del = convertView.findViewById(R.id.iv_del);
             convertView.setTag(viewHolder);
         } else {
@@ -75,12 +76,20 @@ public class EntityUserAdapter extends BaseAdapter {
         //数据填充
         EntityUserEntity address = addressList.get(position);
         viewHolder.tv_address.setText(address.getAddress());
+
+        //修改
+        viewHolder.iv_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onEditBtnClickListener.onEditBtnClick(view,position);
+            }
+        });
         return convertView;
     }
 
     private class ViewHolder {
         private TextView tv_address;
-        //  private ImageView iv_edit;
+        private ImageView iv_edit;
         // private ImageView iv_del;
     }
 }
