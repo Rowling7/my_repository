@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".AddressInsActivity"></activity>
+        <activity android:name=".MyDetailsActivity"></activity>
+        <activity android:name=".AddressInsActivity" />
         <activity android:name=".ShoppingCartActivity" />
         <activity android:name=".AddressEditActity" />
         <activity android:name=".MainActivity">

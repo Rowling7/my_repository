@@ -49,8 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
 
         android:onClick="btn_on_click"
@@ -61,8 +61,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginTop="20dp"
-            android:background="@color/colorPurple"
-            android:text="添加地址" />
+            android:background="@drawable/shape_corner"
+            android:text="添 加 地 址 "
+            android:textSize="18dp"
+            android:textColor="@color/colorBlack"/>
 
     </LinearLayout>
 

@@ -14,6 +14,7 @@ import com.example.administrator.shopping.adapter.ShoppingCartAdapter;
 import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.dao.ShoppingCartDao;
 import com.example.administrator.shopping.entity.ShoppingCartEntity;
+import com.example.administrator.shopping.utils.ToastUtils;
 
 import java.util.List;
 
@@ -49,9 +50,15 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ShoppingCartActivity.this, MyActivity.class);
-                intent.putExtra("passValue", userNameForCart);
-                startActivity(intent);
+                //验证是否登录
+                if (userNameForCart == null) {
+                    ToastUtils.showMsg(ShoppingCartActivity.this, "未登录！即将跳转登陆");
+                    Intent intent = new Intent(ShoppingCartActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(ShoppingCartActivity.this, MyActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         imgHome = findViewById(R.id.img_home);
@@ -92,7 +99,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = getIntent();
                 final String userNameForCart = intent.getStringExtra("passValueForCart");//MyActivity的传值
-                cartList=shoppingCartDao.getCartListById(userNameForCart);
+                cartList = shoppingCartDao.getCartListById(userNameForCart);
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {

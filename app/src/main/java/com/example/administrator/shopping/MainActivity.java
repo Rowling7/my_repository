@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.adapter.GoodsAdapter;
+import com.example.administrator.shopping.utils.ToastUtils;
 
 import java.util.List;
 
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgMy;
     private ImageView imgHome;
     private ImageView imgCart;
-
+    private Button btn_addshop;
     private Handler handler;
     private TextView ivpicture;
 
@@ -37,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     private Handler mainHandler;     // 主线程
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,13 +50,21 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String userNameForMain = intent.getStringExtra("passValueForMain");//MyActivity的传值
+        Log.i("0", "地址数量：" + userNameForMain);
 
         imgMy = findViewById(R.id.img_my);
         imgMy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MyActivity.class);
-                startActivity(intent);
+                //验证是否登录
+                if (userNameForMain == null) {
+                    ToastUtils.showMsg(MainActivity.this,"未登录！即将跳转登陆");
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(MainActivity.this, MyActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         imgHome = findViewById(R.id.img_home);
@@ -81,25 +91,16 @@ public class MainActivity extends AppCompatActivity {
         /*填充列表*/
         lv_goods = findViewById(R.id.lv_goods);
         loadGoodsDb();
-        // setupViews();//TextView显示图片
+
+        /*添加购物车*//*
+        btn_addshop=findViewById(R.id.btn_addshop);
+        btn_addshop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });*/
     }
-
-   /* private void setupViews() {
-        ivpicture = (TextView) findViewById(R.id.iv_picture);
-        ivpicture.append(Html.fromHtml("<img src='" + R.drawable.lajiao+"'/>", imageGetter, null));
-    }
-
-    Html.ImageGetter imageGetter = new Html.ImageGetter() {
-
-        @Override
-        public Drawable getDrawable(String source) {
-            int id = Integer.parseInt(source);
-            Drawable drawable = getResources().getDrawable(id);
-            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),drawable.getIntrinsicHeight());
-            return drawable;
-        }
-    };*/
-
 
     private void initView() {
         mainHandler = new Handler(getMainLooper());//获取主线程

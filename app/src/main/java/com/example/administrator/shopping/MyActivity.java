@@ -45,6 +45,8 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         tv_userName = findViewById(R.id.tv_userName);
         Intent intent = getIntent();
         final String userName2 = intent.getStringExtra("passValue");//登陆后的传值
+        final String islogin = intent.getStringExtra("Islogin");//登陆后的传值
+
         tv_userName.setText("ID:    " + userName2);
 
         mainHandler = new Handler(getMainLooper());
@@ -116,9 +118,17 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         imgLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = null;
-                intent = new Intent(MyActivity.this, LoginActivity.class);
-                startActivity(intent);
+                if (userName2 == null) {
+                    Intent intent = null;
+                    intent = new Intent(MyActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = null;
+                    intent = new Intent(MyActivity.this, MyDetailsActivity.class);
+                    intent.putExtra("passValueForUser", userName2);//传递“id”至ShoppingCartActivity
+                    startActivity(intent);
+                }
+
             }
         });
         /*设置*/

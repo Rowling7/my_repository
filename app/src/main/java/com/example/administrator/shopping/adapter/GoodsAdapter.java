@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
+import com.example.administrator.shopping.Impl.OnEditBtnClickListener;
 import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.R;
 
@@ -19,8 +21,29 @@ import java.util.List;
 
 public class GoodsAdapter extends BaseAdapter {
 
+    private class ViewHolder {
+        private TextView tv_title;
+        private TextView tv_price;
+        private TextView tv_price2;
+        private ImageView iv_picture;
+        //private TextView iv_picture;
+        private Button btn_addshop;
+    }
+
     private Context context;//上下文信息 谁是操作源对象
     private List<GoodsEntity> goodsList;//商品的数据集合
+
+
+    private OnEditBtnClickListener onEditBtnClickListener;   //修改按钮点击事件的监听实例
+    private OnDelBtnClickListener onDelBtnClickListener;     //删除按钮点击事件的监听实例
+
+    public void setOnEditBtnClickListener(OnEditBtnClickListener onEditBtnClickListener) {
+        this.onEditBtnClickListener = onEditBtnClickListener;
+    }
+
+    public void setOnDelBtnClickListener(OnDelBtnClickListener onDelBtnClickListener) {
+        this.onDelBtnClickListener = onDelBtnClickListener;
+    }
 
     public GoodsAdapter(Context context, List<GoodsEntity> goodsList) {
         this.context = context;
@@ -68,17 +91,9 @@ public class GoodsAdapter extends BaseAdapter {
         GoodsEntity goods = goodsList.get(position);
         viewHolder.tv_title.setText(goods.getName());
         viewHolder.tv_price2.setText(goods.getPrice());
-       // viewHolder.iv_picture.setBackgroundResource(goods.getPicture());2/2
+        // viewHolder.iv_picture.setBackgroundResource(goods.getPicture());2/2
 
         return convertView;
     }
 
-    private class ViewHolder {
-        private TextView tv_title;
-        private TextView tv_price;
-        private TextView tv_price2;
-        private ImageView iv_picture;
-        //private TextView iv_picture;
-        private Button btn_addshop;
-    }
 }

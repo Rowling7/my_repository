@@ -88,7 +88,6 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
     private void initView() {
         mainHandler = new Handler(getMainLooper());//获取主线程
         addressDao = new AddressDao();
-
     }
 
     /*填充地址列表*/

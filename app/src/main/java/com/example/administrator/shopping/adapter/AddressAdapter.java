@@ -13,7 +13,6 @@ import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnEditBtnClickListener;
 import com.example.administrator.shopping.R;
 import com.example.administrator.shopping.entity.AddressEntity;
-import com.example.administrator.shopping.entity.EntityUserEntity;
 
 import java.util.List;
 

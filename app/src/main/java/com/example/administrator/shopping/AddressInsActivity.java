@@ -49,7 +49,7 @@ public class AddressInsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String userNameInsAd = intent.getStringExtra("passValueForInsAd");//登陆后的传值
         if (TextUtils.isEmpty(etusername)) {
-            ToastUtils.showMsg(this, "请输入用户密码");
+            ToastUtils.showMsg(this, "请输入账户");
             et_userName.requestFocus();
         } else if (TextUtils.isEmpty(etaddressEdited)) {
             ToastUtils.showMsg(this, "请输入地址");
@@ -60,7 +60,11 @@ public class AddressInsActivity extends AppCompatActivity {
             entityUserEntity.setUserName(etusername);
             Log.i("————————————————", "已登陆：" + userNameInsAd);
             Log.i("————————————————", "输入：" + etusername);
-            if (userNameInsAd.equals(etusername)) {
+            if (userNameInsAd==null){
+                ToastUtils.showMsg(AddressInsActivity.this,"未登录");
+                intent = new Intent(AddressInsActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }else if (userNameInsAd.equals(etusername)) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -79,7 +83,7 @@ public class AddressInsActivity extends AppCompatActivity {
                     }
                 }).start();
             }else {
-                ToastUtils.showMsg(AddressInsActivity.this,"请确认输入的用户名");
+                ToastUtils.showMsg(AddressInsActivity.this,"请输入已登录的用户名");
             }
 
         }

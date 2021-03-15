@@ -2,11 +2,16 @@ package com.example.administrator.shopping.dao;
 
 import android.util.Log;
 
+import com.example.administrator.shopping.entity.AddressEntity;
 import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.database.DbOpenHelper;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +39,32 @@ public class EntityUserDao extends DbOpenHelper {
             closeAll();
         }
         return entityUserEntity;
+    }
+
+    /*查询用户信息*/
+    public List<EntityUserEntity> getUserInfoListByid(String userNameForInfo) {
+        List<EntityUserEntity> list = new ArrayList<>();
+        try {
+            getConnection();
+            String sql = "SELECT * FROM entityuser WHERE USERNAME=?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForInfo);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                EntityUserEntity item = new EntityUserEntity();
+                item.setUuid(rs.getLong("uuid"));
+                item.setUserName(rs.getString("username"));
+                item.setAddress(rs.getString("address"));
+                item.setArea(rs.getString("area"));
+                item.setAge(rs.getString("age"));
+                list.add(item);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return list;
     }
 
     /*select*/
@@ -88,9 +119,7 @@ public class EntityUserDao extends DbOpenHelper {
         }
         return iRow;
     }
-
-
-
+    
     /*update*/
     public static int updateAddress(EntityUserEntity entityUserEntity) {
         int iRow = 0;
@@ -125,11 +154,7 @@ public class EntityUserDao extends DbOpenHelper {
         }
         return iRow;
     }
-
-    /*购物车 查询语句*/
-   /* String sql = "SELECT name,price FROM shoppingcart \n" +
-            "LEFT JOIN goods on shoppingcart.GOODS_UUID= goods.UUID\n" +
-            "WHERE USERNAME=?";*/
+    
     /*delete---->更改isexist为0*/
     public int deletebyuuid(EntityUserEntity entityUserEntity) {
         int iRow = 0;
