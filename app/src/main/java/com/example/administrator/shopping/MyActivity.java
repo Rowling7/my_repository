@@ -1,9 +1,13 @@
 package com.example.administrator.shopping;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +42,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
 
         SettingActivity.activityList.add(this);//用来退出
 
-        tv_userName=findViewById(R.id.tv_userName);
+        tv_userName = findViewById(R.id.tv_userName);
         Intent intent = getIntent();
         final String userName2 = intent.getStringExtra("passValue");//登陆后的传值
         tv_userName.setText("ID:    " + userName2);
@@ -80,17 +84,29 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             public void onClick(View view) {
                 Intent intent = null;
                 intent = new Intent(MyActivity.this, MainActivity.class);
+                intent.putExtra("passValueForMain", userName2);//传递“id”至MainActivity
                 startActivity(intent);
             }
         });
-        /*购物车*/
-        imgCart = findViewById(R.id.img_cart);
+        /*sqlite购物车*/
+        /*imgCart = findViewById(R.id.img_cart);
         imgCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = null;
                 intent = new Intent(MyActivity.this, ShoplistActivity.class);
-                intent.putExtra("passValue", userName2);
+                intent.putExtra("passValueForCart", userName2);//传递“id”至ShoppingCartActivity
+                startActivity(intent);
+            }
+        });*/
+        /*mysql购物车*/
+        imgCart = findViewById(R.id.img_cart);
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = null;
+                intent = new Intent(MyActivity.this, ShoppingCartActivity.class);
+                intent.putExtra("passValueForCart", userName2);//传递“id”至ShoppingCartActivity
                 startActivity(intent);
             }
         });
@@ -140,12 +156,19 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 }, 3000);
             }
         });*/
+
+
     }
+
+
+
 
     @Override
     public void onClick(View view) {
 
     }
+
+
 }
 
 

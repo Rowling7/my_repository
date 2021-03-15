@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Handler mainHandler;     // 主线程
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
         SettingActivity.activityList.add(this);//用来退出应用
         initView();
+
+        Intent intent = getIntent();
+        final String userNameForMain = intent.getStringExtra("passValueForMain");//MyActivity的传值
 
         imgMy = findViewById(R.id.img_my);
         imgMy.setOnClickListener(new View.OnClickListener() {
@@ -62,12 +67,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        imgCart = findViewById(R.id.img_cart);
+        //跳转到sqlite购物车
+       /* imgCart = findViewById(R.id.img_cart);
         imgCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = null;
                 intent = new Intent(MainActivity.this, ShoplistActivity.class);
+                startActivity(intent);
+            }
+        });*/
+
+        /*跳转到mysql购物车*/
+        imgCart = findViewById(R.id.img_cart);
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = null;
+                intent = new Intent(MainActivity.this, ShoppingCartActivity.class);
+                intent.putExtra("passValueForCart", userNameForMain);
                 startActivity(intent);
             }
         });

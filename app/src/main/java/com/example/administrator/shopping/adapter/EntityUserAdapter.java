@@ -8,18 +8,22 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.administrator.shopping.AddressActivity;
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnEditBtnClickListener;
+import com.example.administrator.shopping.LoginActivity;
 import com.example.administrator.shopping.R;
 import com.example.administrator.shopping.entity.EntityUserEntity;
+import com.example.administrator.shopping.utils.ToastUtils;
+
 import java.util.List;
 
 public class EntityUserAdapter extends BaseAdapter {
     private TextView tv_address;
     private Context context;//上下文信息 谁是操作源对象
     private List<EntityUserEntity> addressList;//地址的数据集合
-
 
     private OnEditBtnClickListener onEditBtnClickListener;   //修改按钮点击事件的监听实例
     private OnDelBtnClickListener onDelBtnClickListener;     //删除按钮点击事件的监听实例
@@ -36,6 +40,13 @@ public class EntityUserAdapter extends BaseAdapter {
         this.context = context;
         this.addressList = addressList;
         Log.i("0", "地址数量：" + addressList.size());
+
+        /*int aSize = addressList.size();
+        if (aSize==0){
+            ToastUtils.showMsg(AddressActivity.this,"无地址");
+
+
+        }*/
     }
 
     public void setAddressList(List<EntityUserEntity> addressList) {

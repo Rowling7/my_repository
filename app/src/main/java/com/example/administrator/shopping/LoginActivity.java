@@ -2,6 +2,7 @@ package com.example.administrator.shopping;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -58,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    private void initListener() { //无效
+    /*private void initListener() { //无效
         mCbDisplayPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -72,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         });
-    }
+    }*/
 
     private void initView() {
         SettingActivity.activityList.add(this);
@@ -117,19 +118,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 ToastUtils.showMsg(LoginActivity.this, "登录成功");
                                 // 跳转到“我的”界面
 
+                                //String phoneAndUuid= et_UserName.getText().toString();
                                 Intent intent = new Intent(LoginActivity.this, MyActivity.class);
-                                intent.putExtra("passValue", et_UserName.getText().toString());
+                              //  Intent intentForValue =new Intent(phoneAndUuid);
+                               // LocalBroadcastManager.getInstance(LoginActivity.this).sendBroadcast(intentForValue);
+                                intent.putExtra("passValue", et_UserName.getText().toString());//传递“id”至MyActivity
                                 startActivity(intent);
-                               /* if (userType = admin) {
-                                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                                    startActivity(intent);
-                                } else if (userType = custom) {
-                                    Intent intent = new Intent(LoginActivity.this, CustomerActivity.class);
-                                    startActivity(intent);
-                                } else if (userType = bussiness) {
-                                    Intent intent = new Intent(LoginActivity.this, BusinessActivity.class);
-                                    startActivity(intent);
-                                }*/
 
                             }
                         }
