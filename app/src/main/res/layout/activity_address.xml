@@ -30,11 +30,11 @@
     <!--
         地址管理
     -->
-<ListView
-    android:id="@+id/lv_address"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_below="@+id/ll_toopbar"
-    android:fadingEdge="none"/>
+    <ListView
+        android:id="@+id/lv_address"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_toopbar"
+        android:fadingEdge="none" />
 
 </RelativeLayout>

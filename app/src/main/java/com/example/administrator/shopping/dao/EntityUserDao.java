@@ -2,6 +2,7 @@ package com.example.administrator.shopping.dao;
 
 import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.database.DbOpenHelper;
+import com.example.administrator.shopping.entity.GoodsEntity;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class EntityUserDao extends DbOpenHelper {
             rs = pStmt.executeQuery();//回传数据
             if (rs.next()) {
                 entityUserEntity = new EntityUserEntity();
-                entityUserEntity.setUuid(rs.getLong("uuid"));
+                entityUserEntity.setUuid(rs.getString("uuid"));
                 entityUserEntity.setUserName(UserName);
                 entityUserEntity.setPassword(Password);
             }
@@ -47,7 +48,7 @@ public class EntityUserDao extends DbOpenHelper {
                     if (rs != null) {
                         while (rs.next()) {
                             EntityUserEntity u = new EntityUserEntity();
-                            u.setUuid(rs.getLong("uuid"));
+                            u.setUuid(rs.getString("uuid"));
                             u.setPassword(rs.getString("password"));
                             u.setUserName(rs.getString("name"));
                             u.setUserType(rs.getString("usertype"));
@@ -63,7 +64,6 @@ public class EntityUserDao extends DbOpenHelper {
         closeAll();//关闭相关操作
         return list;
     }
-
 
     /*insert*/
     public static int insertUser(EntityUserEntity entityUserEntity) {
@@ -88,6 +88,50 @@ public class EntityUserDao extends DbOpenHelper {
         return iRow;
     }
 
+    // 查询所有地址信息
+   /* public List<EntityUserEntity> getAddressListByid() {
+        List<EntityUserEntity> list = new ArrayList<EntityUserEntity>();
+        EntityUserEntity item=null;
+        try {
+            getConnection();
+            String sql = "select ADDRESS from ENTITYUSER";
+            pStmt = conn.prepareStatement(sql);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                item = new EntityUserEntity();
+                item.setUuid(rs.getString("uuid"));
+                item.setAddress(rs.getString("password"));
+              //  item.setAge(rs.getString("age"));
+                list.add(item);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return list;
+    }*/
+
+    public List<EntityUserEntity> getAddressListByid() {
+        List<EntityUserEntity> list = new ArrayList<>();
+        try {
+            getConnection();
+            String sql = "select * from entityuser";
+            pStmt = conn.prepareStatement(sql);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                EntityUserEntity item = new EntityUserEntity();
+                item.setUuid(rs.getString("uuid"));
+                item.setAddress(rs.getString("address"));
+                list.add(item);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return list;
+    }
 
     /*update*/
     public int updatePassword(EntityUserEntity entityUserEntity) {

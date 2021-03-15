@@ -1,18 +1,16 @@
 package com.example.administrator.shopping;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.administrator.shopping.adapter.AddressAdapter;
-import com.example.administrator.shopping.dao.AddressDao;
+import com.example.administrator.shopping.adapter.EntityUserAdapter;
+import com.example.administrator.shopping.dao.EntityUserDao;
 import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.entity.GoodsEntity;
@@ -35,12 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private GoodsDao goodsDao;
     private List<GoodsEntity> goodsList;
     private GoodsAdapter goodsAdapter;
-    /*地址列表*/
-    private ListView lv_address;
-    private AddressDao addressDao;
-    private List<EntityUserEntity> addressList;
-    private AddressAdapter addressAdapter;
-
 
     private Handler mainHandler;     // 主线程
 
@@ -84,8 +76,7 @@ public class MainActivity extends AppCompatActivity {
         lv_goods = findViewById(R.id.lv_goods);
         loadGoodsDb();
 
-        lv_address = findViewById(R.id.lv_address);
-     //   loadAddressDb();
+
         // setupViews();//TextView显示图片
     }
 
@@ -109,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         mainHandler = new Handler(getMainLooper());//获取主线程
         goodsDao = new GoodsDao();
-        addressDao = new AddressDao();
     }
 
     /*填充商品列表*/
@@ -138,29 +128,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*填充地址列表*/
-    /*private void loadAddressDb() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                addressList = addressDao.getAllAddressList();
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        showAddressLvData();
-                    }
-                });
-            }
-        }).start();
-    }
 
-    private void showAddressLvData() {
-        if (addressAdapter == null) {
-            addressAdapter = new AddressAdapter(this, addressList);
-            lv_address.setAdapter(addressAdapter);
-        } else {
-            addressAdapter.setAddressList(addressList);
-            addressAdapter.notifyDataSetChanged();
-        }
-    }*/
 }

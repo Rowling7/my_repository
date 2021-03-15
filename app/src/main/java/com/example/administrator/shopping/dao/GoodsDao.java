@@ -1,6 +1,5 @@
 package com.example.administrator.shopping.dao;
 
-
 import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.database.DbOpenHelper;
 
@@ -23,7 +22,7 @@ public class GoodsDao extends DbOpenHelper {
                 item.setUuid(rs.getString("uuid"));
                 item.setName(rs.getString("name"));
                 item.setPrice(rs.getString("price"));
-                item.setPicture(rs.getString("picture"));
+                //item.setPicture(rs.getString("picture"));
                 list.add(item);
             }
         } catch (Exception ex) {

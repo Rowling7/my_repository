@@ -6,24 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
-import com.example.administrator.shopping.Impl.OnEditBtnClickListener;
 import com.example.administrator.shopping.R;
 import com.example.administrator.shopping.entity.EntityUserEntity;
-import com.example.administrator.shopping.entity.GoodsEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AddressAdapter extends BaseAdapter {
-
+public class EntityUserAdapter extends BaseAdapter {
+    private TextView tv_address;
     private Context context;//上下文信息 谁是操作源对象
     private List<EntityUserEntity> addressList;//地址的数据集合
 
-    private OnEditBtnClickListener onEditBtnClickListener;   //修改按钮点击事件的监听实例
+
+   /* private OnEditBtnClickListener onEditBtnClickListener;   //修改按钮点击事件的监听实例
     private OnDelBtnClickListener onDelBtnClickListener;     //删除按钮点击事件的监听实例
 
     public void setOnEditBtnClickListener(OnEditBtnClickListener onEditBtnClickListener) {
@@ -32,6 +29,16 @@ public class AddressAdapter extends BaseAdapter {
 
     public void setOnDelBtnClickListener(OnDelBtnClickListener onDelBtnClickListener) {
         this.onDelBtnClickListener = onDelBtnClickListener;
+    }*/
+
+    public EntityUserAdapter(Context context, List<EntityUserEntity> addressList) {
+        this.context = context;
+        this.addressList = addressList;
+        Log.i("数据适配器", "地址数量：" + addressList.size());
+    }
+
+    public void setAddressList(List<EntityUserEntity> addressList) {
+        this.addressList = addressList;
     }
 
     @Override
@@ -49,16 +56,6 @@ public class AddressAdapter extends BaseAdapter {
         return position;
     }
 
-    public AddressAdapter(Context context, List<EntityUserEntity> addressList) {
-        this.context = context;
-        this.addressList = addressList;
-        Log.i("数据适配器", "地址数量：" + addressList.size());
-    }
-
-    public void setAddressList(List<EntityUserEntity> addressList) {
-        this.addressList = addressList;
-    }
-
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
@@ -67,14 +64,12 @@ public class AddressAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.address_list_item, null);
             viewHolder = new ViewHolder();
-
-
-            viewHolder.tv_address = convertView.findViewById(R.id.tv_address);
-            viewHolder.iv_edit = convertView.findViewById(R.id.iv_edit);
-            viewHolder.iv_del = convertView.findViewById(R.id.iv_del);
+            viewHolder.tv_address=convertView.findViewById(R.id.tv_address);
+            //  viewHolder.iv_edit = convertView.findViewById(R.id.iv_edit);
+            // viewHolder.iv_del = convertView.findViewById(R.id.iv_del);
             convertView.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) convertView.getTag();
+            viewHolder = (EntityUserAdapter.ViewHolder) convertView.getTag();
         }
 
         //数据填充
@@ -85,7 +80,7 @@ public class AddressAdapter extends BaseAdapter {
 
     private class ViewHolder {
         private TextView tv_address;
-        private ImageView iv_edit;
-        private ImageView iv_del;
+        //  private ImageView iv_edit;
+        // private ImageView iv_del;
     }
 }
