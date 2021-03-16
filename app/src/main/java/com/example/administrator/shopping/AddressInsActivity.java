@@ -42,6 +42,9 @@ public class AddressInsActivity extends AppCompatActivity {
     private void initView() {
         SettingActivity.activityList.add(this);
         mainHandler = new Handler(getMainLooper());//获取主线程
+        Intent intent = getIntent();
+        final String userNameInsAd = intent.getStringExtra("passValueForInsAd");//登陆后的传值
+        et_userName.setText(userNameInsAd);
     }
 
     public void btn_on_click(View view) {

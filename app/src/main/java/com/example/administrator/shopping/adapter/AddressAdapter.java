@@ -86,13 +86,13 @@ public class AddressAdapter extends BaseAdapter {
         AddressEntity address = addressList.get(position);
         viewHolder.tv_address.setText(address.getAddress());
 
-        /*//修改
-        viewHolder.iv_edit.setOnClickListener(new View.OnClickListener() {
+        //修改
+        viewHolder.iv_editAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onEditBtnClickListener.onEditBtnClick(view,position);
             }
-        });*/
+        });
 
 
         //删除
@@ -107,7 +107,7 @@ public class AddressAdapter extends BaseAdapter {
 
     private class ViewHolder {
         private TextView tv_address;
-        private Button iv_editAddress;
+        private ImageView iv_editAddress;
         private Button iv_delAddress;
     }
 }

@@ -17,7 +17,7 @@ import java.util.List;
 
 public class EntityUserDao extends DbOpenHelper {
 
-    /*login——登录*/
+    /*login——登录  可用*/
     public static EntityUserEntity login(String UserName, String Password) {//Activity 传值过来
         EntityUserEntity entityUserEntity = null;
         try {
@@ -41,63 +41,7 @@ public class EntityUserDao extends DbOpenHelper {
         return entityUserEntity;
     }
 
-    /*查询用户信息*/
-    public List<EntityUserEntity> getUserInfoListByid(String userNameForInfo) {
-        List<EntityUserEntity> list = new ArrayList<>();
-        try {
-            getConnection();
-            String sql = "SELECT * FROM entityuser WHERE USERNAME=?";
-            pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1, userNameForInfo);
-            rs = pStmt.executeQuery();
-            while (rs.next()) {
-                EntityUserEntity item = new EntityUserEntity();
-                item.setUuid(rs.getLong("uuid"));
-                item.setUserName(rs.getString("username"));
-                item.setAddress(rs.getString("address"));
-                item.setArea(rs.getString("area"));
-                item.setAge(rs.getString("age"));
-                list.add(item);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            closeAll();
-        }
-        return list;
-    }
-
-    /*select*/
-    public List<EntityUserEntity> getUserName() {
-        List<EntityUserEntity> list = new ArrayList<EntityUserEntity>();
-        String sql = "select * from entityuser";
-        getConnection();
-        try {
-            if (conn != null && (!conn.isClosed())) {
-                pStmt = (PreparedStatement) conn.prepareStatement(sql);
-                if (pStmt != null) {
-                    rs = pStmt.executeQuery();
-                    if (rs != null) {
-                        while (rs.next()) {
-                            EntityUserEntity u = new EntityUserEntity();
-                            u.setUuid(rs.getLong("uuid"));
-                            u.setPassword(rs.getString("password"));
-                            u.setUserName(rs.getString("name"));
-                            u.setUserType(rs.getString("usertype"));
-
-                            list.add(u);
-                        }
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        closeAll();//关闭相关操作
-        return list;
-    }
-
-    /*insert———注册*/
+    /*insert———注册  可用*/
     public static int insertUser(EntityUserEntity entityUserEntity) {
         int iRow = 0;
         try {
@@ -138,7 +82,63 @@ public class EntityUserDao extends DbOpenHelper {
         return iRow;
     }
 
-    /*DELETE*/
+    /*查询用户信息  无用*/
+    public List<EntityUserEntity> getUserInfoListByid(String userNameForInfo) {
+        List<EntityUserEntity> list = new ArrayList<>();
+        try {
+            getConnection();
+            String sql = "SELECT * FROM entityuser WHERE USERNAME=?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForInfo);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                EntityUserEntity item = new EntityUserEntity();
+                item.setUuid(rs.getLong("uuid"));
+                item.setUserName(rs.getString("username"));
+                item.setAddress(rs.getString("address"));
+                item.setArea(rs.getString("area"));
+                item.setAge(rs.getString("age"));
+                list.add(item);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return list;
+    }
+
+    /*select  无用*/
+    public List<EntityUserEntity> getUserName() {
+        List<EntityUserEntity> list = new ArrayList<EntityUserEntity>();
+        String sql = "select * from entityuser";
+        getConnection();
+        try {
+            if (conn != null && (!conn.isClosed())) {
+                pStmt = (PreparedStatement) conn.prepareStatement(sql);
+                if (pStmt != null) {
+                    rs = pStmt.executeQuery();
+                    if (rs != null) {
+                        while (rs.next()) {
+                            EntityUserEntity u = new EntityUserEntity();
+                            u.setUuid(rs.getLong("uuid"));
+                            u.setPassword(rs.getString("password"));
+                            u.setUserName(rs.getString("name"));
+                            u.setUserType(rs.getString("usertype"));
+
+                            list.add(u);
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeAll();//关闭相关操作
+        return list;
+    }
+
+    /*DELETE 无用*/
     public static int delAddress(EntityUserEntity entityUserEntity) {
         int iRow = 0;
         try {
@@ -155,7 +155,7 @@ public class EntityUserDao extends DbOpenHelper {
         return iRow;
     }
 
-    /*delete---->更改isexist为0*/
+    /*delete---->更改isexist为0   无用*/
     public int deletebyuuid(EntityUserEntity entityUserEntity) {
         int iRow = 0;
         try {

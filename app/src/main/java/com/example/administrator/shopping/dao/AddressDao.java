@@ -22,6 +22,7 @@ public class AddressDao extends DbOpenHelper {
             while (rs.next()) {
                 AddressEntity item = new AddressEntity();
                 item.setUuid(rs.getLong("uuid"));
+                item.setUsername(rs.getString("username"));
                 item.setAddress(rs.getString("address"));
                 list.add(item);
             }
@@ -32,7 +33,6 @@ public class AddressDao extends DbOpenHelper {
         }
         return list;
     }
-
 
     /*insert———添加地址*/
     public static int insAddress(String address, String username) {
@@ -52,8 +52,7 @@ public class AddressDao extends DbOpenHelper {
         return iRow;
     }
 
-
-    /*删除购物车中的胡数据*/
+    /*delete——删除地址*/
     public static int delAddress(long uuid) {
         int iRow = 0;
         try {
@@ -61,6 +60,25 @@ public class AddressDao extends DbOpenHelper {
             String sql = "update entityuser_address set isexist=0 where uuid=?";
             pStmt = conn.prepareStatement(sql);
             pStmt.setLong(1, uuid);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+    /*update——更改地址*/
+    public static int updateAddress(AddressEntity addressEdit) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "update entityuser_address set address=? where username=? and uuid =? ";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1,addressEdit.getAddress());
+            pStmt.setString(2,addressEdit.getUsername());
+            pStmt.setLong(3,addressEdit.getUuid());
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();

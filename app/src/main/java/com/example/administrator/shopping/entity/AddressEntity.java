@@ -1,6 +1,8 @@
 package com.example.administrator.shopping.entity;
 
-public class AddressEntity {
+import java.io.Serializable;
+
+public class AddressEntity implements Serializable {
     private long uuid;
     private String username;
     private long entityuser_uuid;

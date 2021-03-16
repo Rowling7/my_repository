@@ -8,7 +8,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.administrator.shopping.dao.AddressDao;
 import com.example.administrator.shopping.dao.EntityUserDao;
+import com.example.administrator.shopping.entity.AddressEntity;
 import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.utils.ToastUtils;
 
@@ -16,13 +18,9 @@ public class AddressEditActity extends AppCompatActivity {
 
 
     private EditText et_addressEdited;
-    private EntityUserEntity addressEdit;//用户要修改的地址
+    private AddressEntity addressEdit;//用户要修改的地址
     private Handler mainHandler;
     private EntityUserDao entityUserDao;
-
-    Intent intent = getIntent();
-    final String userNameForEditAd = intent.getStringExtra("passValueForEditAd");//登陆后的传值
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +30,10 @@ public class AddressEditActity extends AppCompatActivity {
         et_addressEdited = findViewById(R.id.et_addressEdited);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            addressEdit = (EntityUserEntity) bundle.getSerializable("userEdit");
+            addressEdit = (AddressEntity) bundle.getSerializable("userEdit");
 
             et_addressEdited.setText(addressEdit.getAddress());
         }
-
         entityUserDao = new EntityUserDao();
         mainHandler = new Handler(getMainLooper());
     }
@@ -44,6 +41,7 @@ public class AddressEditActity extends AppCompatActivity {
     // 确定按钮的点击事件处理
     public void btn_on_click(View view) {
         final String newAddress = et_addressEdited.getText().toString().trim();
+
         if (TextUtils.isEmpty(newAddress)) {
             ToastUtils.showMsg(this, "请输入地址或返回");
             et_addressEdited.requestFocus();
@@ -52,10 +50,12 @@ public class AddressEditActity extends AppCompatActivity {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    final int iRow = EntityUserDao.updateAddress(addressEdit);
+                    Intent intent = getIntent();
+                    final int iRow = AddressDao.updateAddress(addressEdit);
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {
+                            ToastUtils.showMsg(AddressEditActity.this,"更改成功~~");
                             setResult(1);   // 使用参数表示当前界面操作成功，并返回管理界面
                             finish();
                         }

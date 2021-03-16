@@ -48,7 +48,7 @@
 
         //编辑地址
 
-        <Button
+        <ImageView
             android:id="@+id/iv_editAddress"
             android:layout_width="35dp"
             android:layout_height="50dp"

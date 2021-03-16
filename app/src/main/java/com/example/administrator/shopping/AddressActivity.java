@@ -54,7 +54,6 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_address);
 
         SettingActivity.activityList.add(this);
-
         Intent intent = getIntent();
         final String userNameForInAd = intent.getStringExtra("passValue2");//登陆后的传值
 
@@ -111,19 +110,22 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
             addressAdapter.notifyDataSetChanged();
         }
 
-       /* // 修改按钮的操作
+        // 修改按钮的操作
         addressAdapter.setOnEditBtnClickListener(new OnEditBtnClickListener() {
             @Override
             public void onEditBtnClick(View view, int position) {
+                Intent intent = getIntent();
+                final String userNameForInAd = intent.getStringExtra("passValue2");//登陆后的传值
                 // 修改按钮的操作
                 AddressEntity item = addressList.get(position);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("userEdit", (Serializable) item);
-                Intent intent = new Intent(AddressActivity.this, AddressEditActity.class);
+                intent = new Intent(AddressActivity.this, AddressEditActity.class);
+                intent.putExtra("passValueForEditAd", userNameForInAd);
                 intent.putExtras(bundle);
                 startActivityForResult(intent, 1);
             }
-        });*/
+        });
 
         // 删除按钮的操作
         addressAdapter.setOnDelBtnClickListener(new OnDelBtnClickListener() {
@@ -134,7 +136,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
                 new AlertDialog.Builder(AddressActivity.this)
                         .setTitle("删除确定")
                         .setMessage("确认删除：" +
-                                item.getAddress() + "吗？")
+                                item.getAddress() + "？")
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
