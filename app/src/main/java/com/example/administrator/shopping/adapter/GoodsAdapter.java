@@ -27,7 +27,6 @@ public class GoodsAdapter extends BaseAdapter {
         private TextView tv_price;
         private TextView tv_price2;
         private ImageView iv_picture;
-        //private TextView iv_picture;
         private Button btn_addshop;
     }
 
@@ -35,9 +34,8 @@ public class GoodsAdapter extends BaseAdapter {
     private List<GoodsEntity> goodsList;//商品的数据集合
 
 
-    private OnEditBtnClickListener onEditBtnClickListener;   //修改按钮点击事件的监听实例
-    private OnDelBtnClickListener onDelBtnClickListener;     //删除按钮点击事件的监听实例
-    private OnInsBtnClickListener onInsBtnClickListener;     //删除按钮点击事件的监听实例
+
+    private OnInsBtnClickListener onInsBtnClickListener;     //添加按钮点击事件的监听实例
 
     public GoodsAdapter() {
 
@@ -45,14 +43,6 @@ public class GoodsAdapter extends BaseAdapter {
 
     public void setOnInsBtnClickListener(OnInsBtnClickListener onInsBtnClickListener) {
         this.onInsBtnClickListener = onInsBtnClickListener;
-    }
-
-    public void setOnEditBtnClickListener(OnEditBtnClickListener onEditBtnClickListener) {
-        this.onEditBtnClickListener = onEditBtnClickListener;
-    }
-
-    public void setOnDelBtnClickListener(OnDelBtnClickListener onDelBtnClickListener) {
-        this.onDelBtnClickListener = onDelBtnClickListener;
     }
 
     public GoodsAdapter(Context context, List<GoodsEntity> goodsList) {
@@ -110,18 +100,7 @@ public class GoodsAdapter extends BaseAdapter {
             }
         });
 
-        // 删除按钮
         return convertView;
     }
-    /*public interface onItemAddListener {
-        void onAddClick(int i);
-    }
-
-    private onItemAddListener mOnItemAddListener;
-
-    public void setOnItemAddClickListener(onItemAddListener mOnItemADdListener) {
-        this.mOnItemAddListener = mOnItemAddListener;
-    }*/
-
 
 }

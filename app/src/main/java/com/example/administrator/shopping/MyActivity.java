@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 /*import com.example.administrator.shopping.dao.EntityUserDao;
 import com.example.administrator.shopping.Entity.EntityUserEntity;*/
+import com.example.administrator.shopping.dao.EntityUserDao;
+import com.example.administrator.shopping.dao.ShoppingCartDao;
 import com.example.administrator.shopping.utils.ShareUntils;
 import com.example.administrator.shopping.utils.ToastUtils;
 
@@ -33,9 +35,23 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     private TextView tv_Update;
     private TextView tv_share;
     private TextView tv_userName;
+    private TextView tv_wallet;
 
     private String Name;
     private Handler mainHandler;     // 主线程
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            //super.handleMessage(msg);
+            if(msg.what==0){
+                String walletgeneral = (String) msg.obj;
+                if (walletgeneral==null){
+                    tv_wallet.setText("0.00");
+                }else
+                    tv_wallet.setText(walletgeneral);
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +159,11 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
             }
         });
+
+
+        /*钱包*/
+        tv_wallet=findViewById(R.id.tv_wallet);
+
         /*地址管理*/
         tvAddress = findViewById(R.id.tv_addressManager);
         tvAddress.setOnClickListener(new View.OnClickListener() {
@@ -178,9 +199,26 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-
+        doQueryWallet();
     }
 
+
+    // 执行查询用户数量的方法
+    private void doQueryWallet(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = getIntent();
+                final String userName2 = intent.getStringExtra("passValue");//登陆后的传值
+                String userWallet = EntityUserDao.getUserWallet(userName2);
+                Message msg = Message.obtain();
+                msg.what = 0;   // 查询结果
+                msg.obj = userWallet;
+                // 向主线程发送数据
+                handler.sendMessage(msg);
+            }
+        }).start();
+    }
     @Override
     public void onClick(View view) {
 

@@ -56,26 +56,23 @@ public class ShoppingCartDao extends DbOpenHelper {
     }
 
 
-
-
-
-    public static String getCartSum(String userNameForCart){
-
+    /*查询购物车总金额*/
+    public static String getCartSum(String userNameForCart) {
         String sum = null;   // 购物车总价格
 
-        try{
+        try {
             getConnection();
             String sql = "SELECT cast(SUm(price)as  decimal(15,2)) as SUM\n" +
                     "from goods g\n" +
                     "LEFT JOIN shoppingcart sc on sc.GOODS_UUID = g.uuid\n" +
-                    "where username =?";
+                    "where username =? and sc.isexist = 1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userNameForCart);
             rs = pStmt.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 sum = rs.getString("SUM");
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 

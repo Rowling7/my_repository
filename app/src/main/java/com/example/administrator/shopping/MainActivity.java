@@ -1,31 +1,20 @@
 package com.example.administrator.shopping;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnInsBtnClickListener;
-import com.example.administrator.shopping.adapter.EntityUserAdapter;
-import com.example.administrator.shopping.dao.AddressDao;
-import com.example.administrator.shopping.dao.EntityUserDao;
 import com.example.administrator.shopping.dao.GoodsDao;
-import com.example.administrator.shopping.dao.ShoppingCartDao;
-import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.adapter.GoodsAdapter;
-import com.example.administrator.shopping.entity.ShoppingCartEntity;
 import com.example.administrator.shopping.utils.ToastUtils;
 
 import java.util.List;
@@ -167,7 +156,8 @@ public class MainActivity extends AppCompatActivity {
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        loadGoodsDb();  // 重新加载数据
+                        ToastUtils.showMsg(MainActivity.this,"已添加至购物车！");
+                        loadGoodsDb();// 重新加载数据
                     }
                 });
             }

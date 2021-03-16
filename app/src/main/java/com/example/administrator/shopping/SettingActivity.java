@@ -20,10 +20,6 @@ public class SettingActivity extends AppCompatActivity {
     private Button btnExit;
     private Button btnRegister2;
     private Button btnRelogin;
-    private Button btnBussiness2;
-    private Button btnAdmin2;
-
-
     public static List<Activity> activityList = new LinkedList();
 
     @Override
@@ -59,25 +55,6 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        /*btnAdmin2 = findViewById(R.id.btn_admin2);
-        btnAdmin2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = null;
-                intent = new Intent(SettingActivity.this, ShopActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
-        btnBussiness2 = findViewById(R.id.btn_bussiness2);
-        btnBussiness2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = null;
-                intent = new Intent(SettingActivity.this, BusinessActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public void exit() {

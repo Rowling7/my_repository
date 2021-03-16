@@ -22,7 +22,7 @@ public class EntityUserDao extends DbOpenHelper {
         EntityUserEntity entityUserEntity = null;
         try {
             getConnection();   // 取得连接信息
-            String sql = "select * from entityuser where username=? and password=?";//用用户名和密码同时作为条件如果能搜索到信息就是成功的，搜索结果为空不成功
+            String sql = "select * from entityuser where username=? and password=? and isexist =1";//用用户名和密码同时作为条件如果能搜索到信息就是成功的，搜索结果为空不成功
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, UserName);// 获取用户名
             pStmt.setString(2, Password);//获取密码
@@ -62,6 +62,27 @@ public class EntityUserDao extends DbOpenHelper {
             closeAll();
         }
         return iRow;
+    }
+
+
+    /*查询钱包金额*/
+    public static String getUserWallet(String userNameForCart) {
+        String walletgeneral  = null;   // 购物车总价格
+
+        try {
+            getConnection();
+            String sql = "SELECT cast(wallet as  decimal(15,2))as wallet from entityuser where username =?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForCart);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                walletgeneral = rs.getString("wallet");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return walletgeneral;
     }
 
     /*update*/

@@ -118,6 +118,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         showCartLvData();
+                        doQueryCount();
                     }
                 });
             }
@@ -164,15 +165,17 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        loadCartDb();  // 重新加载数据
+                        ToastUtils.showMsg(ShoppingCartActivity.this,"已从购物车移除！");
+                        loadCartDb();
+                        doQueryCount();// 重新加载数据
                     }
                 });
             }
         }).start();
     }
 
-    // 执行查询用户数量的方法
-    private void doQueryCount(){
+    // 查询购物车总金额
+    public void doQueryCount(){
         new Thread(new Runnable() {
             @Override
             public void run() {

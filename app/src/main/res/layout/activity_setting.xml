@@ -30,11 +30,11 @@
         android:id="@+id/user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
-        android:orientation="vertical"
         android:gravity="center"
-        android:layout_alignParentBottom="true">
+        android:orientation="vertical">
 
         <!--<TextView
             android:id="@+id/tv_userName"
@@ -51,9 +51,9 @@
             android:layout_width="300dp"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
+            android:background="@drawable/shape_corner"
             android:text="切换账号"
-            android:textColor="@color/colorPrimary"
-            android:background="@drawable/shape_corner"></Button>
+            android:textColor="@color/colorPrimary"></Button>
 
         <Button
             android:id="@+id/btn_register2"
@@ -61,9 +61,9 @@
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/shape_corner"
             android:text="注册账号"
-            android:textColor="@color/colorPrimary"
-            android:background="@drawable/shape_corner"></Button>
+            android:textColor="@color/colorPrimary"></Button>
 
         <Button
             android:id="@+id/btn_exit"
@@ -71,29 +71,10 @@
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/shape_corner"
             android:text="退出应用"
-            android:textColor="@color/colorAccent"
-            android:background="@drawable/shape_corner"></Button>
+            android:textColor="@color/colorAccent"></Button>
 
-        <Button
-            android:id="@+id/btn_bussiness2"
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="BUSSINESS"
-            android:textColor="@color/colorAccent"
-            android:background="@drawable/shape_corner"></Button>
-
-        <Button
-            android:id="@+id/btn_admin2"
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="goods"
-            android:textColor="@color/colorAccent"
-            android:background="@drawable/shape_corner"></Button>
 
     </LinearLayout>
 
