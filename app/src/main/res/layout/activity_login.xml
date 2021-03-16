@@ -71,9 +71,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginTop="20dp"
+            android:textSize="20sp"
             android:background="@color/colorPurple"
-
-            android:text="登录" />
+            android:text="登     录" />
 
         <TextView
             android:id="@+id/tv_register"

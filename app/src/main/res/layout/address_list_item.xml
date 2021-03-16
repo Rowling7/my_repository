@@ -8,7 +8,7 @@
     <RelativeLayout
         android:id="@+id/rl_address"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -18,7 +18,7 @@
 
         <ImageView
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:src="@mipmap/address" />
 
         <TextView
@@ -31,7 +31,7 @@
             android:singleLine="true"
             android:text="dizhc "
             android:textColor="#FF62"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
 
         //删除地址
@@ -39,10 +39,11 @@
         <Button
             android:id="@+id/iv_delAddress"
             android:layout_width="35dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:background="@mipmap/delete" />
 
@@ -51,8 +52,8 @@
         <ImageView
             android:id="@+id/iv_editAddress"
             android:layout_width="35dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
             android:layout_toLeftOf="@id/iv_delAddress"
             android:background="@mipmap/change" />
 

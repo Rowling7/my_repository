@@ -1,5 +1,6 @@
 package com.example.administrator.shopping;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -48,6 +49,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
     private Handler mainHandler;     // 主线程
 
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
