@@ -38,14 +38,13 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
     private Handler handler;
     /*地址列表*/
     private ListView lv_address;
-    private Button btn_insAddress;
     private AddressDao addressDao;
     private List<AddressEntity> addressList;
     private AddressAdapter addressAdapter;
 
-
-    private ImageView iv_edit;
-    private ImageView iv_del;
+    private Button btn_insAddress;
+    private Button iv_editAddress;
+    private Button iv_delAddress;
     private Handler mainHandler;     // 主线程
 
 
@@ -58,31 +57,26 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
 
         Intent intent = getIntent();
         final String userNameForInAd = intent.getStringExtra("passValue2");//登陆后的传值
-        // tv_userName= findViewById(R.id.tv_userName);
-        //Intent intent = getIntent();
-        //String username3 = intent.getStringExtra("passValue");//登陆后的传值
-        //  tv_userName.setText("ID:    " + username3);
 
-        initView();
         lv_address = findViewById(R.id.lv_address);
         loadAddress();
+        initView();
 
-        iv_edit = findViewById(R.id.iv_edit);
-        iv_del = findViewById(R.id.iv_del);
+        iv_delAddress = findViewById(R.id.iv_delAddress);
+        iv_editAddress = findViewById(R.id.iv_editAddress);
 
+        //添加地址
         btn_insAddress = findViewById(R.id.btn_insAddress);
         btn_insAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=null;
+                Intent intent = null;
                 intent = new Intent(AddressActivity.this, AddressInsActivity.class);
                 intent.putExtra("passValueForInsAd", userNameForInAd);
                 startActivity(intent);
             }
         });
 
-//        iv_edit.setOnClickListener(this);
-        // iv_del.setOnClickListener(this);
     }
 
     private void initView() {
@@ -117,7 +111,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
             addressAdapter.notifyDataSetChanged();
         }
 
-        // 修改按钮的操作
+       /* // 修改按钮的操作
         addressAdapter.setOnEditBtnClickListener(new OnEditBtnClickListener() {
             @Override
             public void onEditBtnClick(View view, int position) {
@@ -129,38 +123,37 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
                 intent.putExtras(bundle);
                 startActivityForResult(intent, 1);
             }
-        });
+        });*/
 
-      /*  // 删除按钮的操作
-        entityUserAdapter.setOnDelBtnClickListener(new OnDelBtnClickListener() {
+        // 删除按钮的操作
+        addressAdapter.setOnDelBtnClickListener(new OnDelBtnClickListener() {
             @Override
             public void onDelBtnClick(View view, int position) {
                 //  删除方法
-                final EntityUserEntity item = addressList.get(position);
+                final AddressEntity item = addressList.get(position);
                 new AlertDialog.Builder(AddressActivity.this)
                         .setTitle("删除确定")
-                        .setMessage("您确定要删除：id:["+item.getUuid()+"]，name:["+
-                                item.getUserName()+"]的用户信息吗？")
+                        .setMessage("确认删除：" +
+                                item.getAddress() + "吗？")
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                              //  doDelAddress(item.getUserName());
+                                doDelAddress(item.getUuid());
                             }
                         })
                         .setNegativeButton("取消", null)
                         .create().show();
             }
-        });*/
+        });
 
     }
 
-    /*
-     *//*删除*//*
-    private void doDelAddress(final EntityUserEntity username){
+    //删除操作
+    private void doDelAddress(final long uuid) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final int iRow = entityUserDao.delAddress(username);
+                final int iRow = addressDao.delAddress(uuid);
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -169,7 +162,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
                 });
             }
         }).start();
-    }*/
+    }
 
 
     @Override

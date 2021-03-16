@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -73,7 +74,8 @@ public class AddressAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.address_list_item, null);
             viewHolder = new ViewHolder();
             viewHolder.tv_address=convertView.findViewById(R.id.tv_address);
-            viewHolder.iv_edit = convertView.findViewById(R.id.iv_edit);
+            viewHolder.iv_editAddress = convertView.findViewById(R.id.iv_editAddress);
+            viewHolder.iv_delAddress=convertView.findViewById(R.id.iv_delAddress);
             // viewHolder.iv_del = convertView.findViewById(R.id.iv_del);
             convertView.setTag(viewHolder);
         } else {
@@ -84,11 +86,20 @@ public class AddressAdapter extends BaseAdapter {
         AddressEntity address = addressList.get(position);
         viewHolder.tv_address.setText(address.getAddress());
 
-        //修改
+        /*//修改
         viewHolder.iv_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onEditBtnClickListener.onEditBtnClick(view,position);
+            }
+        });*/
+
+
+        //删除
+        viewHolder.iv_delAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onDelBtnClickListener.onDelBtnClick(view,position);
             }
         });
         return convertView;
@@ -96,7 +107,7 @@ public class AddressAdapter extends BaseAdapter {
 
     private class ViewHolder {
         private TextView tv_address;
-        private ImageView iv_edit;
-        // private ImageView iv_del;
+        private Button iv_editAddress;
+        private Button iv_delAddress;
     }
 }

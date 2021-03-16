@@ -136,8 +136,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 final ShoppingCartEntity item = cartList.get(position);
                 new AlertDialog.Builder(ShoppingCartActivity.this)
                         .setTitle("删除确定")
-                        .setMessage("您确定要删除：id:[" + item.getUuid() + "]，uname:[" +
-                                item.getName() + "]？")
+                        .setMessage("您确定要删除：" +
+                                item.getName() + "吗？")
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

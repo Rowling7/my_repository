@@ -1,5 +1,6 @@
 package com.example.administrator.shopping;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,11 @@ public class AddressEditActity extends AppCompatActivity {
     private EntityUserEntity addressEdit;//用户要修改的地址
     private Handler mainHandler;
     private EntityUserDao entityUserDao;
+
+    Intent intent = getIntent();
+    final String userNameForEditAd = intent.getStringExtra("passValueForEditAd");//登陆后的传值
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +44,6 @@ public class AddressEditActity extends AppCompatActivity {
     // 确定按钮的点击事件处理
     public void btn_on_click(View view){
         final String newAddress = et_addressEdited.getText().toString().trim();
-
-
         if(TextUtils.isEmpty(newAddress)){
             ToastUtils.showMsg(this, "请输入地址或返回");
             et_addressEdited.requestFocus();
@@ -49,7 +53,6 @@ public class AddressEditActity extends AppCompatActivity {
                 @Override
                 public void run() {
                     final int iRow = EntityUserDao.updateAddress(addressEdit);
-
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {

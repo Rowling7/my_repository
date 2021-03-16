@@ -1,5 +1,6 @@
 package com.example.administrator.shopping;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
@@ -14,14 +15,17 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnInsBtnClickListener;
 import com.example.administrator.shopping.adapter.EntityUserAdapter;
 import com.example.administrator.shopping.dao.AddressDao;
 import com.example.administrator.shopping.dao.EntityUserDao;
 import com.example.administrator.shopping.dao.GoodsDao;
+import com.example.administrator.shopping.dao.ShoppingCartDao;
 import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.adapter.GoodsAdapter;
+import com.example.administrator.shopping.entity.ShoppingCartEntity;
 import com.example.administrator.shopping.utils.ToastUtils;
 
 import java.util.List;
@@ -90,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = null;
                 intent = new Intent(MainActivity.this, ShoppingCartActivity.class);
                 intent.putExtra("passValueForCart", userNameForMain);
+                if (userNameForMain == null) {
+                    ToastUtils.showMsg(MainActivity.this, "未登录 ");
+                }
                 startActivity(intent);
             }
         });
@@ -138,94 +145,33 @@ public class MainActivity extends AppCompatActivity {
             goodsAdapter.notifyDataSetChanged();
         }
 
-        /*GoodsAdapter.setOnInsBtnClickListener(new AdapterView.OnInsBtnClickListener() {
+        // 添加按钮的操作
+        goodsAdapter.setOnInsBtnClickListener(new OnInsBtnClickListener() {
             @Override
             public void OnInsBtnClick(View view, int position) {
+                //  方法
                 final GoodsEntity item = goodsList.get(position);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        final int iRow = goodsDao.InsGoods(item.getUuid());
-                        mainHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                loadGoodsDb();
-                            }
-                        })
-                    }
-                })
+                doInsCart(item.getUuid());
             }
-        });*/
-
-
-         /*
-        lvUserinfoAdapter.setOnDelBtnClickListener(new OnDelBtnClickListener() {
-            @Override
-            public void onDelBtnClick(View view, int position) {
-                //  删除方法
-                final Userinfo item = userinfoList.get(position);
-                new AlertDialog.Builder(UserManagerActivity.this)
-                        .setTitle("删除确定")
-                        .setMessage("您确定要删除：id:["+item.getId()+"]，uname:["+
-                                item.getUname()+"]的用户信息吗？")
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                doDelUser(item.getId());
-                            }
-                        })
-                        .setNegativeButton("取消", null)
-                        .create().show();
-            }
-        });*/
+        });
     }
 
-
-    /*public void btn_on_click(View view) {
-        final String goodsUuid = item.getText().toString().trim();
-        final String etusername = et_userName.getText().toString().trim();
-        Intent intent = getIntent();
-        final String userNameInsAd = intent.getStringExtra("passValueForInsAd");//登陆后的传值
-        if (TextUtils.isEmpty(etusername)) {
-            ToastUtils.showMsg(this, "请输入账户");
-            et_userName.requestFocus();
-        } else if (TextUtils.isEmpty(etaddressEdited)) {
-            ToastUtils.showMsg(this, "请输入地址");
-            et_addressEdited.requestFocus();
-        } else {
-            final EntityUserEntity entityUserEntity = new EntityUserEntity();
-            entityUserEntity.setAddress(etaddressEdited);
-            entityUserEntity.setUserName(etusername);
-            Log.i("————————————————", "已登陆：" + userNameInsAd);
-            Log.i("————————————————", "输入：" + etusername);
-            if (userNameInsAd==null){
-                ToastUtils.showMsg(AddressInsActivity.this,"未登录");
-                intent = new Intent(AddressInsActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }else if (userNameInsAd.equals(etusername)) {
-                new Thread(new Runnable() {
+    //执行添加购物车中的数据
+    private void doInsCart(final String uuid) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = getIntent();
+                final String username = intent.getStringExtra("passValueForMain");//MyActivity的传值
+                final int iRow = GoodsDao.insCart(uuid,username);
+                mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        AddressDao.insAddress(etusername,etaddressEdited);
-                        mainHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                ToastUtils.showMsg(AddressInsActivity.this, "添加成功");
-                                Intent intent = new Intent(AddressInsActivity.this, AddressActivity.class);
-                                intent.putExtra("passValue2", userNameInsAd);
-                                startActivity(intent);
-                                setResult(1);
-                                finish();
-                            }
-                        });
+                        loadGoodsDb();  // 重新加载数据
                     }
-                }).start();
-            }else {
-                ToastUtils.showMsg(AddressInsActivity.this,"请输入已登录的用户名");
+                });
             }
-
-        }
-    }*/
-
+        }).start();
+    }
 
 }

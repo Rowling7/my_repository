@@ -47,7 +47,6 @@
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:textSize="15sp"
-            android:onClick="btn_on_click"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:background="@drawable/shape_corner_red"

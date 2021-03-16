@@ -33,7 +33,6 @@ public class ShoppingCartAdapter extends BaseAdapter {
     public  void setOnDelBtnClickListener(OnDelBtnClickListener onDelBtnClickListener) {
         this.onDelBtnClickListener = onDelBtnClickListener;
     }
-    //删除按钮点击事件的监听实例
 
 
     public ShoppingCartAdapter(Context context, List<ShoppingCartEntity> cartList) {

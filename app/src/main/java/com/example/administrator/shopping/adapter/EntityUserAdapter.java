@@ -77,7 +77,7 @@ public class EntityUserAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.address_list_item, null);
             viewHolder = new ViewHolder();
             viewHolder.tv_address=convertView.findViewById(R.id.tv_address);
-            viewHolder.iv_edit = convertView.findViewById(R.id.iv_edit);
+            viewHolder.iv_edit = convertView.findViewById(R.id.iv_editAddress);
             // viewHolder.iv_del = convertView.findViewById(R.id.iv_del);
             convertView.setTag(viewHolder);
         } else {
