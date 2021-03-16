@@ -54,17 +54,17 @@ public class AddressDao extends DbOpenHelper {
 
 
     /*删除购物车中的胡数据*/
-    public static int delAddress(long uuid){
+    public static int delAddress(long uuid) {
         int iRow = 0;
-        try{
+        try {
             getConnection();   // 取得连接信息
             String sql = "update entityuser_address set isexist=0 where uuid=?";
             pStmt = conn.prepareStatement(sql);
             pStmt.setLong(1, uuid);
             iRow = pStmt.executeUpdate();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }finally {
+        } finally {
             closeAll();
         }
         return iRow;

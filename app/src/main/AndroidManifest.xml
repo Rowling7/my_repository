@@ -14,11 +14,7 @@
         <activity android:name=".ShoppingCartActivity" />
         <activity android:name=".AddressEditActity" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".BusinessActivity" />
         <activity android:name=".CustomerActivity" />
@@ -26,7 +22,15 @@
         <activity android:name=".AddressActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity">
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MyActivity" />
     </application>
 

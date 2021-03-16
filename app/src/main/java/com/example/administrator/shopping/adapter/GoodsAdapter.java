@@ -39,9 +39,10 @@ public class GoodsAdapter extends BaseAdapter {
     private OnDelBtnClickListener onDelBtnClickListener;     //删除按钮点击事件的监听实例
     private OnInsBtnClickListener onInsBtnClickListener;     //删除按钮点击事件的监听实例
 
-    public  GoodsAdapter(){
+    public GoodsAdapter() {
 
     }
+
     public void setOnInsBtnClickListener(OnInsBtnClickListener onInsBtnClickListener) {
         this.onInsBtnClickListener = onInsBtnClickListener;
     }
@@ -105,7 +106,7 @@ public class GoodsAdapter extends BaseAdapter {
         viewHolder.btn_addshop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onInsBtnClickListener.OnInsBtnClick(v,position);
+                onInsBtnClickListener.OnInsBtnClick(v, position);
             }
         });
 

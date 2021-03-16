@@ -50,8 +50,8 @@ public class MyDetailsActivity extends AppCompatActivity {
         mainHandler = new Handler(getMainLooper());//获取主线程
     }
 
-/*
-    *//*填充userInfo列表*//*
+    /*
+     *//*填充userInfo列表*//*
     private void loadUserInfo() {
         new Thread(new Runnable() {
             @Override

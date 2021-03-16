@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_title"
             android:layout_marginTop="10dp"
-            android:text="价格:"
+            android:text="价格(元)"
             android:textColor="#FF62"
             android:textSize="20sp" />
 

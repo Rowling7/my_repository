@@ -23,7 +23,7 @@ public class DbOpenHelper {
     public static void getConnection() {
         try {
             Class.forName(DRIVERS);
-            conn =  DriverManager.getConnection(URL, USER, PWD);
+            conn = DriverManager.getConnection(URL, USER, PWD);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -122,7 +122,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                     Intent intent = null;
                     intent = new Intent(MyActivity.this, LoginActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     Intent intent = null;
                     intent = new Intent(MyActivity.this, MyDetailsActivity.class);
                     intent.putExtra("passValueForUser", userName2);//传递“id”至ShoppingCartActivity

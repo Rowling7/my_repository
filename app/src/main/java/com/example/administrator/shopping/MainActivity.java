@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = getIntent();
                 final String username = intent.getStringExtra("passValueForMain");//MyActivity的传值
-                final int iRow = GoodsDao.insCart(uuid,username);
+                final int iRow = GoodsDao.insCart(uuid, username);
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {

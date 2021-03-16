@@ -54,7 +54,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_toLeftOf="@id/iv_delAddress"
-            android:background="@mipmap/change"/>
+            android:background="@mipmap/change" />
 
     </RelativeLayout>
 

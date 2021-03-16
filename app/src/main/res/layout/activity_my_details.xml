@@ -28,6 +28,7 @@
             android:textSize="20dp"
             android:textStyle="bold" />
     </LinearLayout>
+
     <ListView
         android:id="@+id/lv_userInfo"
         android:layout_width="match_parent"
@@ -35,6 +36,5 @@
         android:layout_below="@+id/ll_toopbar"
         android:layout_marginTop="50dp"
         android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        />
+        android:layout_marginLeft="10dp" />
 </RelativeLayout>

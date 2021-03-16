@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             entityUserEntity.setPhone(etphone);
             // entityUserEntity.setArea(etarea);
 
-            new Thread(new Runnable(){
+            new Thread(new Runnable() {
                 @Override
                 public void run() {
                     EntityUserDao.insertUser(entityUserEntity);

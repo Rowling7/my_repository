@@ -30,7 +30,8 @@ public class ShoppingCartAdapter extends BaseAdapter {
 
     //删除按钮点击事件的监听实例
     private OnDelBtnClickListener onDelBtnClickListener;
-    public  void setOnDelBtnClickListener(OnDelBtnClickListener onDelBtnClickListener) {
+
+    public void setOnDelBtnClickListener(OnDelBtnClickListener onDelBtnClickListener) {
         this.onDelBtnClickListener = onDelBtnClickListener;
     }
 
@@ -71,7 +72,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
             // viewHolder.iv_picture = convertView.findViewById(R.id.iv_picture);
             viewHolder.title = convertView.findViewById(R.id.title);
             viewHolder.price = convertView.findViewById(R.id.price);
-            viewHolder.btn_delCart=convertView.findViewById(R.id.btn_delCart);
+            viewHolder.btn_delCart = convertView.findViewById(R.id.btn_delCart);
             // viewHolder.btn_addshop = convertView.findViewById(R.id.btn_addshop);
             convertView.setTag(viewHolder);
         } else {

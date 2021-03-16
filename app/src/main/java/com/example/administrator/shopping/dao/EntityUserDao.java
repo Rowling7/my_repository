@@ -119,7 +119,7 @@ public class EntityUserDao extends DbOpenHelper {
         }
         return iRow;
     }
-    
+
     /*update*/
     public static int updateAddress(EntityUserEntity entityUserEntity) {
         int iRow = 0;
@@ -154,7 +154,7 @@ public class EntityUserDao extends DbOpenHelper {
         }
         return iRow;
     }
-    
+
     /*delete---->更改isexist为0*/
     public int deletebyuuid(EntityUserEntity entityUserEntity) {
         int iRow = 0;

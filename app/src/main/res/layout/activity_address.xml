@@ -64,7 +64,7 @@
             android:background="@drawable/shape_corner"
             android:text="添 加 地 址 "
             android:textSize="18dp"
-            android:textColor="@color/colorBlack"/>
+            android:textColor="@color/colorBlack" />
 
     </LinearLayout>
 

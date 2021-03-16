@@ -6,7 +6,7 @@ public class AddressEntity {
     private long entityuser_uuid;
     private String address;
 
-    public  AddressEntity(){
+    public AddressEntity() {
 
     }
 

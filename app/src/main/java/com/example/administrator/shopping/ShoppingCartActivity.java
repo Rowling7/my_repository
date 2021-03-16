@@ -127,7 +127,6 @@ public class ShoppingCartActivity extends AppCompatActivity {
         }
 
 
-
         // 删除按钮的操作
         shoppingCartAdapter.setOnDelBtnClickListener(new OnDelBtnClickListener() {
             @Override

@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/colorbackground"
     android:orientation="vertical"
-    tools:context=".ShoplistActivity">
+    tools:context=".ShoppingCartActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
-        >
+        android:id="@+id/rl_topbar">
 
         <ImageView
             android:id="@+id/go_back"
@@ -46,8 +46,8 @@
         android:fadingEdge="none"
         android:listSelector="#00000000"
         android:scrollbars="none"
-        android:background="@color/colorbackground">
-    </ListView>
+        android:background="@color/colorbackground"></ListView>
+
     <LinearLayout
         android:id="@+id/ll_s"
         android:layout_width="match_parent"
@@ -63,7 +63,7 @@
             android:text="总金额："
             android:textColor="@color/colorBlack"
             android:textSize="10pt"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
         <Button
             android:id="@+id/btn_settlement"
@@ -74,7 +74,6 @@
             android:text="结算" />
 
     </LinearLayout>
-
 
 
     <LinearLayout

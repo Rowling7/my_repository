@@ -46,18 +46,16 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="50dp"
-        android:layout_marginRight="10dp"
-        >
+        android:layout_marginRight="10dp">
 
 
-            <ImageView
-                android:id="@+id/img_login"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@mipmap/default_avatar" />
-
-
+        <ImageView
+            android:id="@+id/img_login"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@mipmap/default_avatar"
+            android:layout_marginLeft="18dp"/>
 
 
         <TextView
@@ -346,9 +344,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
             android:text="欢迎评分"
-            android:layout_marginLeft="10dp"
             android:textColor="@color/colorBlack"
             android:textSize="15dp" />
     </LinearLayout>
@@ -368,9 +366,9 @@
             android:id="@+id/tv_update"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
             android:text="检查更新"
-            android:layout_marginLeft="10dp"
             android:textColor="@color/colorBlack"
             android:textSize="15dp" />
     </LinearLayout>
@@ -391,10 +389,10 @@
             android:id="@+id/tv_share"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
             android:text="分享给你的好友"
             android:textColor="@color/colorBlack"
-            android:layout_marginLeft="10dp"
             android:textSize="15dp" />
     </LinearLayout>
 

@@ -38,6 +38,7 @@ public class AddressInsActivity extends AppCompatActivity {
 
         initView();
     }
+
     private void initView() {
         SettingActivity.activityList.add(this);
         mainHandler = new Handler(getMainLooper());//获取主线程
@@ -60,15 +61,15 @@ public class AddressInsActivity extends AppCompatActivity {
             entityUserEntity.setUserName(etusername);
             Log.i("————————————————", "已登陆：" + userNameInsAd);
             Log.i("————————————————", "输入：" + etusername);
-            if (userNameInsAd==null){
-                ToastUtils.showMsg(AddressInsActivity.this,"未登录");
+            if (userNameInsAd == null) {
+                ToastUtils.showMsg(AddressInsActivity.this, "未登录");
                 intent = new Intent(AddressInsActivity.this, LoginActivity.class);
                 startActivity(intent);
-            }else if (userNameInsAd.equals(etusername)) {
+            } else if (userNameInsAd.equals(etusername)) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        AddressDao.insAddress(etusername,etaddressEdited);
+                        AddressDao.insAddress(etusername, etaddressEdited);
                         mainHandler.post(new Runnable() {
                             @Override
                             public void run() {
@@ -82,8 +83,8 @@ public class AddressInsActivity extends AppCompatActivity {
                         });
                     }
                 }).start();
-            }else {
-                ToastUtils.showMsg(AddressInsActivity.this,"请输入已登录的用户名");
+            } else {
+                ToastUtils.showMsg(AddressInsActivity.this, "请输入已登录的用户名");
             }
 
         }

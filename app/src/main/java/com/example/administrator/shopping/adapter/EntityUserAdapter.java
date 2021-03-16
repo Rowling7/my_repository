@@ -76,7 +76,7 @@ public class EntityUserAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.address_list_item, null);
             viewHolder = new ViewHolder();
-            viewHolder.tv_address=convertView.findViewById(R.id.tv_address);
+            viewHolder.tv_address = convertView.findViewById(R.id.tv_address);
             viewHolder.iv_edit = convertView.findViewById(R.id.iv_editAddress);
             // viewHolder.iv_del = convertView.findViewById(R.id.iv_del);
             convertView.setTag(viewHolder);
@@ -92,7 +92,7 @@ public class EntityUserAdapter extends BaseAdapter {
         viewHolder.iv_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onEditBtnClickListener.onEditBtnClick(view,position);
+                onEditBtnClickListener.onEditBtnClick(view, position);
             }
         });
         return convertView;

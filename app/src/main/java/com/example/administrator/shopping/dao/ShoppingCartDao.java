@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ShoppingCartDao extends DbOpenHelper {
 
-       // 查询所有商品信息,如果isexist为1 则不显示
+    // 查询所有商品信息,如果isexist为1 则不显示
     public List<ShoppingCartEntity> getCartListById(String userNameForCart) {
         List<ShoppingCartEntity> list = new ArrayList<>();
         try {
@@ -38,23 +38,22 @@ public class ShoppingCartDao extends DbOpenHelper {
         return list;
     }
 
-   /*删除购物车中的胡数据*/
-    public static int delCart(long uuid){
+    /*删除购物车中的胡数据*/
+    public static int delCart(long uuid) {
         int iRow = 0;
-        try{
+        try {
             getConnection();   // 取得连接信息
             String sql = "update shoppingcart set isexist=0 where uuid=?";
             pStmt = conn.prepareStatement(sql);
             pStmt.setLong(1, uuid);
             iRow = pStmt.executeUpdate();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }finally {
+        } finally {
             closeAll();
         }
         return iRow;
     }
-
 
 
 }

@@ -31,25 +31,25 @@ public class AddressEditActity extends AppCompatActivity {
 
         et_addressEdited = findViewById(R.id.et_addressEdited);
         Bundle bundle = getIntent().getExtras();
-        if(bundle!=null){
+        if (bundle != null) {
             addressEdit = (EntityUserEntity) bundle.getSerializable("userEdit");
 
             et_addressEdited.setText(addressEdit.getAddress());
         }
 
-         entityUserDao = new EntityUserDao();
+        entityUserDao = new EntityUserDao();
         mainHandler = new Handler(getMainLooper());
     }
 
     // 确定按钮的点击事件处理
-    public void btn_on_click(View view){
+    public void btn_on_click(View view) {
         final String newAddress = et_addressEdited.getText().toString().trim();
-        if(TextUtils.isEmpty(newAddress)){
+        if (TextUtils.isEmpty(newAddress)) {
             ToastUtils.showMsg(this, "请输入地址或返回");
             et_addressEdited.requestFocus();
-        }else{
+        } else {
             addressEdit.setAddress(newAddress);
-                       new Thread(new Runnable() {
+            new Thread(new Runnable() {
                 @Override
                 public void run() {
                     final int iRow = EntityUserDao.updateAddress(addressEdit);

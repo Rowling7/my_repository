@@ -9,7 +9,6 @@ import java.util.List;
 public class GoodsDao extends DbOpenHelper {
 
 
-
     // 查询所有商品信息
     public List<GoodsEntity> getAllGoodsList() {
         List<GoodsEntity> list = new ArrayList<>();
@@ -36,23 +35,22 @@ public class GoodsDao extends DbOpenHelper {
 
 
     /*添加购物车中的数据*/
-    public static int insCart(String uuid,String username){
+    public static int insCart(String uuid, String username) {
         int iRow = 0;
-        try{
+        try {
             getConnection();   // 取得连接信息
             String sql = "INSERT INTO shoppingcart(  GOODS_UUID, ISEXIST, USERNAME) VALUES (?, '1', ?);\n";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, uuid);
-            pStmt.setString(2 , username);
+            pStmt.setString(2, username);
             iRow = pStmt.executeUpdate();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }finally {
+        } finally {
             closeAll();
         }
         return iRow;
     }
-
 
 
 }
