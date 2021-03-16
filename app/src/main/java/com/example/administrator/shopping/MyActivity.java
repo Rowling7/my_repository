@@ -39,15 +39,15 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
 
     private String Name;
     private Handler mainHandler;     // 主线程
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
             //super.handleMessage(msg);
-            if(msg.what==0){
+            if (msg.what == 0) {
                 String walletgeneral = (String) msg.obj;
-                if (walletgeneral==null){
+                if (walletgeneral == null) {
                     tv_wallet.setText("0.00");
-                }else
+                } else
                     tv_wallet.setText(walletgeneral);
             }
         }
@@ -77,27 +77,6 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             }
         });*/
 
-        //跳转至slqite首页
-     /*   imgHome = findViewById(R.id.img_home);
-        imgHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = null;
-                intent = new Intent(MyActivity.this, ShopActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
-        /*我的*/
-        imgMy = findViewById(R.id.img_my);
-        imgMy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = null;
-                intent = new Intent(MyActivity.this, MyActivity.class);
-                startActivity(intent);
-            }
-        });
         /*主页*/
         imgHome = findViewById(R.id.img_home);
         imgHome.setOnClickListener(new View.OnClickListener() {
@@ -109,17 +88,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
             }
         });
-        /*sqlite购物车*/
-        /*imgCart = findViewById(R.id.img_cart);
-        imgCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = null;
-                intent = new Intent(MyActivity.this, ShoplistActivity.class);
-                intent.putExtra("passValueForCart", userName2);//传递“id”至ShoppingCartActivity
-                startActivity(intent);
-            }
-        });*/
+
         /*mysql购物车*/
         imgCart = findViewById(R.id.img_cart);
         imgCart.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +100,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
             }
         });
-        /*登录*/
+        /*我的详细信息*/
         imgLogin = findViewById(R.id.img_login);
         imgLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +112,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 } else {
                     Intent intent = null;
                     intent = new Intent(MyActivity.this, MyDetailsActivity.class);
-                    intent.putExtra("passValueForUser", userName2);//传递“id”至ShoppingCartActivity
+                    intent.putExtra("passValueForUser", userName2);//传递“id”至MyDetailsActivity
                     startActivity(intent);
                 }
 
@@ -162,7 +131,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
 
 
         /*钱包*/
-        tv_wallet=findViewById(R.id.tv_wallet);
+        tv_wallet = findViewById(R.id.tv_wallet);
 
         /*地址管理*/
         tvAddress = findViewById(R.id.tv_addressManager);
@@ -175,8 +144,8 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
             }
         });
-
-        tv_Update=findViewById(R.id.tv_update);
+        /*伪更新*/
+        tv_Update = findViewById(R.id.tv_update);
         tv_Update.setOnClickListener(new View.OnClickListener() { //弹出消息
             @Override
             public void onClick(View view) {
@@ -190,12 +159,12 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 }, 3000);
             }
         });
-
-        tv_share=findViewById(R.id.tv_share);
+        /*分享*/
+        tv_share = findViewById(R.id.tv_share);
         tv_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShareUntils.shareText(MyActivity.this,"2","分享");
+                ShareUntils.shareText(MyActivity.this, "2", "分享");
             }
         });
 
@@ -204,7 +173,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
 
 
     // 执行查询用户数量的方法
-    private void doQueryWallet(){
+    private void doQueryWallet() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -219,6 +188,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             }
         }).start();
     }
+
     @Override
     public void onClick(View view) {
 

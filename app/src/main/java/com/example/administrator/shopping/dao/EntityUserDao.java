@@ -103,6 +103,83 @@ public class EntityUserDao extends DbOpenHelper {
         return iRow;
     }
 
+    /*查询age*/
+    public static String getUserAge(String userNameForDetails) {
+        String age = null;   // 购物车总价格
+
+        try {
+            getConnection();
+            String sql = "SELECT age,phone,area,sex  from entityuser WHERE username = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForDetails);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                age = rs.getString("age");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        Log.i("0", "age：" + age);
+        return age;
+    }
+   /* *//*查询sex*//*
+    public static String getUserPhone(String userNameForDetails) {
+        String sex = null;   // 购物车总价格
+
+        try {
+            getConnection();
+            String sql = "SELECT sex from entityuser WHERE username =?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForDetails);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                sex = rs.getString("sex");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return sex;
+    }
+    *//*查询phone*//*
+    public static String getUserArea(String userNameForDetails) {
+        String phone = null;   // 购物车总价格
+
+        try {
+            getConnection();
+            String sql = "SELECT phone from entityuser WHERE username = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForDetails);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                phone = rs.getString("phone");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return phone;
+    }
+    *//*查询area*//*
+    public static String getUserArea(String userNameForDetails) {
+        String area = null;
+        try {
+            getConnection();
+            String sql = "SELECT area from entityuser WHERE username = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForDetails);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                area = rs.getString("area");
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return area;
+    }*/
+
     /*查询用户信息  无用*/
     public List<EntityUserEntity> getUserInfoListByid(String userNameForInfo) {
         List<EntityUserEntity> list = new ArrayList<>();
