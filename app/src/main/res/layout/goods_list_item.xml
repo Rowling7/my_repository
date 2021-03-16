@@ -58,5 +58,7 @@
         android:background="@drawable/shape_corner"
         android:text="加入购物车"
         android:textColor="#000"
+        android:onClick="btn_on_click"
+        android:focusable="false"
         android:textSize="10sp" />
 </RelativeLayout>

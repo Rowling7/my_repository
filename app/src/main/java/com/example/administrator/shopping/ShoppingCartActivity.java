@@ -1,5 +1,7 @@
 package com.example.administrator.shopping;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +11,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.adapter.GoodsAdapter;
 import com.example.administrator.shopping.adapter.ShoppingCartAdapter;
 import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.dao.ShoppingCartDao;
+import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.entity.ShoppingCartEntity;
 import com.example.administrator.shopping.utils.ToastUtils;
 
@@ -42,6 +46,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
         SettingActivity.activityList.add(this);//用来退出应用
         initView();
+
         Intent intent = getIntent();
         final String userNameForCart = intent.getStringExtra("passValueForCart");//MyActivity的传值
 
@@ -57,6 +62,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(ShoppingCartActivity.this, MyActivity.class);
+                    intent.putExtra("passValue", userNameForCart);
                     startActivity(intent);
                 }
             }
@@ -71,7 +77,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
 
-      /*  imgCart = findViewById(R.id.img_cart);
+      /* 禁止跳转到所在的页面
+      imgCart = findViewById(R.id.img_cart);
         imgCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,7 +125,45 @@ public class ShoppingCartActivity extends AppCompatActivity {
             shoppingCartAdapter.setShoppingCartList(cartList);
             shoppingCartAdapter.notifyDataSetChanged();
         }
+
+
+
+        // 删除按钮的操作
+        shoppingCartAdapter.setOnDelBtnClickListener(new OnDelBtnClickListener() {
+            @Override
+            public void onDelBtnClick(View view, int position) {
+                //  删除方法
+                final ShoppingCartEntity item = cartList.get(position);
+                new AlertDialog.Builder(ShoppingCartActivity.this)
+                        .setTitle("删除确定")
+                        .setMessage("您确定要删除：id:[" + item.getUuid() + "]，uname:[" +
+                                item.getName() + "]？")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                doDelCart(item.getUuid());
+                            }
+                        })
+                        .setNegativeButton("取消", null)
+                        .create().show();
+            }
+        });
     }
 
+    //执行删除购物车中的数据
+    private void doDelCart(final long uuid) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final int iRow = ShoppingCartDao.delCart(uuid);
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadCartDb();  // 重新加载数据
+                    }
+                });
+            }
+        }).start();
+    }
 
 }

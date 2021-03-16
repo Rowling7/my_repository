@@ -31,7 +31,7 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        // SettingActivity.activityList.add(this);
+         SettingActivity.activityList.add(this);
         btnExit = findViewById(R.id.btn_exit);
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override

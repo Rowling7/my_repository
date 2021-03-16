@@ -52,6 +52,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_toLeftOf="@id/iv_edit"
+            android:onClick="btn_on_click"
             android:src="@mipmap/delete" />
 
     </RelativeLayout>
