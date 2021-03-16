@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 /*import com.example.administrator.shopping.dao.EntityUserDao;
 import com.example.administrator.shopping.Entity.EntityUserEntity;*/
+import com.example.administrator.shopping.utils.ShareUntils;
 import com.example.administrator.shopping.utils.ToastUtils;
 
 public class MyActivity extends AppCompatActivity implements View.OnClickListener {
@@ -30,6 +31,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     private ImageView imgSetting;
     private TextView tvAddress;
     private TextView tv_Update;
+    private TextView tv_share;
     private TextView tv_userName;
 
     private String Name;
@@ -153,7 +155,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-       /* tv_Update.findViewById(R.id.tv_update);
+        tv_Update=findViewById(R.id.tv_update);
         tv_Update.setOnClickListener(new View.OnClickListener() { //弹出消息
             @Override
             public void onClick(View view) {
@@ -166,7 +168,16 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                     }
                 }, 3000);
             }
-        });*/
+        });
+
+        tv_share=findViewById(R.id.tv_share);
+        tv_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShareUntils.shareText(MyActivity.this,"2","分享");
+            }
+        });
+
 
     }
 

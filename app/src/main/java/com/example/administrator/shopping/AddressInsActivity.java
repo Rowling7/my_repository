@@ -87,7 +87,7 @@ public class AddressInsActivity extends AppCompatActivity {
                     }
                 }).start();
             } else {
-                ToastUtils.showMsg(AddressInsActivity.this, "请输入已登录的用户名");
+                ToastUtils.showMsg(AddressInsActivity.this, "无权限，请检查用户名");
             }
 
         }

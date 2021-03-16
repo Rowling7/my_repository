@@ -15,18 +15,18 @@ public class ShoppingCartDao extends DbOpenHelper {
         List<ShoppingCartEntity> list = new ArrayList<>();
         try {
             getConnection();
-            String sql = "SELECT sc.uuid ,g.NAME, g.price \n" +
+            String sql = "SELECT sc.uuid ,g.NAME as goodsName, g.price \n" +
                     "FROM shoppingcart sc\n" +
                     "LEFT JOIN goods g ON sc.GOODS_UUID = g.UUID \n" +
-                    "WHERE USERNAME = ? AND SC.ISEXIST = 1";
+                    "WHERE sc.USERNAME = ? AND SC.ISEXIST = 1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userNameForCart);
             Log.i("0", "userNameForCart：" + userNameForCart);
             rs = pStmt.executeQuery();
             while (rs.next()) {
                 ShoppingCartEntity item = new ShoppingCartEntity();
-                item.setUuid(rs.getLong("uuid"));
-                item.setName(rs.getString("name"));
+                item.setUuid(rs.getLong("sc.uuid"));
+                item.setName(rs.getString("goodsName"));
                 item.setPrice(rs.getString("price"));
                 list.add(item);
             }
@@ -56,4 +56,29 @@ public class ShoppingCartDao extends DbOpenHelper {
     }
 
 
+
+
+
+    public static String getCartSum(String userNameForCart){
+
+        String sum = null;   // 购物车总价格
+
+        try{
+            getConnection();
+            String sql = "SELECT cast(SUm(price)as  decimal(15,2)) as SUM\n" +
+                    "from goods g\n" +
+                    "LEFT JOIN shoppingcart sc on sc.GOODS_UUID = g.uuid\n" +
+                    "where username =?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForCart);
+            rs = pStmt.executeQuery();
+            while(rs.next()){
+                sum = rs.getString("SUM");
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        return sum;
+    }
 }

@@ -4,12 +4,15 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.adapter.GoodsAdapter;
@@ -28,8 +31,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private ImageView imgMy;
     private ImageView imgHome;
     private ImageView imgCart;
-
-    private Handler handler;
+    private TextView tv_cartSum;
 
     /*购物车列表*/
     private ListView lv_cartList;
@@ -37,6 +39,19 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private List<ShoppingCartEntity> cartList;
     private ShoppingCartAdapter shoppingCartAdapter;
     private Handler mainHandler;     // 主线程
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            //super.handleMessage(msg);
+            if(msg.what==0){
+                String sum = (String) msg.obj;
+                if (sum==null){
+                    tv_cartSum.setText("总金额：   0元");
+                }else
+                tv_cartSum.setText("总金额：  "+sum+"元");
+            }
+        }
+    };
 
 
     @Override
@@ -49,6 +64,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String userNameForCart = intent.getStringExtra("passValueForCart");//MyActivity的传值
+
+        tv_cartSum=findViewById(R.id.tv_cartSum);
 
         imgMy = findViewById(R.id.img_my);
         imgMy.setOnClickListener(new View.OnClickListener() {
@@ -77,20 +94,10 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
 
-      /* 禁止跳转到所在的页面
-      imgCart = findViewById(R.id.img_cart);
-        imgCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = null;
-                intent = new Intent(ShoppingCartActivity.this, ShoppingCartActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
         /*填充列表*/
         lv_cartList = findViewById(R.id.lv_cartList);
         loadCartDb();
+        doQueryCount();
 
     }
 
@@ -134,9 +141,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 //  删除方法
                 final ShoppingCartEntity item = cartList.get(position);
                 new AlertDialog.Builder(ShoppingCartActivity.this)
-                        .setTitle("删除确定")
-                        .setMessage("您确定要删除：" +
-                                item.getName() + "吗？")
+                        .setTitle("您确定要删除：")
+                        .setMessage(item.getName() + "？")
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -164,5 +170,23 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         }).start();
     }
+
+    // 执行查询用户数量的方法
+    private void doQueryCount(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = getIntent();
+                final String userNameForCart = intent.getStringExtra("passValueForCart");//MyActivity的传值
+                String count = ShoppingCartDao.getCartSum(userNameForCart);
+                Message msg = Message.obtain();
+                msg.what = 0;   // 查询结果
+                msg.obj = count;
+                // 向主线程发送数据
+                handler.sendMessage(msg);
+            }
+        }).start();
+    }
+
 
 }
