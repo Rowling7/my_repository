@@ -34,8 +34,8 @@ public class EditPhoneActivity extends AppCompatActivity {
                 finish();
             }
         });
-        et_editPhone=findViewById(R.id.et_editPhone);
-        btn_edit=findViewById(R.id.btn_edit);
+        et_editPhone = findViewById(R.id.et_editPhone);
+        btn_edit = findViewById(R.id.btn_edit);
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,26 +51,37 @@ public class EditPhoneActivity extends AppCompatActivity {
         mainHandler = new Handler(getMainLooper());//获取主线程
     }
 
-    public void  doEdit(){
+    public void doEdit() {
         final Intent intent = getIntent();
         final String keyForEdit = intent.getStringExtra("passValueForEdit");//MyActivity的传值
         final String newPhone = et_editPhone.getText().toString().trim();
 
         if (TextUtils.isEmpty(newPhone)) {
-            ToastUtils.showMsg(EditPhoneActivity.this, "请输入新的手机号或返回");
+            ToastUtils.showMsg(EditPhoneActivity.this, "请输入新的手机号");
             et_editPhone.requestFocus();
         } else {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     Intent intent = getIntent();
-                    final int iRow = EntityUserDao.updatePhone(keyForEdit,newPhone);
+                    final int iRow = EntityUserDao.updatePhone(keyForEdit, newPhone);
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtils.showMsg(EditPhoneActivity.this, "更改成功~~");
-                            setResult(1);   // 使用参数表示当前界面操作成功，并返回管理界面
-                            finish();
+                            if (et_editPhone.getText().toString().trim().length() != 11) {
+                                ToastUtils.showMsg(EditPhoneActivity.this, "您的电话号码位数不正确");
+                                et_editPhone.requestFocus();
+                            } else {
+                                String phone_number = et_editPhone.getText().toString().trim();
+                                String num = "[1][35789]\\d{9}";
+                                if (phone_number.matches(num)) {
+                                    ToastUtils.showMsg(EditPhoneActivity.this, "更改成功~~");
+                                    setResult(1);   // 使用参数表示当前界面操作成功，并返回管理界面
+                                    finish();
+                                } else {
+                                    ToastUtils.showMsg(EditPhoneActivity.this, "请输入正确的手机号码");
+                                }
+                            }
                         }
                     });
                 }
