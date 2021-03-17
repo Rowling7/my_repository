@@ -28,6 +28,7 @@ public class AddressEditActity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_edit);
+        SettingActivity.activityList.add(this);//用来退出应用
 
         et_addressEdited = findViewById(R.id.et_addressEdited);
         Bundle bundle = getIntent().getExtras();

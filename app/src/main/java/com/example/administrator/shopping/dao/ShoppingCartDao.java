@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ShoppingCartDao extends DbOpenHelper {
 
+
     // 查询所有商品信息,如果isexist为1 则不显示
     public List<ShoppingCartEntity> getCartListById(String userNameForCart) {
         List<ShoppingCartEntity> list = new ArrayList<>();
@@ -61,7 +62,7 @@ public class ShoppingCartDao extends DbOpenHelper {
         String sum = null;
         try {
             getConnection();
-            String sql = "SELECT cast(SUm(price)as  decimal(15,2)) as SUM,count(price) as cartCount\n" +
+            String sql = "SELECT cast(SUm(price)as  decimal(15,2)) as SUM\n" +
                     "from goods g\n" +
                     "LEFT JOIN shoppingcart sc on sc.GOODS_UUID = g.uuid\n" +
                     "where sc.username =? and sc.isexist = 1";
@@ -78,7 +79,7 @@ public class ShoppingCartDao extends DbOpenHelper {
         return sum;
     }
 
-    /*购物车总价格*/
+    /*购物车总个数*/
     public static String getCartCount(String userNameForCart) {
         String cartConut = null;
         try {
@@ -106,6 +107,27 @@ public class ShoppingCartDao extends DbOpenHelper {
         try {
             getConnection();   // 取得连接信息
             String sql = "DELETE from  shoppingcart  WHERE username  = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForCart);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+    /*insert———添加订单*/
+    public static int insOrder(String userNameForCart) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "INSERT INTO `bishe`.`order`( `goodsprice`, `goodscount`,`username`) \n" +
+                    "SELECT sum( g.price ),count( g.price ),sc.username \n" +
+                    "FROM\tgoods g\n" +
+                    "Right JOIN shoppingcart sc ON sc.GOODS_UUID = g.uuid \n" +
+                    "WHERE \tsc.username = ?";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userNameForCart);
             iRow = pStmt.executeUpdate();

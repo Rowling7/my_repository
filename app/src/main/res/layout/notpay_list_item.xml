@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/iv_searchPicture">
+
+        <TextView
+            android:id="@+id/tv_searchTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品个数："
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_goodsCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_searchPrice"
+            android:text="1000"
+            android:textColor="#FF62"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_searchPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_searchTitle"
+            android:layout_marginTop="10dp"
+            android:text="价格(元)： "
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_goodsPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_searchTitle"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/tv_searchPrice"
+            android:text="1000"
+            android:textColor="#FF62"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_delorder"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="70dp"
+        android:focusable="false"
+        android:text="删除"
+        android:textColor="#000"
+        android:background="@drawable/shape_corner_red"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/btn_gopay"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shape_corner"
+        android:focusable="false"
+        android:text="支付"
+        android:textColor="#000"
+        android:textSize="10sp" />
+</RelativeLayout>

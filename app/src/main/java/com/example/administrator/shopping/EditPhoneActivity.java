@@ -23,6 +23,7 @@ public class EditPhoneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_phone);
+        SettingActivity.activityList.add(this);//用来退出应用
 
         final Intent intent = getIntent();
         final String keyForEdit = intent.getStringExtra("passValueForEdit");//MyActivity的传值

@@ -19,16 +19,9 @@ import android.widget.TextView;
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnEditBtnClickListener;
 import com.example.administrator.shopping.adapter.AddressAdapter;
-import com.example.administrator.shopping.adapter.EntityUserAdapter;
 import com.example.administrator.shopping.dao.AddressDao;
-import com.example.administrator.shopping.dao.EntityUserDao;
-import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.entity.AddressEntity;
-import com.example.administrator.shopping.entity.EntityUserEntity;
-import com.example.administrator.shopping.utils.ToastUtils;
-
 import org.jetbrains.annotations.Nullable;
-
 import java.io.Serializable;
 import java.util.List;
 

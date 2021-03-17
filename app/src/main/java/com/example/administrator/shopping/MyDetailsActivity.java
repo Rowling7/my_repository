@@ -9,17 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import com.example.administrator.shopping.adapter.AddressAdapter;
-import com.example.administrator.shopping.adapter.EntityUserAdapter;
 import com.example.administrator.shopping.dao.EntityUserDao;
-import com.example.administrator.shopping.dao.ShoppingCartDao;
-import com.example.administrator.shopping.entity.AddressEntity;
-import com.example.administrator.shopping.entity.EntityUserEntity;
 
-import java.util.List;
 
 public class MyDetailsActivity extends AppCompatActivity {
 

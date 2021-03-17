@@ -1,3 +1,4 @@
+/*
 package com.example.administrator.shopping.adapter;
 
 import android.content.Context;
@@ -20,7 +21,7 @@ import com.example.administrator.shopping.utils.ToastUtils;
 
 import java.util.List;
 
-public class EntityUserAdapter extends BaseAdapter {
+public class EntityUserAdapter  extends  BaseAdapter{
     private TextView tv_address;
     private final Context context;//上下文信息 谁是操作源对象
     private List<EntityUserEntity> addressList;//地址的数据集合
@@ -41,12 +42,13 @@ public class EntityUserAdapter extends BaseAdapter {
         this.addressList = addressList;
         Log.i("0", "地址数量：" + addressList.size());
 
-        /*int aSize = addressList.size();
+int aSize = addressList.size();
         if (aSize==0){
             ToastUtils.showMsg(AddressActivity.this,"无地址");
 
 
-        }*/
+        }
+
     }
 
     public void setAddressList(List<EntityUserEntity> addressList) {
@@ -71,11 +73,11 @@ public class EntityUserAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup viewGroup) {
-        ViewHolder viewHolder = null;
+        EntityUserEntity.ViewHolder viewHolder = null;
 
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.address_list_item, null);
-            viewHolder = new ViewHolder();
+            viewHolder = new OrderAdapter.ViewHolder();
             viewHolder.tv_address = convertView.findViewById(R.id.tv_address);
             viewHolder.iv_edit = convertView.findViewById(R.id.iv_editAddress);
             // viewHolder.iv_del = convertView.findViewById(R.id.iv_del);
@@ -104,3 +106,7 @@ public class EntityUserAdapter extends BaseAdapter {
         // private ImageView iv_del;
     }
 }
+
+
+
+*/

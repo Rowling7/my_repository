@@ -56,21 +56,23 @@ public class SettlementActivity extends AppCompatActivity {
         tv_allPrice = findViewById(R.id.tv_allPrice);
         tv_cartCount = findViewById(R.id.tv_cartCount);
 
-        go_back=findViewById(R.id.go_back);
+        go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        btn_pay=findViewById(R.id.btn_pay);
+        btn_pay = findViewById(R.id.btn_pay);
         btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ToastUtils.showMsg(SettlementActivity.this,"正在前往支付页面~");
+                ToastUtils.showMsg(SettlementActivity.this, "正在前往支付页面~");
             }
         });
 
+        Log.i(TAG, "onCreate: " + tv_cartCount);
+        Log.i(TAG, "onCreate: " + tv_allPrice);
         doQueryCount();
         doCount();
     }
@@ -82,7 +84,6 @@ public class SettlementActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = getIntent();
                 final String userNameForCart = intent.getStringExtra("passValueForpay");//MyActivity的传值
-
                 String count = ShoppingCartDao.getCartCount(userNameForCart);
                 Message msg = Message.obtain();
                 msg.what = 1;   // 查询结果
@@ -113,4 +114,7 @@ public class SettlementActivity extends AppCompatActivity {
 
     }
 
+
+
 }
+

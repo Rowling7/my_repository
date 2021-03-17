@@ -24,7 +24,7 @@ public class EditAgeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_age);
 
-
+        SettingActivity.activityList.add(this);//用来退出应用
 
         go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(new View.OnClickListener() {

@@ -33,6 +33,7 @@ public class AddressInsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_ins);
+        SettingActivity.activityList.add(this);//用来退出应用
 
         btn_insAddress = findViewById(R.id.btn_insAddress);
         et_addressEdited = findViewById(R.id.et_addressEdited);

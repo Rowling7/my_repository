@@ -36,6 +36,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     private TextView tv_share;
     private TextView tv_userName;
     private TextView tv_wallet;
+    private ImageView iv_noPay;
     private ImageView go_back;
 
     private String Name;
@@ -130,6 +131,18 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 Intent intent = null;
                 intent = new Intent(MyActivity.this, SettingActivity.class);
                 intent.putExtra("passValueForSet", userName2);//传递“id”至MainActivity
+                startActivity(intent);
+            }
+        });
+
+
+        iv_noPay=findViewById(R.id.iv_noPay);
+        iv_noPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = null;
+                intent = new Intent(MyActivity.this, NotPayActivity.class);
+                intent.putExtra("passValueForOrder", userName2);//传递“id”至MainActivity
                 startActivity(intent);
             }
         });

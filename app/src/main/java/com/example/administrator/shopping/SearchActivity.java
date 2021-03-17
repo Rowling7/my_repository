@@ -39,6 +39,7 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        SettingActivity.activityList.add(this);//用来退出应用
 
         Intent intent = getIntent();
         final String userNameForSearch = intent.getStringExtra("passValueForSearch");//MyActivity的传值
