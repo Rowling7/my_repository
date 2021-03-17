@@ -23,12 +23,13 @@ public class EntityUserDao extends DbOpenHelper {
     /*login——登录  可用*/
     public static EntityUserEntity login(String UserName, String Password) {//Activity 传值过来
         EntityUserEntity entityUserEntity = null;
-        try {
+         try {
             getConnection();   // 取得连接信息
-            String sql = "select * from entityuser where username=? and password=? and isexist =1";//用用户名和密码同时作为条件如果能搜索到信息就是成功的，搜索结果为空不成功
+            String sql = "select * from entityuser where  username=? and password= ? AND ISEXIST = 1 ";//用用户名和密码同时作为条件如果能搜索到信息就是成功的，搜索结果为空不成功
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, UserName);// 获取用户名
             pStmt.setString(2, Password);//获取密码
+
             rs = pStmt.executeQuery();//回传数据
             if (rs.next()) {
                 entityUserEntity = new EntityUserEntity();
@@ -49,15 +50,16 @@ public class EntityUserDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "INSERT INTO entityuser(PASSWORD, USERNAME, SEX, PHONE, AGE, ADDRESS,UUID) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO entityuser(PASSWORD, USERNAME, SEX, PHONE, AGE, realname,area,create_time,isexist) VALUES (?,?,?,?,?,?,?,?,1)";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, entityUserEntity.getPassword());
             pStmt.setString(2, entityUserEntity.getUserName());
             pStmt.setString(3, entityUserEntity.getSex());
             pStmt.setString(4, entityUserEntity.getPhone());
             pStmt.setString(5, entityUserEntity.getAge());
-            pStmt.setString(6, entityUserEntity.getAddress());
-            pStmt.setString(7, entityUserEntity.getPhone());
+            pStmt.setString(6, entityUserEntity.getRealName());
+            pStmt.setString(7, entityUserEntity.getArea());
+            pStmt.setString(8,entityUserEntity.getCreate_time());
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -201,6 +203,26 @@ public class EntityUserDao extends DbOpenHelper {
             closeAll();
         }
         return iRow;
+    }
+
+    /*realname*/
+    public static String getUserRealName(String userName2) {
+        String realName = null;   // 购物车总价格
+
+        try {
+            getConnection();
+            String sql = "SELECT realname from entityuser WHERE username =?AND ISEXIST =1";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userName2);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                realName = rs.getString("realname");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        Log.i(TAG, "真实姓名：" + realName);
+        return realName;
     }
 
     /*查询用户信息  无用*/

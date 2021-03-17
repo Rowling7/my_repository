@@ -13,6 +13,9 @@ public class EntityUserEntity {
     private String address;
     private String password;
     private String wallet;
+    private String realName;
+    private String create_time;
+
 
     public EntityUserEntity() {
 
@@ -31,6 +34,8 @@ public class EntityUserEntity {
                 ", address='" + address + '\'' +
                 ", password='" + password + '\'' +
                 ", wallet='" + wallet + '\'' +
+                ", realName='" + realName + '\'' +
+                ", create_time='" + create_time + '\'' +
                 '}';
     }
 
@@ -119,5 +124,21 @@ public class EntityUserEntity {
 
     public void setWallet(String wallet) {
         this.wallet = wallet;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getCreate_time() {
+        return create_time;
+    }
+
+    public void setCreate_time(String create_time) {
+        this.create_time = create_time;
     }
 }

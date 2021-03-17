@@ -50,6 +50,9 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                     tv_wallet.setText("0.00");
                 } else
                     tv_wallet.setText(walletgeneral);
+            }else if (msg.what==1){
+                String realName = (String) msg.obj;
+                tv_userName.setText(realName);
             }
         }
     };
@@ -66,7 +69,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         final String userName2 = intent.getStringExtra("passValue");//登陆后的传值
         final String islogin = intent.getStringExtra("Islogin");//登陆后的传值
 
-        tv_userName.setText("ID:    " + userName2);
+
 
         mainHandler = new Handler(getMainLooper());
 
@@ -171,6 +174,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         });
 
         doQueryWallet();
+        doQueryrealName();
     }
 
 
@@ -187,6 +191,26 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 Message msg = Message.obtain();
                 msg.what = 0;   // 查询结果
                 msg.obj = userWallet;
+                // 向主线程发送数据
+                handler.sendMessage(msg);
+            }
+
+        }).start();
+    }
+
+    // 执行查询用户数量的方法
+    private void doQueryrealName() {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                Intent intent = getIntent();
+                final String userName2 = intent.getStringExtra("passValue");//登陆后的传值
+                String realName = EntityUserDao.getUserRealName(userName2);
+
+                Message msg = Message.obtain();
+                msg.what = 1;   // 查询结果
+                msg.obj = realName;
                 // 向主线程发送数据
                 handler.sendMessage(msg);
             }
