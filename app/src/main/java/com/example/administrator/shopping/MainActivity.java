@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_addshop;
     private Handler handler;
     private TextView ivpicture;
+    private ImageView iv_search;
 
     /*商品列表*/
     private ListView lv_goods;
@@ -49,6 +50,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String userNameForMain = intent.getStringExtra("passValueForMain");//MyActivity的传值
         Log.i("0", "地址数量：" + userNameForMain);
+
+        iv_search=findViewById(R.id.iv_search);
+        iv_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                intent.putExtra("passValueForSearch", userNameForMain);
+                startActivity(intent);
+            }
+        });
+
 
         imgMy = findViewById(R.id.img_my);
         imgMy.setOnClickListener(new View.OnClickListener() {
