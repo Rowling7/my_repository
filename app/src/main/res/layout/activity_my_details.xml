@@ -36,8 +36,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_below="@+id/ll_toopbar"
+        android:layout_marginTop="1dp"
+        android:orientation="vertical"
         android:paddingTop="20dp">
 
         <LinearLayout
@@ -60,25 +61,29 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="4"
                     android:gravity="center_vertical"
                     android:text="用户名："
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
+
                 <TextView
                     android:id="@+id/tv_name"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="NULL"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/right" />
             </LinearLayout>
-
-
 
 
             <LinearLayout
@@ -95,22 +100,28 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="4"
                     android:gravity="center_vertical"
                     android:text="年龄"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
+
                 <TextView
                     android:id="@+id/tv_age"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="NULL"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/right" />
             </LinearLayout>
 
             <LinearLayout
@@ -127,23 +138,30 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="3"
                     android:gravity="center_vertical"
                     android:text="手机号： "
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
+
                 <TextView
                     android:id="@+id/tv_phone"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="NULL"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/right" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/ll_sex"
                 android:layout_width="match_parent"
@@ -158,23 +176,30 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="4"
                     android:gravity="center_vertical"
                     android:text="性别："
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
+
                 <TextView
                     android:id="@+id/tv_sex"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="NULL"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/right" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/ll_area"
                 android:layout_width="match_parent"
@@ -189,22 +214,28 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="4"
                     android:gravity="center_vertical"
                     android:text="地区："
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
+
                 <TextView
                     android:id="@+id/tv_area"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="NULL"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/right" />
             </LinearLayout>
 
         </LinearLayout>

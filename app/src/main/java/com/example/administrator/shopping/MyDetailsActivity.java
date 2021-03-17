@@ -61,20 +61,25 @@ public class MyDetailsActivity extends AppCompatActivity {
 
         initView();
 
+
         tv_age = findViewById(R.id.tv_age);
+        tv_age.setOnClickListener(onclicklistener);
         tv_phone = findViewById(R.id.tv_phone);
+        tv_phone.setOnClickListener(onclicklistener);
         tv_area = findViewById(R.id.tv_area);
+        tv_area.setOnClickListener(onclicklistener);
         tv_sex = findViewById(R.id.tv_sex);
+        tv_sex.setOnClickListener(onclicklistener);
+
         selectAge();
         selectSex();
         selectPhone();
         selectArea();
 
         tv_name = findViewById(R.id.tv_name);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         final String userNameForInfo = intent.getStringExtra("passValueForUser");//MyActivity的传值
         tv_name.setText(userNameForInfo);
-
 
         go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(new View.OnClickListener() {
@@ -83,12 +88,40 @@ public class MyDetailsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
+
+    public View.OnClickListener onclicklistener = new View.OnClickListener(){
+
+        public void onClick(View v) {
+            Intent intent = getIntent();
+            final String userNameForEdit = intent.getStringExtra("passValueForUser");
+            switch (v.getId()) {
+
+                case R.id.tv_age:    // 登录按钮
+                    intent = new Intent(MyDetailsActivity.this, EditAgeActivity.class);
+                    intent.putExtra("passValueForEdit", userNameForEdit);
+                    break;
+                case R.id.tv_phone:    // 登录按钮
+                    intent = new Intent(MyDetailsActivity.this, EditPhoneActivity.class);
+                    intent.putExtra("passValueForEdit", userNameForEdit);
+                    break;
+                case R.id.tv_sex:    // 登录按钮
+                    intent = new Intent(MyDetailsActivity.this, EditSexActivity.class);
+                    intent.putExtra("passValueForEdit", userNameForEdit);
+                    break;
+                case R.id.tv_area:    // 登录按钮
+                    intent = new Intent(MyDetailsActivity.this, EditAreaActivity.class);
+                    intent.putExtra("passValueForEdit",userNameForEdit);
+                    break;
+            }
+            startActivity(intent);
+        }
+    };
 
     private void initView() {
         mainHandler = new Handler(getMainLooper());//获取主线程
     }
-
 
     // 查询age
     public void selectAge() {

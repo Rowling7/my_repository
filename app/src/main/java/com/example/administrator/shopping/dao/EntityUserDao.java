@@ -23,7 +23,7 @@ public class EntityUserDao extends DbOpenHelper {
     /*login——登录  可用*/
     public static EntityUserEntity login(String UserName, String Password) {//Activity 传值过来
         EntityUserEntity entityUserEntity = null;
-         try {
+        try {
             getConnection();   // 取得连接信息
             String sql = "select * from entityuser where  username=? and password= ? AND ISEXIST = 1 ";//用用户名和密码同时作为条件如果能搜索到信息就是成功的，搜索结果为空不成功
             pStmt = conn.prepareStatement(sql);
@@ -59,7 +59,7 @@ public class EntityUserDao extends DbOpenHelper {
             pStmt.setString(5, entityUserEntity.getAge());
             pStmt.setString(6, entityUserEntity.getRealName());
             pStmt.setString(7, entityUserEntity.getArea());
-            pStmt.setString(8,entityUserEntity.getCreate_time());
+            pStmt.setString(8, entityUserEntity.getCreate_time());
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -70,6 +70,11 @@ public class EntityUserDao extends DbOpenHelper {
     }
 
 
+    /**
+     * 查询
+     * @param userNameForCart
+     * @return
+     */
     /*查询钱包金额*/
     public static String getUserWallet(String userNameForCart) {
         String walletgeneral = null;   // 购物车总价格
@@ -188,23 +193,6 @@ public class EntityUserDao extends DbOpenHelper {
         return area;
     }
 
-    /*delete——删除用户*/
-    public static int delUser(String userNameForSet) {
-        int iRow = 0;
-        try {
-            getConnection();   // 取得连接信息
-            String sql = "update entityuser set isexist=0 where username=?";
-            pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1, userNameForSet);
-            iRow = pStmt.executeUpdate();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            closeAll();
-        }
-        return iRow;
-    }
-
     /*realname*/
     public static String getUserRealName(String userName2) {
         String realName = null;   // 购物车总价格
@@ -225,6 +213,113 @@ public class EntityUserDao extends DbOpenHelper {
         return realName;
     }
 
+    /**
+     * 删除
+     * @param userNameForSet
+     * @return
+     */
+    /*delete——删除用户*/
+    public static int delUser(String userNameForSet) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "update entityuser set isexist=0 where username=?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForSet);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+
+    /**
+     * 修改
+     * @param keyForEdit
+     * @param newAge
+     * @return
+     */
+    /*update——年龄*/
+    public static int updateAge(String keyForEdit, String newAge) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "update entityuser set age=? where username=?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, newAge);
+            pStmt.setString(2, keyForEdit);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+    /*update——手机*/
+    public static int updatePhone(String keyForEdit, String newPhone) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "update entityuser set phone=? where username=?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, newPhone);
+            pStmt.setString(2, keyForEdit);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+    /*update——性别*/
+    public static int updateSex(String keyForEdit, String newSex) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "update entityuser set sex=? where username=?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, newSex);
+            pStmt.setString(2, keyForEdit);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+    /*update——地区*/
+    public static int updateArea(String keyForEdit, String newArea) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "update entityuser set area=? where username=?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, newArea);
+            pStmt.setString(2, keyForEdit);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+
+    /**
+     *无用方法
+     * @param userNameForInfo
+     * @return
+     */
     /*查询用户信息  无用*/
     public List<EntityUserEntity> getUserInfoListByid(String userNameForInfo) {
         List<EntityUserEntity> list = new ArrayList<>();

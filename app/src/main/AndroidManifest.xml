@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".EditAreaActivity"></activity>
+        <activity android:name=".EditSexActivity" />
+        <activity android:name=".EditPhoneActivity" />
+        <activity android:name=".EditAgeActivity" />
+        <activity android:name=".SearchActivity" />
         <activity android:name=".MyDetailsActivity" />
         <activity android:name=".AddressInsActivity" />
         <activity android:name=".ShoppingCartActivity" />
@@ -27,7 +31,7 @@
         <activity android:name=".AddressActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".MyActivity" />
     </application>
 
