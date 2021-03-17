@@ -87,13 +87,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         final String etrealName = et_realName.getText().toString().trim();
 
 
-
         if (TextUtils.isEmpty(etuserName)) {
             ToastUtils.showMsg(this, "请输入用户名");
             et_userName.requestFocus();
-        } else if (TextUtils.isEmpty(etuserName)) {
+        } else if (TextUtils.isEmpty(etnewPassword)) {
             ToastUtils.showMsg(this, "请输入用户密码");
             et_newPassword.requestFocus();
+        } else if (TextUtils.isEmpty(et_phone.getText().toString().trim())) {
+            ToastUtils.showMsg(this, "请输入您的电话号码");
+            et_phone.requestFocus();
         } else {
             final EntityUserEntity entityUserEntity = new EntityUserEntity();
             entityUserEntity.setUserName(etuserName);
@@ -113,11 +115,23 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtils.showMsg(RegisterActivity.this, "注册成功,即将登录");
-                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            startActivity(intent);
-                            setResult(1);
-                            finish();
+                            if (et_phone.getText().toString().trim().length() != 11) {
+                                ToastUtils.showMsg(RegisterActivity.this, "您的电话号码位数不正确");
+                                et_phone.requestFocus();
+                            } else {
+                                String phone_number = et_phone.getText().toString().trim();
+                                String num = "[1][35789]\\d{9}";
+                                if (phone_number.matches(num)) {
+                                    ToastUtils.showMsg(RegisterActivity.this, "注册成功,即将登录");
+                                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                    startActivity(intent);
+                                    setResult(1);
+                                    finish();
+                                } else {
+                                    ToastUtils.showMsg(RegisterActivity.this, "请输入正确的手机号码");
+                                }
+                            }
+
                         }
                     });
                 }
@@ -131,4 +145,5 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
 
     }
+
 }
