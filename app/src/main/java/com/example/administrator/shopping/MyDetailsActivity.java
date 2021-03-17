@@ -33,8 +33,17 @@ public class MyDetailsActivity extends AppCompatActivity {
         @Override
         public void handleMessage(@NonNull Message msg) {
             if (msg.what == 0 ) {
-                String age = (String) msg.obj;
-                tv_age.setText(age);
+                String uAge = (String) msg.obj;
+                tv_age.setText(uAge);
+            }else if (msg.what == 1 ) {
+                String uSex = (String) msg.obj;
+                tv_sex.setText(uSex);
+            }else if (msg.what == 2 ) {
+                String uPhone = (String) msg.obj;
+                tv_phone.setText(uPhone);
+            }else if (msg.what == 3 ) {
+                String uArea = (String) msg.obj;
+                tv_area.setText(uArea);
             }
         }
     };
@@ -49,12 +58,13 @@ public class MyDetailsActivity extends AppCompatActivity {
         initView();
 
         tv_age = findViewById(R.id.tv_age);
-        /*tv_phone = findViewById(R.id.tv_phone);
+        tv_phone = findViewById(R.id.tv_phone);
         tv_area = findViewById(R.id.tv_area);
-        tv_sex = findViewById(R.id.tv_sex);*/
+        tv_sex = findViewById(R.id.tv_sex);
         selectAge();
-
-
+        selectSex();
+        selectPhone();
+        selectArea();
 
         tv_name = findViewById(R.id.tv_name);
         Intent intent = getIntent();
@@ -83,11 +93,10 @@ public class MyDetailsActivity extends AppCompatActivity {
                 // 向主线程发送数据
                 handler.sendMessage(msg);
 
-              //  selectSex();
+
             }
         }).start();
     }
-/*
     // 查询sex
     public void selectSex() {
         new Thread(new Runnable() {
@@ -96,13 +105,13 @@ public class MyDetailsActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 final String userNameForDetails = intent.getStringExtra("passValueForUser");//MyActivity的传值
                 String sex = EntityUserDao.getUserSex(userNameForDetails);
-                Message msgSex = Message.obtain();
-                msgSex.what = 0;   // 查询结果
-                msgSex.obj = sex;
+                Message msg = Message.obtain();
+                msg.what = 1;   // 查询结果
+                msg.obj = sex;
                 // 向主线程发送数据
-                handler.sendMessage(msgSex);
+                handler.sendMessage(msg);
 
-                selectPhone();
+
             }
         }).start();
     }
@@ -115,12 +124,12 @@ public class MyDetailsActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 final String userNameForDetails = intent.getStringExtra("passValueForUser");//MyActivity的传值
                 String phone = EntityUserDao.getUserPhone(userNameForDetails);
-                Message msgPhone = Message.obtain();
-                msgPhone.what = 0;   // 查询结果
-                msgPhone.obj = phone;
+                Message msg = Message.obtain();
+                msg.what = 2;   // 查询结果
+                msg.obj = phone;
                 // 向主线程发送数据
-                handler.sendMessage(msgPhone);
-                selectArea();
+                handler.sendMessage(msg);
+
             }
         }).start();
     }
@@ -133,13 +142,13 @@ public class MyDetailsActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 final String userNameForDetails = intent.getStringExtra("passValueForUser");//MyActivity的传值
                 String area = EntityUserDao.getUserArea(userNameForDetails);
-                Message msgArea = Message.obtain();
-                msgArea.what = 0;   // 查询结果
-                msgArea.obj = area;
+                Message msg = Message.obtain();
+                msg.what = 3;   // 查询结果
+                msg.obj = area;
                 // 向主线程发送数据
-                handler.sendMessage(msgArea);
+                handler.sendMessage(msg);
             }
         }).start();
-    }*/
+    }
 
 }

@@ -58,11 +58,11 @@ public class ShoppingCartDao extends DbOpenHelper {
 
     /*查询购物车总金额*/
     public static String getCartSum(String userNameForCart) {
-        String sum = null;   // 购物车总价格
+        String sum = null;
 
         try {
             getConnection();
-            String sql = "SELECT cast(SUm(price)as  decimal(15,2)) as SUM\n" +
+            String sql = "SELECT cast(SUm(price)as  decimal(15,2)) as SUM,count(price) as cartCount\n" +
                     "from goods g\n" +
                     "LEFT JOIN shoppingcart sc on sc.GOODS_UUID = g.uuid\n" +
                     "where username =? and sc.isexist = 1";
@@ -77,5 +77,28 @@ public class ShoppingCartDao extends DbOpenHelper {
         }
 
         return sum;
+    }
+
+    public static String getCartCount(String userNameForCart) {
+
+        String cartConut = null;   // 购物车总价格
+
+        try {
+            getConnection();
+            String sql = "SELECT count(price) as cartCount\n" +
+                    "from goods g\n" +
+                    "LEFT JOIN shoppingcart sc on sc.GOODS_UUID = g.uuid\n" +
+                    "where username =? and sc.isexist = 1";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForCart);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                cartConut = rs.getString("cartCount");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return cartConut;
     }
 }

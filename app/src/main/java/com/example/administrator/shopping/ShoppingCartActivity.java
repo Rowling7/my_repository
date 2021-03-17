@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,8 +31,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
     /*跳转用*/
     private ImageView imgMy;
     private ImageView imgHome;
-    private ImageView imgCart;
     private TextView tv_cartSum;
+    private Button btn_settlement;
 
     /*购物车列表*/
     private ListView lv_cartList;
@@ -46,9 +47,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
             if(msg.what==0){
                 String sum = (String) msg.obj;
                 if (sum==null){
-                    tv_cartSum.setText("总金额：   0元");
+                    tv_cartSum.setText("¥ 0");
                 }else
-                tv_cartSum.setText("总金额：  "+sum+"元");
+                tv_cartSum.setText("¥ "+sum);
             }
         }
     };
@@ -90,6 +91,17 @@ public class ShoppingCartActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ShoppingCartActivity.this, MainActivity.class);
                 intent.putExtra("passValueForMain", userNameForCart);
+                startActivity(intent);
+            }
+        });
+
+        btn_settlement=findViewById(R.id.btn_settlement);
+        btn_settlement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(ShoppingCartActivity.this, SettlementActivity.class);
+                intent.putExtra("passValueForpay", userNameForCart);
                 startActivity(intent);
             }
         });

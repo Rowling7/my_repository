@@ -122,8 +122,8 @@ public class EntityUserDao extends DbOpenHelper {
         Log.i("0", "age：" + age);
         return age;
     }
-   /* *//*查询sex*//*
-    public static String getUserPhone(String userNameForDetails) {
+   /*sex*/
+    public static String getUserSex(String userNameForDetails) {
         String sex = null;   // 购物车总价格
 
         try {
@@ -138,11 +138,11 @@ public class EntityUserDao extends DbOpenHelper {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
+        Log.i("1", "sex：" + sex);
         return sex;
     }
-    *//*查询phone*//*
-    public static String getUserArea(String userNameForDetails) {
+    /*phone*/
+    public static String getUserPhone(String userNameForDetails) {
         String phone = null;   // 购物车总价格
 
         try {
@@ -157,10 +157,10 @@ public class EntityUserDao extends DbOpenHelper {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
+        Log.i("2", "phone：" + phone);
         return phone;
     }
-    *//*查询area*//*
+   /*area*/
     public static String getUserArea(String userNameForDetails) {
         String area = null;
         try {
@@ -176,9 +176,9 @@ public class EntityUserDao extends DbOpenHelper {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
+        Log.i("3", "area：" + area);
         return area;
-    }*/
+    }
 
     /*查询用户信息  无用*/
     public List<EntityUserEntity> getUserInfoListByid(String userNameForInfo) {

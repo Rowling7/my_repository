@@ -55,15 +55,23 @@
         android:layout_above="@+id/ll_bottomBar"
         android:gravity="right"
         android:background="@color/colorSilver">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="合计："
+            android:gravity="right"
+            android:textColor="@color/colorBlack"
+            android:textSize="10pt"
+            android:layout_gravity="center" />
         <TextView
             android:id="@+id/tv_cartSum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="总金额："
-            android:textColor="@color/colorBlack"
-            android:textSize="10pt"
+            android:textColor="@color/colorOrange"
+            android:textSize="14pt"
             android:layout_gravity="center" />
 
         <Button
@@ -71,8 +79,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:background="@color/colorPurple"
-            android:text="结算" />
+
+            android:paddingTop="4dp"
+            android:background="@drawable/shape_corner_purple"
+            android:text="结  算" />
 
     </LinearLayout>
 

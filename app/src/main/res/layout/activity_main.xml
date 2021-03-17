@@ -28,7 +28,8 @@
         android:queryHint="搜索"
         android:searchIcon="@mipmap/search"
         android:layout_below="@+id/Shopping_name"
-        android:background="@drawable/shape_corner" />
+        android:background="@drawable/shape_corner" >
+    </SearchView>
 
 
     <ListView
