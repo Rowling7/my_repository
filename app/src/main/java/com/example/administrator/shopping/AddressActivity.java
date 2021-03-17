@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +36,7 @@ import java.util.List;
 public class AddressActivity extends AppCompatActivity implements View.OnClickListener {
 
 
+    private TextView tv_address;
     private TextView tv_userName;
     private Handler handler;
     private ImageView go_back;
@@ -59,6 +61,8 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
         SettingActivity.activityList.add(this);
         Intent intent = getIntent();
         final String userNameForInAd = intent.getStringExtra("passValue2");//登陆后的传值
+
+        tv_address=findViewById(R.id.tv_address);
 
 
         go_back = findViewById(R.id.go_back);
@@ -93,6 +97,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
     private void initView() {
         mainHandler = new Handler(getMainLooper());//获取主线程
         addressDao = new AddressDao();
+
     }
 
     /*填充地址列表*/

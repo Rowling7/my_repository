@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 /*import com.example.administrator.shopping.utils.CommonUtils;*/
 
@@ -28,6 +29,8 @@ public class SettingActivity extends AppCompatActivity {
     private Button btnRegister2;
     private Button btnRelogin;
     private Button btn_delUaser;
+    private ImageView go_back;
+
     private EntityUserDao entityUserDao;
     public static List<Activity> activityList = new LinkedList();
     private Handler mainHandler;
@@ -90,6 +93,14 @@ public class SettingActivity extends AppCompatActivity {
                         })
                         .setNegativeButton("取消", null)
                         .create().show();
+            }
+        });
+
+        go_back = findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

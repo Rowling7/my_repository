@@ -66,8 +66,11 @@
             android:textColor="@color/colorBlack"
             android:textSize="16dp" />
 
+
+
+
         <CheckBox
-            android:id="@+id/cbDisplayPassword"
+            android:id="@+id/cb_DisplayPassword"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"

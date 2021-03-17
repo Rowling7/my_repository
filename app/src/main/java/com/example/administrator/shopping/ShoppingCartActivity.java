@@ -34,6 +34,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private TextView tv_cartSum;
     private Button btn_settlement;
     private ImageView go_back;
+    private Button btn_doAllCart;
 
     /*购物车列表*/
     private ListView lv_cartList;
@@ -115,10 +116,29 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
 
+        btn_doAllCart=findViewById(R.id.btn_delAllCart);
+        btn_doAllCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(ShoppingCartActivity.this)
+                        .setTitle("清空购物车")
+                        .setMessage("确认清空购物车吗？")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                doAllCart();
+                            }
+                        })
+                        .setNegativeButton("取消", null)
+                        .create().show();
+
+            }
+        });
+
         /*填充列表*/
         lv_cartList = findViewById(R.id.lv_cartList);
         loadCartDb();
-        doQueryCount();
+
 
     }
 
@@ -208,6 +228,27 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 msg.obj = count;
                 // 向主线程发送数据
                 handler.sendMessage(msg);
+            }
+        }).start();
+    }
+
+
+    //清空购物车
+    private void doAllCart() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = getIntent();
+                final String userNameForCart = intent.getStringExtra("passValueForCart");//MyActivity的传值
+                final int iRow = ShoppingCartDao.delAllCart(userNameForCart);
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtils.showMsg(ShoppingCartActivity.this, "已清空！");
+                        loadCartDb();
+                        doQueryCount();// 重新加载数据
+                    }
+                });
             }
         }).start();
     }

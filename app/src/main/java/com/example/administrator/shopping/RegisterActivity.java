@@ -5,8 +5,13 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -24,8 +29,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText et_sex;
     private EditText et_realName;
     private ImageView go_back;
-    //private EditText et_address;
+    private CheckBox cb_DisplayPassword2;
 
+    public static final String TAG = "OUTPUT";
     public Button btn_Register;
     private Handler mainHandler;
 
@@ -35,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
 
         SettingActivity.activityList.add(this);
+        mainHandler = new Handler(getMainLooper());
 
         et_phone = findViewById(R.id.et_phone);
         et_userName = findViewById(R.id.et_LoginName);
@@ -44,14 +51,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         et_sex = findViewById(R.id.et_sex);
         et_area = findViewById(R.id.et_area);
         et_realName = findViewById(R.id.et_realName);
-        //et_address=findViewById(R.id.et_address);
-        mainHandler = new Handler(getMainLooper());
+
+        cb_DisplayPassword2 = findViewById(R.id.cb_DisplayPassword2);
 
         go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        cb_DisplayPassword2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.d(TAG, "onCheckedChanged: " + isChecked);
+                if (isChecked) {
+                    //选择状态 显示明文--设置为可见的密码
+                    et_newPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    //默认状态显示密码--设置文本 要一起写才能起作用 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    et_newPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
             }
         });
     }
@@ -64,7 +85,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         final String etsex = et_sex.getText().toString().trim();
         final String etphone = et_phone.getText().toString().trim();
         final String etrealName = et_realName.getText().toString().trim();
-        //final String etadress = et_address.getText().toString().trim();
+
+
 
         if (TextUtils.isEmpty(etuserName)) {
             ToastUtils.showMsg(this, "请输入用户名");
@@ -101,6 +123,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 }
             }).start();
         }
+
+
     }
 
     @Override

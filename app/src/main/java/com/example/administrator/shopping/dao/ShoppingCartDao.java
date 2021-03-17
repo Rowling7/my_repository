@@ -3,6 +3,7 @@ package com.example.administrator.shopping.dao;
 import android.util.Log;
 
 import com.example.administrator.shopping.database.DbOpenHelper;
+import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.entity.ShoppingCartEntity;
 
 import java.util.ArrayList;
@@ -37,12 +38,13 @@ public class ShoppingCartDao extends DbOpenHelper {
         return list;
     }
 
-    /*删除购物车中的胡数据*/
+    /*(真/伪)删除购物车中的数据*/
     public static int delCart(long uuid) {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "update shoppingcart set isexist=0 where uuid=?";
+            String sql = "DELETE from  shoppingcart  WHERE  uuid=?";//真
+            //String sql = "update shoppingcart set isexist=0 where uuid=?";//伪
             pStmt = conn.prepareStatement(sql);
             pStmt.setLong(1, uuid);
             iRow = pStmt.executeUpdate();
@@ -54,11 +56,9 @@ public class ShoppingCartDao extends DbOpenHelper {
         return iRow;
     }
 
-
     /*查询购物车总金额*/
     public static String getCartSum(String userNameForCart) {
         String sum = null;
-
         try {
             getConnection();
             String sql = "SELECT cast(SUm(price)as  decimal(15,2)) as SUM,count(price) as cartCount\n" +
@@ -78,10 +78,9 @@ public class ShoppingCartDao extends DbOpenHelper {
         return sum;
     }
 
+    /*购物车总价格*/
     public static String getCartCount(String userNameForCart) {
-
-        String cartConut = null;   // 购物车总价格
-
+        String cartConut = null;
         try {
             getConnection();
             String sql = "SELECT count(price) as cartCount\n" +
@@ -99,5 +98,22 @@ public class ShoppingCartDao extends DbOpenHelper {
         }
 
         return cartConut;
+    }
+
+    /*（真）清空购物车中的胡数据*/
+    public static int delAllCart(String userNameForCart) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "DELETE from  shoppingcart  WHERE username  = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForCart);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
     }
 }

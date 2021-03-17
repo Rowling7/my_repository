@@ -179,9 +179,13 @@ public class MainActivity extends AppCompatActivity {
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
+                        if (username==null){
+                            ToastUtils.showMsg(MainActivity.this,"未登录哦~");
+
+                        }else{
                         ToastUtils.showMsg(MainActivity.this, "已添加至购物车！");
                         loadGoodsDb();// 重新加载数据
-                    }
+                    }}
                 });
             }
         }).start();

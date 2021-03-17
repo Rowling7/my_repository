@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,12 +27,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private EditText et_UserName;
     private EditText et_Password;
-    private CheckBox mCbDisplayPassword;
+    private CheckBox cb_DisplayPassword;
     private Button btn_Login;
     private TextView tvRegister;
     public Intent intent = null;
     private Handler mainHandler;     // 主线程
     private ImageView go_back;
+    public static final String TAG = "OUTPUT";
     private final Handler handler = new Handler() {
     };
 
@@ -41,7 +44,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         initView();
 
         SettingActivity.activityList.add(this);
-        mCbDisplayPassword = findViewById(R.id.cbDisplayPassword);
+        cb_DisplayPassword = findViewById(R.id.cb_DisplayPassword);
 
         btn_Login = findViewById(R.id.btn_Login);
         et_UserName = findViewById(R.id.et_userName);
@@ -67,23 +70,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
         btn_Login.setOnClickListener(this);
 
-    }
-
-    /*private void initListener() { //无效
-        mCbDisplayPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cb_DisplayPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Log.d(TAG, "onCheckedChanged: " + isChecked);
                 if (isChecked) {
                     //选择状态 显示明文--设置为可见的密码
-                    et_Password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    et_Password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 } else {
                     //默认状态显示密码--设置文本 要一起写才能起作用 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD
-                    et_Password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    et_Password.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
             }
         });
-    }*/
+
+    }
+
+
+
 
     private void initView() {
         SettingActivity.activityList.add(this);
