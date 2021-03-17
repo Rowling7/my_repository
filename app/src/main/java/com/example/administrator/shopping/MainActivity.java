@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.example.administrator.shopping.Impl.OnInsBtnClickListener;
 import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.entity.GoodsEntity;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     /*跳转用*/
     private ImageView imgMy;
+    private ImageView imgMy2;
     private ImageView imgHome;
     private ImageView imgCart;
     private Button btn_addshop;
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String userNameForMain = intent.getStringExtra("passValueForMain");//MyActivity的传值
 
-        iv_search=findViewById(R.id.iv_search);
+        iv_search = findViewById(R.id.iv_search);
         iv_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +79,24 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        imgMy2 = findViewById(R.id.img_my2);
+        imgMy2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //验证是否登录
+                if (userNameForMain == null) {
+                    ToastUtils.showMsg(MainActivity.this, "未登录！即将跳转登陆");
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(MainActivity.this, MyActivity.class);
+                    intent.putExtra("passValue", userNameForMain);
+                    startActivity(intent);
+                }
+            }
+        });
+
         imgHome = findViewById(R.id.img_home);
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtils.showMsg(MainActivity.this,"已添加至购物车！");
+                        ToastUtils.showMsg(MainActivity.this, "已添加至购物车！");
                         loadGoodsDb();// 重新加载数据
                     }
                 });

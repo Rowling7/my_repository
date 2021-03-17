@@ -20,7 +20,7 @@ import java.util.List;
 
 public class ShoppingCartAdapter extends BaseAdapter {
 
-    private Context context;//上下文信息 谁是操作源对象
+    private final Context context;//上下文信息 谁是操作源对象
     private List<ShoppingCartEntity> cartList;//商品的数据集合
 
     private class ViewHolder {
@@ -28,7 +28,8 @@ public class ShoppingCartAdapter extends BaseAdapter {
         private TextView price;
         private Button btn_delCart;
     }
-    public  static final String TAG= "OUTPUT";
+
+    public static final String TAG = "OUTPUT";
     //删除按钮点击事件的监听实例
     private OnDelBtnClickListener onDelBtnClickListener;
 

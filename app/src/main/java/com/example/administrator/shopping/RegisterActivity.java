@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.administrator.shopping.dao.EntityUserDao;
 import com.example.administrator.shopping.entity.EntityUserEntity;
@@ -21,7 +22,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public EditText et_adderss;
     public EditText et_age;
     public EditText et_area;
-
+    private ImageView go_back;
     public Button btn_Register;
     private Handler mainHandler;
 
@@ -40,6 +41,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         et_sex = findViewById(R.id.et_sex);
         // et_area = findViewById(R.id.et_area);
         mainHandler = new Handler(getMainLooper());
+
+        go_back = findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public void btn_on_click(View view) {

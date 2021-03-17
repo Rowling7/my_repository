@@ -9,17 +9,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.shopping.dao.ShoppingCartDao;
+import com.example.administrator.shopping.utils.ToastUtils;
 
 public class SettlementActivity extends AppCompatActivity {
 
     private Button btn_pay;
     private TextView tv_allPrice;
     private TextView tv_cartCount;
-    public  static final String TAG= "OUTPUT";
-    private Handler handler = new Handler() {
+    private ImageView go_back;
+    public static final String TAG = "OUTPUT";
+    private final Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
             //super.handleMessage(msg);
@@ -30,13 +33,13 @@ public class SettlementActivity extends AppCompatActivity {
 
                 } else
                     tv_allPrice.setText("¥ " + sum);
-            }else if (msg.what==1){
-                String cartCount =(String) msg.obj;
+            } else if (msg.what == 1) {
+                String cartCount = (String) msg.obj;
                 if (cartCount == null) {
                     tv_cartCount.setText(" 0 个");
 
                 } else
-                    tv_cartCount.setText(cartCount+"个");
+                    tv_cartCount.setText(cartCount + "个");
             }
         }
     };
@@ -53,6 +56,20 @@ public class SettlementActivity extends AppCompatActivity {
         tv_allPrice = findViewById(R.id.tv_allPrice);
         tv_cartCount = findViewById(R.id.tv_cartCount);
 
+        go_back=findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        btn_pay=findViewById(R.id.btn_pay);
+        btn_pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToastUtils.showMsg(SettlementActivity.this,"正在前往支付页面~");
+            }
+        });
 
         doQueryCount();
         doCount();

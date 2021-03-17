@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,22 +29,23 @@ public class MyDetailsActivity extends AppCompatActivity {
     private TextView tv_phone;
     private TextView tv_area;
     private TextView tv_name;
+    private ImageView go_back;
     private Handler mainHandler;     // 主线程
-    public  static final String TAG= "OUTPUT";
+    public static final String TAG = "OUTPUT";
 
-    private Handler handler = new Handler() {
+    private final Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
-            if (msg.what == 0 ) {
+            if (msg.what == 0) {
                 String uAge = (String) msg.obj;
                 tv_age.setText(uAge);
-            }else if (msg.what == 1 ) {
+            } else if (msg.what == 1) {
                 String uSex = (String) msg.obj;
                 tv_sex.setText(uSex);
-            }else if (msg.what == 2 ) {
+            } else if (msg.what == 2) {
                 String uPhone = (String) msg.obj;
                 tv_phone.setText(uPhone);
-            }else if (msg.what == 3 ) {
+            } else if (msg.what == 3) {
                 String uArea = (String) msg.obj;
                 tv_area.setText(uArea);
             }
@@ -72,6 +75,14 @@ public class MyDetailsActivity extends AppCompatActivity {
         final String userNameForInfo = intent.getStringExtra("passValueForUser");//MyActivity的传值
         tv_name.setText(userNameForInfo);
 
+
+        go_back = findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void initView() {
@@ -98,6 +109,7 @@ public class MyDetailsActivity extends AppCompatActivity {
             }
         }).start();
     }
+
     // 查询sex
     public void selectSex() {
         new Thread(new Runnable() {

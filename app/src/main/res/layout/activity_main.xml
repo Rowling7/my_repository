@@ -12,6 +12,13 @@
         android:id="@+id/ll_shoppingName"
         android:layout_width="match_parent"
         android:layout_height="45dp">
+        <ImageView
+            android:id="@+id/img_my2"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:layout_marginTop="2dp"
+            android:src="@mipmap/default_avatar" />
         <TextView
             android:id="@+id/Shopping_name"
             android:layout_width="0dp"
@@ -19,7 +26,7 @@
             android:layout_weight="5"
             android:background="@color/colorbackground"
             android:gravity="center"
-            android:text="              首页"
+            android:text="首页"
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
             android:textStyle="bold" />

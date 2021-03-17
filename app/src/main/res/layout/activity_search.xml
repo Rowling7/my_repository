@@ -14,11 +14,12 @@
         android:layout_height="45dp">
 
         <ImageView
-            android:id="@+id/iv_retHome"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:src="@mipmap/home" />
+            android:id="@+id/go_back"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="11dp"
+            android:src="@drawable/back" />
 
         <TextView
             android:layout_width="0dp"
@@ -30,6 +31,13 @@
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iv_retHome"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@mipmap/home" />
     </LinearLayout>
 
     <LinearLayout

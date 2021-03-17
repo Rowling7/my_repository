@@ -2,6 +2,7 @@ package com.example.administrator.shopping.dao;
 
 import android.util.Log;
 
+import com.example.administrator.shopping.SettingActivity;
 import com.example.administrator.shopping.entity.AddressEntity;
 import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.database.DbOpenHelper;
@@ -73,7 +74,7 @@ public class EntityUserDao extends DbOpenHelper {
 
         try {
             getConnection();
-            String sql = "SELECT cast(wallet as  decimal(15,2))as wallet from entityuser where username =?";
+            String sql = "SELECT cast(wallet as  decimal(15,2))as wallet from entityuser where username =?AND ISEXIST =1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userNameForCart);
             rs = pStmt.executeQuery();
@@ -92,7 +93,7 @@ public class EntityUserDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "update entityuser set address=? where username=?";
+            String sql = "update entityuser set address=? where username=?AND ISEXIST =1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, entityUserEntity.getAddress());
             pStmt.setString(2, entityUserEntity.getUserName());
@@ -111,7 +112,7 @@ public class EntityUserDao extends DbOpenHelper {
 
         try {
             getConnection();
-            String sql = "SELECT age,phone,area,sex  from entityuser WHERE username = ?";
+            String sql = "SELECT age,phone,area,sex  from entityuser WHERE username = ?AND ISEXIST =1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userNameForDetails);
             rs = pStmt.executeQuery();
@@ -131,7 +132,7 @@ public class EntityUserDao extends DbOpenHelper {
 
         try {
             getConnection();
-            String sql = "SELECT sex from entityuser WHERE username =?";
+            String sql = "SELECT sex from entityuser WHERE username =?AND ISEXIST =1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userNameForDetails);
             rs = pStmt.executeQuery();
@@ -151,7 +152,7 @@ public class EntityUserDao extends DbOpenHelper {
 
         try {
             getConnection();
-            String sql = "SELECT phone from entityuser WHERE username = ?";
+            String sql = "SELECT phone from entityuser WHERE username = ? AND ISEXIST =1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userNameForDetails);
             rs = pStmt.executeQuery();
@@ -170,7 +171,7 @@ public class EntityUserDao extends DbOpenHelper {
         String area = null;
         try {
             getConnection();
-            String sql = "SELECT area from entityuser WHERE username = ?";
+            String sql = "SELECT area from entityuser WHERE username = ? AND ISEXIST =1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userNameForDetails);
             rs = pStmt.executeQuery();
@@ -183,6 +184,23 @@ public class EntityUserDao extends DbOpenHelper {
         }
         Log.i(TAG, "地区：" + area);
         return area;
+    }
+
+    /*delete——删除用户*/
+    public static int delUser(String userNameForSet) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "update entityuser set isexist=0 where username=?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForSet);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
     }
 
     /*查询用户信息  无用*/

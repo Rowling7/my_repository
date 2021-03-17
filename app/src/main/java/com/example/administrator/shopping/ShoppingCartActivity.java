@@ -33,6 +33,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private ImageView imgHome;
     private TextView tv_cartSum;
     private Button btn_settlement;
+    private ImageView go_back;
 
     /*购物车列表*/
     private ListView lv_cartList;
@@ -40,16 +41,16 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private List<ShoppingCartEntity> cartList;
     private ShoppingCartAdapter shoppingCartAdapter;
     private Handler mainHandler;     // 主线程
-    private Handler handler = new Handler(){
+    private final Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
             //super.handleMessage(msg);
-            if(msg.what==0){
+            if (msg.what == 0) {
                 String sum = (String) msg.obj;
-                if (sum==null){
+                if (sum == null) {
                     tv_cartSum.setText("¥ 0");
-                }else
-                tv_cartSum.setText("¥ "+sum);
+                } else
+                    tv_cartSum.setText("¥ " + sum);
             }
         }
     };
@@ -66,7 +67,15 @@ public class ShoppingCartActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String userNameForCart = intent.getStringExtra("passValueForCart");//MyActivity的传值
 
-        tv_cartSum=findViewById(R.id.tv_cartSum);
+        tv_cartSum = findViewById(R.id.tv_cartSum);
+
+        go_back = findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         imgMy = findViewById(R.id.img_my);
         imgMy.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +104,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
 
-        btn_settlement=findViewById(R.id.btn_settlement);
+        btn_settlement = findViewById(R.id.btn_settlement);
         btn_settlement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -177,7 +186,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtils.showMsg(ShoppingCartActivity.this,"已从购物车移除！");
+                        ToastUtils.showMsg(ShoppingCartActivity.this, "已从购物车移除！");
                         loadCartDb();
                         doQueryCount();// 重新加载数据
                     }
@@ -187,7 +196,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     }
 
     // 查询购物车总金额
-    public void doQueryCount(){
+    public void doQueryCount() {
         new Thread(new Runnable() {
             @Override
             public void run() {

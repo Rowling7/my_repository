@@ -27,6 +27,7 @@ public class SearchActivity extends AppCompatActivity {
     private ListView lv_searchGoods;
     private Handler mainHandler;     // 主线程
     private EditText et_insNameFofSearch;
+    private ImageView go_back;
 
     /*商品列表*/
     private GoodsDao goodsDao;
@@ -45,6 +46,13 @@ public class SearchActivity extends AppCompatActivity {
         initView();
         lv_searchGoods = findViewById(R.id.lv_searchGoods);
 
+        go_back = findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         iv_reHome = findViewById(R.id.iv_retHome);
         iv_reHome.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +86,7 @@ public class SearchActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                et_insNameFofSearch=findViewById(R.id.et_insNameFofSearch);
+                et_insNameFofSearch = findViewById(R.id.et_insNameFofSearch);
                 String etinsNameFofSearch = et_insNameFofSearch.getText().toString();
                 goodsList = goodsDao.getSearchGoods(etinsNameFofSearch);
                 mainHandler.post(new Runnable() {
@@ -124,23 +132,23 @@ public class SearchActivity extends AppCompatActivity {
                     public void run() {
                         final Intent intent = getIntent();
                         final String userNameForSearch = intent.getStringExtra("passValueForSearch");//MyActivity的传值
-                        if (userNameForSearch==null){
+                        if (userNameForSearch == null) {
                             new AlertDialog.Builder(SearchActivity.this)
                                     .setTitle("未登录，无法添加购物车！")
                                     .setMessage("是否前往登录？")
                                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Intent intent1=null;
-                                            intent1= new Intent(SearchActivity.this,LoginActivity.class);
+                                            Intent intent1 = null;
+                                            intent1 = new Intent(SearchActivity.this, LoginActivity.class);
                                             startActivity(intent1);
                                         }
                                     })
                                     .setNegativeButton("取消", null)
                                     .create().show();
-                        }else {
+                        } else {
                             ToastUtils.showMsg(SearchActivity.this, "已添加至购物车！");
-                           // loadSearchGoodsDb();// 重新加载数据
+                            // loadSearchGoodsDb();// 重新加载数据
                         }
                     }
                 });

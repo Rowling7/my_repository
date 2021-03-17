@@ -37,6 +37,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
 
     private TextView tv_userName;
     private Handler handler;
+    private ImageView go_back;
     /*地址列表*/
     private ListView lv_address;
     private AddressDao addressDao;
@@ -58,6 +59,15 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
         SettingActivity.activityList.add(this);
         Intent intent = getIntent();
         final String userNameForInAd = intent.getStringExtra("passValue2");//登陆后的传值
+
+
+        go_back = findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         lv_address = findViewById(R.id.lv_address);
         loadAddress();
@@ -136,7 +146,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
                 //  删除方法
                 final AddressEntity item = addressList.get(position);
                 new AlertDialog.Builder(AddressActivity.this)
-                        .setTitle("删除确定")
+                        .setTitle("删除")
                         .setMessage("确认删除：" +
                                 item.getAddress() + "？")
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -157,7 +167,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final int iRow = addressDao.delAddress(uuid);
+                final int iRow = AddressDao.delAddress(uuid);
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {

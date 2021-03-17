@@ -9,6 +9,20 @@
     android:orientation="vertical"
     tools:context=".AddressInsActivity">
 
+    <!--
+  top栏
+  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <ImageView
+            android:id="@+id/go_back"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back" />
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"

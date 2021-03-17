@@ -19,7 +19,7 @@ import java.util.List;
 
 public class AddressAdapter extends BaseAdapter {
     private TextView tv_address;
-    private Context context;//上下文信息 谁是操作源对象
+    private final Context context;//上下文信息 谁是操作源对象
     private List<AddressEntity> addressList;//地址的数据集合
 
     public static final String TAG = "OUTPUT";
@@ -92,7 +92,7 @@ public class AddressAdapter extends BaseAdapter {
         viewHolder.iv_editAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onEditBtnClickListener.onEditBtnClick(view,position);
+                onEditBtnClickListener.onEditBtnClick(view, position);
             }
         });
 

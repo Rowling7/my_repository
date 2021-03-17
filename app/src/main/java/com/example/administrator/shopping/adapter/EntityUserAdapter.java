@@ -22,7 +22,7 @@ import java.util.List;
 
 public class EntityUserAdapter extends BaseAdapter {
     private TextView tv_address;
-    private Context context;//上下文信息 谁是操作源对象
+    private final Context context;//上下文信息 谁是操作源对象
     private List<EntityUserEntity> addressList;//地址的数据集合
 
     private OnEditBtnClickListener onEditBtnClickListener;   //修改按钮点击事件的监听实例

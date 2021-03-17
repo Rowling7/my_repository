@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.shopping.dao.EntityUserDao;
@@ -29,7 +30,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextView tvRegister;
     public Intent intent = null;
     private Handler mainHandler;     // 主线程
-    private Handler handler = new Handler() {
+    private ImageView go_back;
+    private final Handler handler = new Handler() {
     };
 
     @Override
@@ -52,6 +54,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onClick(View view) {
                 intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        go_back = findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
         btn_Login.setOnClickListener(this);

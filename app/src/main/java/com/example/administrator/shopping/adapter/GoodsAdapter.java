@@ -34,8 +34,7 @@ public class GoodsAdapter extends BaseAdapter {
     private List<GoodsEntity> goodsList;//商品的数据集合
 
 
-
-    public final String TAG= "OUTPUT";
+    public final String TAG = "OUTPUT";
     private OnInsBtnClickListener onInsBtnClickListener;     //添加按钮点击事件的监听实例
 
     public GoodsAdapter() {

@@ -76,9 +76,9 @@ public class AddressDao extends DbOpenHelper {
             getConnection();   // 取得连接信息
             String sql = "update entityuser_address set address=? where username=? and uuid =? ";
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1,addressEdit.getAddress());
-            pStmt.setString(2,addressEdit.getUsername());
-            pStmt.setLong(3,addressEdit.getUuid());
+            pStmt.setString(1, addressEdit.getAddress());
+            pStmt.setString(2, addressEdit.getUsername());
+            pStmt.setLong(3, addressEdit.getUuid());
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();

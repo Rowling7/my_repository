@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.administrator.shopping.dao.AddressDao;
 import com.example.administrator.shopping.dao.EntityUserDao;
@@ -16,6 +17,7 @@ import com.example.administrator.shopping.utils.ToastUtils;
 
 public class AddressEditActity extends AppCompatActivity {
 
+    private ImageView go_back;
 
     private EditText et_addressEdited;
     private AddressEntity addressEdit;//用户要修改的地址
@@ -36,6 +38,14 @@ public class AddressEditActity extends AppCompatActivity {
         }
         entityUserDao = new EntityUserDao();
         mainHandler = new Handler(getMainLooper());
+
+        go_back = findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     // 确定按钮的点击事件处理
@@ -55,7 +65,7 @@ public class AddressEditActity extends AppCompatActivity {
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtils.showMsg(AddressEditActity.this,"更改成功~~");
+                            ToastUtils.showMsg(AddressEditActity.this, "更改成功~~");
                             setResult(1);   // 使用参数表示当前界面操作成功，并返回管理界面
                             finish();
                         }

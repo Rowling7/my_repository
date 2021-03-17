@@ -35,6 +35,7 @@ public class GoodsDao extends DbOpenHelper {
         }
         return list;
     }
+
     // 查询所有商品信息
     public List<GoodsEntity> getSearchGoods(String etinsNameFofSearch) {
         List<GoodsEntity> list = new ArrayList<>();

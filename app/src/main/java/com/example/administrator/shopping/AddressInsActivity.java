@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.administrator.shopping.dao.AddressDao;
 import com.example.administrator.shopping.dao.EntityUserDao;
@@ -23,7 +24,8 @@ public class AddressInsActivity extends AppCompatActivity {
     private EntityUserEntity addressEdit;//用户要修改的地址
     private EntityUserDao entityUserDao;
     private Handler mainHandler;     // 主线程
-    private Handler handler = new Handler() {
+    private ImageView go_back;
+    private final Handler handler = new Handler() {
     };
 
 
@@ -37,6 +39,13 @@ public class AddressInsActivity extends AppCompatActivity {
         et_userName = findViewById(R.id.et_userName);
 
         initView();
+        go_back = findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void initView() {
