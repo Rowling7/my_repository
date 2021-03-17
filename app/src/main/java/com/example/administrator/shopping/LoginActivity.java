@@ -31,7 +31,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Handler mainHandler;     // 主线程
     private Handler handler = new Handler() {
     };
-    private static final String TAG = "LodinActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +121,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 //  Intent intentForValue =new Intent(phoneAndUuid);
                                 // LocalBroadcastManager.getInstance(LoginActivity.this).sendBroadcast(intentForValue);
                                 intent.putExtra("passValue", et_UserName.getText().toString());//传递“id”至MyActivity
-
                                 startActivity(intent);
 
                             }

@@ -21,7 +21,6 @@ public class ShoppingCartDao extends DbOpenHelper {
                     "WHERE sc.USERNAME = ? AND SC.ISEXIST = 1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userNameForCart);
-            Log.i("0", "userNameForCart：" + userNameForCart);
             rs = pStmt.executeQuery();
             while (rs.next()) {
                 ShoppingCartEntity item = new ShoppingCartEntity();
@@ -65,7 +64,7 @@ public class ShoppingCartDao extends DbOpenHelper {
             String sql = "SELECT cast(SUm(price)as  decimal(15,2)) as SUM,count(price) as cartCount\n" +
                     "from goods g\n" +
                     "LEFT JOIN shoppingcart sc on sc.GOODS_UUID = g.uuid\n" +
-                    "where username =? and sc.isexist = 1";
+                    "where sc.username =? and sc.isexist = 1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userNameForCart);
             rs = pStmt.executeQuery();

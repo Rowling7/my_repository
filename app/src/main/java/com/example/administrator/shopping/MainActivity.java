@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String userNameForMain = intent.getStringExtra("passValueForMain");//MyActivity的传值
-        Log.i("0", "地址数量：" + userNameForMain);
 
         iv_search=findViewById(R.id.iv_search);
         iv_search.setOnClickListener(new View.OnClickListener() {
@@ -106,14 +105,6 @@ public class MainActivity extends AppCompatActivity {
         lv_goods = findViewById(R.id.lv_goods);
         loadGoodsDb();
 
-        /*添加购物车*//*
-        btn_addshop=findViewById(R.id.btn_addshop);
-        btn_addshop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });*/
     }
 
     private void initView() {

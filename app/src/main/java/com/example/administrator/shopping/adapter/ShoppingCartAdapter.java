@@ -1,6 +1,7 @@
 package com.example.administrator.shopping.adapter;
 
 import android.content.Context;
+import android.nfc.Tag;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
         private TextView price;
         private Button btn_delCart;
     }
-
+    public  static final String TAG= "OUTPUT";
     //删除按钮点击事件的监听实例
     private OnDelBtnClickListener onDelBtnClickListener;
 
@@ -39,7 +40,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
     public ShoppingCartAdapter(Context context, List<ShoppingCartEntity> cartList) {
         this.context = context;
         this.cartList = cartList;
-        Log.i("数据适配器", "购物车数量：" + cartList.size());
+        Log.i(TAG, "购物车数量：" + cartList.size());
     }
 
     public void setShoppingCartList(List<ShoppingCartEntity> cartList) {

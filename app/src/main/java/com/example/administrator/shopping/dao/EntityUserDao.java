@@ -17,6 +17,8 @@ import java.util.List;
 
 public class EntityUserDao extends DbOpenHelper {
 
+    public static final String TAG = "OUTPUT";
+
     /*login——登录  可用*/
     public static EntityUserEntity login(String UserName, String Password) {//Activity 传值过来
         EntityUserEntity entityUserEntity = null;
@@ -67,7 +69,7 @@ public class EntityUserDao extends DbOpenHelper {
 
     /*查询钱包金额*/
     public static String getUserWallet(String userNameForCart) {
-        String walletgeneral  = null;   // 购物车总价格
+        String walletgeneral = null;   // 购物车总价格
 
         try {
             getConnection();
@@ -119,10 +121,11 @@ public class EntityUserDao extends DbOpenHelper {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        Log.i("0", "age：" + age);
+        Log.i(TAG, "年龄：" + age);
         return age;
     }
-   /*sex*/
+
+    /*sex*/
     public static String getUserSex(String userNameForDetails) {
         String sex = null;   // 购物车总价格
 
@@ -138,9 +141,10 @@ public class EntityUserDao extends DbOpenHelper {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        Log.i("1", "sex：" + sex);
+        Log.i(TAG, "性别：" + sex);
         return sex;
     }
+
     /*phone*/
     public static String getUserPhone(String userNameForDetails) {
         String phone = null;   // 购物车总价格
@@ -157,10 +161,11 @@ public class EntityUserDao extends DbOpenHelper {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        Log.i("2", "phone：" + phone);
+        Log.i(TAG, "手机号：" + phone);
         return phone;
     }
-   /*area*/
+
+    /*area*/
     public static String getUserArea(String userNameForDetails) {
         String area = null;
         try {
@@ -176,7 +181,7 @@ public class EntityUserDao extends DbOpenHelper {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        Log.i("3", "area：" + area);
+        Log.i(TAG, "地区：" + area);
         return area;
     }
 

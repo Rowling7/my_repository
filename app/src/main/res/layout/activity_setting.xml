@@ -48,32 +48,32 @@
 
         <Button
             android:id="@+id/btn_reLogin"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:background="@drawable/shape_corner"
             android:text="切换账号"
-            android:textColor="@color/colorPrimary"></Button>
+            android:textColor="@color/colorPrimary" />
 
         <Button
             android:id="@+id/btn_register2"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/shape_corner"
             android:text="注册账号"
-            android:textColor="@color/colorPrimary"></Button>
+            android:textColor="@color/colorPrimary" />
 
         <Button
             android:id="@+id/btn_exit"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/shape_corner"
             android:text="退出应用"
-            android:textColor="@color/colorAccent"></Button>
+            android:textColor="@color/colorAccent"/>
 
 
     </LinearLayout>

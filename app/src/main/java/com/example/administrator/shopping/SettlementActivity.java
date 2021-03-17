@@ -18,6 +18,7 @@ public class SettlementActivity extends AppCompatActivity {
     private Button btn_pay;
     private TextView tv_allPrice;
     private TextView tv_cartCount;
+    public  static final String TAG= "OUTPUT";
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -64,7 +65,7 @@ public class SettlementActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = getIntent();
                 final String userNameForCart = intent.getStringExtra("passValueForpay");//MyActivity的传值
-                Log.i("0", "run: " + userNameForCart);
+
                 String count = ShoppingCartDao.getCartCount(userNameForCart);
                 Message msg = Message.obtain();
                 msg.what = 1;   // 查询结果
@@ -83,7 +84,6 @@ public class SettlementActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = getIntent();
                 final String userNameForCart = intent.getStringExtra("passValueForpay");//MyActivity的传值
-                Log.i("0", "run: " + userNameForCart);
                 String count = ShoppingCartDao.getCartSum(userNameForCart);
                 Message msg = Message.obtain();
                 msg.what = 0;   // 查询结果

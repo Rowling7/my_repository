@@ -1,5 +1,6 @@
 package com.example.administrator.shopping.dao;
 
+import android.util.Log;
 import android.widget.EditText;
 
 import com.example.administrator.shopping.entity.GoodsEntity;

@@ -28,6 +28,7 @@ public class MyDetailsActivity extends AppCompatActivity {
     private TextView tv_area;
     private TextView tv_name;
     private Handler mainHandler;     // 主线程
+    public  static final String TAG= "OUTPUT";
 
     private Handler handler = new Handler() {
         @Override
@@ -85,7 +86,7 @@ public class MyDetailsActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = getIntent();
                 final String userNameForDetails = intent.getStringExtra("passValueForUser");//MyActivity的传值
-                Log.i("4", "地址数量：" + userNameForDetails);
+                Log.i(TAG, "用户名：" + userNameForDetails);
                 String age = EntityUserDao.getUserAge(userNameForDetails);
                 Message msg = Message.obtain();
                 msg.what = 0;   // 查询结果

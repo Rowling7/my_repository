@@ -22,6 +22,8 @@ public class AddressAdapter extends BaseAdapter {
     private Context context;//上下文信息 谁是操作源对象
     private List<AddressEntity> addressList;//地址的数据集合
 
+    public static final String TAG = "OUTPUT";
+
     private OnEditBtnClickListener onEditBtnClickListener;   //修改按钮点击事件的监听实例
     private OnDelBtnClickListener onDelBtnClickListener;     //删除按钮点击事件的监听实例
 
@@ -36,7 +38,7 @@ public class AddressAdapter extends BaseAdapter {
     public AddressAdapter(Context context, List<AddressEntity> addressList) {
         this.context = context;
         this.addressList = addressList;
-        Log.i("0", "地址数量：" + addressList.size());
+        Log.i(TAG, "地址数量：" + addressList.size());
 
         /*int aSize = addressList.size();
         if (aSize==0){

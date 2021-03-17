@@ -32,6 +32,7 @@ public class SearchActivity extends AppCompatActivity {
     private GoodsDao goodsDao;
     private List<GoodsEntity> goodsList;
     private GoodsAdapter goodsAdapter;
+    public static final String TAG = "OUTPUT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,6 @@ public class SearchActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String userNameForSearch = intent.getStringExtra("passValueForSearch");//MyActivity的传值
-        Log.i("0", "地址数量：" + userNameForSearch);
 
         initView();
         lv_searchGoods = findViewById(R.id.lv_searchGoods);
@@ -62,7 +62,6 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = getIntent();
                 final String userNameForSearch = intent.getStringExtra("passValueForSearch");//MyActivity的传值
-                Log.i("0", "地址数量：" + userNameForSearch);
                 loadSearchGoodsDb();
             }
         });
@@ -118,14 +117,13 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = getIntent();
-                final String username = intent.getStringExtra("passValueForMain");//MyActivity的传值
+                final String username = intent.getStringExtra("passValueForSearch");//MyActivity的传值
                 final int iRow = GoodsDao.insCart(uuid, username);
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         final Intent intent = getIntent();
                         final String userNameForSearch = intent.getStringExtra("passValueForSearch");//MyActivity的传值
-                        Log.i("0", "地址数量：" + userNameForSearch);
                         if (userNameForSearch==null){
                             new AlertDialog.Builder(SearchActivity.this)
                                     .setTitle("未登录，无法添加购物车！")

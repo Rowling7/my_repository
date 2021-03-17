@@ -35,6 +35,7 @@ public class GoodsAdapter extends BaseAdapter {
 
 
 
+    public final String TAG= "OUTPUT";
     private OnInsBtnClickListener onInsBtnClickListener;     //添加按钮点击事件的监听实例
 
     public GoodsAdapter() {
@@ -48,7 +49,8 @@ public class GoodsAdapter extends BaseAdapter {
     public GoodsAdapter(Context context, List<GoodsEntity> goodsList) {
         this.context = context;
         this.goodsList = goodsList;
-        Log.i("数据适配器", "商品数量：" + goodsList.size());
+        Log.i(TAG, "商品数量：" + goodsList.size());
+
     }
 
     public void setGoodsList(List<GoodsEntity> goodsList) {
