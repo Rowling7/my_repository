@@ -31,6 +31,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     private ImageView imgCart;
     private ImageView imgLogin;
     private ImageView imgSetting;
+    private ImageView iv_received;
     private TextView tvAddress;
     private TextView tv_Update;
     private TextView tv_share;
@@ -51,7 +52,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                     tv_wallet.setText("0.00");
                 } else
                     tv_wallet.setText(walletgeneral);
-            }else if (msg.what==1){
+            } else if (msg.what == 1) {
                 String realName = (String) msg.obj;
                 tv_userName.setText(realName);
             }
@@ -69,7 +70,6 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         Intent intent = getIntent();
         final String userName2 = intent.getStringExtra("passValue");//登陆后的传值
         final String islogin = intent.getStringExtra("Islogin");//登陆后的传值
-
 
 
         mainHandler = new Handler(getMainLooper());
@@ -135,14 +135,25 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-
-        iv_noPay=findViewById(R.id.iv_noPay);
+        //待付款
+        iv_noPay = findViewById(R.id.iv_noPay);
         iv_noPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = null;
                 intent = new Intent(MyActivity.this, NotPayActivity.class);
-                intent.putExtra("passValueForOrder", userName2);//传递“id”至MainActivity
+                intent.putExtra("passValue", userName2);//传递“id”至MainActivity
+                startActivity(intent);
+            }
+        });
+        //待收货
+        iv_received = findViewById(R.id.iv_received);
+        iv_received.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = null;
+                intent = new Intent(MyActivity.this, ReceivedActivity.class);
+                intent.putExtra("passValue", userName2);//传递“id”至MainActivity
                 startActivity(intent);
             }
         });
@@ -154,8 +165,8 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onClick(View view) {
                 Intent intent = null;
-                intent = new Intent(MyActivity.this,WalletActivity.class);
-                 intent.putExtra("passValue", userName2);//传递“id”至MainActivity
+                intent = new Intent(MyActivity.this, WalletActivity.class);
+                intent.putExtra("passValue", userName2);//传递“id”至MainActivity
                 doQueryWallet();
                 startActivity(intent);
             }

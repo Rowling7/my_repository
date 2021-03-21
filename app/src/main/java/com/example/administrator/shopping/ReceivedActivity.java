@@ -7,12 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
-import com.example.administrator.shopping.adapter.NotPayAdapter;
+
+import com.example.administrator.shopping.Impl.OnInsBtnClickListener;
+import com.example.administrator.shopping.adapter.GoodsAdapter;
+import com.example.administrator.shopping.adapter.ReceivedAdapter;
+import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.dao.OrderDao;
+import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.entity.OrderEntity;
+
 import java.util.List;
 
-public class NotPayActivity extends AppCompatActivity {
+public class ReceivedActivity extends AppCompatActivity {
 
     private ImageView go_back;
 
@@ -20,14 +26,15 @@ public class NotPayActivity extends AppCompatActivity {
     private ListView lv_orderList;
     private OrderDao orderDao;
     private List<OrderEntity> orderList;
-    private NotPayAdapter notPayAdapter;
+    private ReceivedAdapter receivedAdapter;
 
     private Handler mainHandler;     // 主线程
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notpay);
+        setContentView(R.layout.activity_received);
         SettingActivity.activityList.add(this);//用来退出应用
         initView();
 
@@ -62,7 +69,7 @@ public class NotPayActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = getIntent();
                 final String username = intent.getStringExtra("passValue");//登陆后的传值
-                orderList = orderDao.getNotPayOrderList(username);
+                orderList = orderDao.getOrderList(username);
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -74,12 +81,12 @@ public class NotPayActivity extends AppCompatActivity {
     }
 
     private void showLvData() {
-        if (notPayAdapter == null) {
-            notPayAdapter = new NotPayAdapter(this, orderList);
-            lv_orderList.setAdapter(notPayAdapter);
+        if (receivedAdapter == null) {
+            receivedAdapter = new ReceivedAdapter(this, orderList);
+            lv_orderList.setAdapter(receivedAdapter);
         } else {
-            notPayAdapter.setOrderList(orderList);
-            notPayAdapter.notifyDataSetChanged();
+            receivedAdapter.setOrderList(orderList);
+            receivedAdapter.notifyDataSetChanged();
         }
 
     }

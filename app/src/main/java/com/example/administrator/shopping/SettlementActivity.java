@@ -2,6 +2,7 @@ package com.example.administrator.shopping;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.shopping.dao.AddressDao;
 import com.example.administrator.shopping.dao.EntityUserDao;
@@ -61,7 +63,7 @@ public class SettlementActivity extends AppCompatActivity {
 
         SettingActivity.activityList.add(this);
 
-        btn_orderAndPay = findViewById(R.id.btn_orderAndPay);
+
         tv_allPrice = findViewById(R.id.tv_allPrice);
         tv_cartCount = findViewById(R.id.tv_cartCount);
 
@@ -73,11 +75,20 @@ public class SettlementActivity extends AppCompatActivity {
             }
         });
         //   btn_pay = findViewById(R.id.btn_pay);
-        /*btn_pay.setOnClickListener(new View.OnClickListener() {
+
+        btn_orderAndPay = findViewById(R.id.btn_orderAndPay);
+/*        btn_orderAndPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                doInsOrder();
+                final PayPasswordDialog dialog = new PayPasswordDialog(SettlementActivity.this, R.style.mydialog);
+                dialog.setDialogClick(new PayPasswordDialog.DialogClick() {
+                    @Override
+                    public void doConfirm(String password) {
+                        dialog.dismiss();
+                        Toast.makeText(SettlementActivity.this, password, Toast.LENGTH_LONG).show();
+                    }
+                });
+                dialog.show();
             }
         });*/
 
@@ -128,9 +139,8 @@ public class SettlementActivity extends AppCompatActivity {
         final String goodsCount = tv_cartCount.getText().toString().trim();
         final String goodsPrice = tv_allPrice.getText().toString().trim();
         final String datetime = Myuntils.getDateStrFromNow();
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         final String username = intent.getStringExtra("passValue");//登陆后的传值
-
         final OrderEntity orderEntity = new OrderEntity();
         orderEntity.setGoodscount(goodsCount);
         orderEntity.setGoodsprice(goodsPrice);
@@ -138,25 +148,45 @@ public class SettlementActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                Looper.prepare();
                 Log.i(TAG, "run: " + goodsCount);
                 Log.i(TAG, "run: " + goodsPrice);
                 Log.i(TAG, "run: " + datetime);
                 orderDao.insOrder(goodsCount, goodsPrice, username, datetime);
-                ToastUtils.showMsg(SettlementActivity.this, "已创建新的订单，即将支付");
-                Message msg = Message.obtain();
+                ToastUtils.showMsg(SettlementActivity.this, "订单已创建，正在前往支付");
+              /*  Message msg = Message.obtain();
                 msg.what = 99;
-                handler.sendMessage(msg);
-                /*mainHandler.post(new Runnable() {
+                handler.sendMessage(msg);*/
+                final PayPasswordDialog dialog = new PayPasswordDialog(SettlementActivity.this, R.style.mydialog);
+                dialog.setDialogClick(new PayPasswordDialog.DialogClick() {
                     @Override
-                    public void run() {
-                        ToastUtils.showMsg(SettlementActivity.this, "已创建新的订单，即将支付");
-                        setResult(1);
-                        //finish();
+                    public void doConfirm(String password) {
+                        dialog.dismiss();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                               // Looper.perpare();
+                                orderDao.updateStatus(username);
+                                Log.i(TAG, "run: "+username);
+                                ToastUtils.showMsg(SettlementActivity.this, "支付完成,可在待收货中查看");
+                                /*Intent intent = null;
+                                intent =new Intent(SettlementActivity.this,ReceivedActivity.class);
+                                intent.putExtra("passValue", "passValue");//传递“id”至MainActivity
+                                startActivity(intent);*/
+                            }
+                        }).start();
+/*
+                        intent =new Intent(SettlementActivity.this,)
+*/
                     }
-                });*/
+                });
+                dialog.show();
+                Looper.loop();
             }
         }).start();
     }
+
+
 }
 
 

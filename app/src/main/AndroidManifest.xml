@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".WalletActivity"></activity>
+        <activity android:name=".ReceivedActivity"></activity>
+        <activity android:name=".WalletActivity" />
         <activity android:name=".NotPayActivity" />
         <activity android:name=".EditAreaActivity" />
         <activity android:name=".EditSexActivity" />

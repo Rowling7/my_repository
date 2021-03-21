@@ -1,6 +1,14 @@
 package com.example.administrator.shopping.dao;
 
+import android.util.Log;
+
 import com.example.administrator.shopping.database.DbOpenHelper;
+import com.example.administrator.shopping.entity.AddressEntity;
+import com.example.administrator.shopping.entity.GoodsEntity;
+import com.example.administrator.shopping.entity.OrderEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderDao extends DbOpenHelper {
 
@@ -22,30 +30,106 @@ public class OrderDao extends DbOpenHelper {
         } finally {
             closeAll();
         }
+        Log.i("iRow" , "updateStatus: "+iRow);
         return iRow;
 
     }
 
+    //可修改代码逻辑改变支付结果
+    /*public static OrderEntity insOrder(String goodsCount, String goodsPrice, String username, String datetime) {
+        OrderEntity orderEntity = null;
+        try{
+            getConnection();
+            String sql ="INSERT INTO `bishe`.`order`(`GOODSCOUNT`, `GOODSPRICE`, `CREATE_TIME`, `USERNAME`, `STATUS`, `ISEXIST`)\n" +
+                    "VALUES (?, ?, ?, ?, '0', '1')";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1,goodsCount);
+            pStmt.setString(2,goodsPrice);
+            pStmt.setString(3,datetime);
+            pStmt.setString(4,username);
+            rs = pStmt.executeUpdate();
+            if (rs.next()) {
+                orderEntity = new OrderEntity();
+                orderEntity.setUuid(rs.getLong("uuid"));
+            }
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        Log.i("iRow" , "updateStatus: "+orderEntity);
+        return orderEntity;
 
-/*
-    public static List<OrderEntity> getAllOrderList() {
     }*/
 
 
-    public static int insAddress(String address, String username) {
+    /*update——更改地址*/
+    public static int updateStatus(String username) {
         int iRow = 0;
         try {
-            getConnection();   // 取得连接信息
-            String sql = "INSERT INTO entityuser_address(ADDRESS,username,ISEXIST) VALUES (?,?,'1')";
+            getConnection();
+            String sql = "UPDATE `bishe`.`order` SET  `STATUS` = '1'WHERE `username` = ?";
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1, username);
-            pStmt.setString(2, address);
+            pStmt.setString(1,username);
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             closeAll();
         }
+        Log.i("iRow2" , "updateStatus: "+iRow);
         return iRow;
     }
+
+
+    // 查询所有商品信息
+    public List<OrderEntity> getOrderList(String username) {
+        List<OrderEntity> list = new ArrayList<>();
+        try {
+            getConnection();
+            String sql = "select * from bishe.order where username = ? and status = 1";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1,username);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                OrderEntity item = new OrderEntity();
+                item.setUuid(rs.getLong("uuid"));
+                item.setGoodsprice(rs.getString("goodsPrice"));
+                //item.setPrice(rs.getString("price"));
+                //item.setPicture(rs.getString("picture"));
+                list.add(item);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return list;
+    }
+
+    // 查询所有商品信息
+    public List<OrderEntity> getNotPayOrderList(String username) {
+        List<OrderEntity> list = new ArrayList<>();
+        try {
+            getConnection();
+            String sql = "select * from bishe.order where username = ? and status = 0";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1,username);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                OrderEntity item = new OrderEntity();
+                item.setUuid(rs.getLong("uuid"));
+                item.setGoodsprice(rs.getString("goodsPrice"));
+                //item.setPrice(rs.getString("price"));
+                //item.setPicture(rs.getString("picture"));
+                list.add(item);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return list;
+    }
+
 }

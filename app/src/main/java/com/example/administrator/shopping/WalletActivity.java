@@ -74,7 +74,7 @@ public class WalletActivity extends AppCompatActivity {
         btn_500.setOnClickListener(onclicklistener);
         et_jine = findViewById(R.id.et_jine);
         et_jine.setOnClickListener(onclicklistener);
-        tv_wallet=findViewById(R.id.tv_wallet);
+        tv_wallet = findViewById(R.id.tv_wallet);
 
 
         btn_pay.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +87,7 @@ public class WalletActivity extends AppCompatActivity {
 
                         final String etjine = et_jine.getText().toString().trim();
                         final String jine = tv_money.getText().toString().trim();
-                        Log.i(TAG, "doConfirm: "+jine);
+                        Log.i(TAG, "doConfirm: " + jine);
                         final EntityUserEntity entityUserEntity = new EntityUserEntity();
                         entityUserEntity.setWallet(jine);
                         new Thread(new Runnable() {
@@ -95,33 +95,26 @@ public class WalletActivity extends AppCompatActivity {
                             public void run() {
                                 Intent intent = getIntent();
                                 final String userName = intent.getStringExtra("passValue");//登陆后的传值
-                                final int iRow = EntityUserDao.addWallet(userName,jine);
+                                final int iRow = EntityUserDao.addWallet(userName, jine);
                                 dialog.dismiss();
 
                                /* intent = new Intent(WalletActivity.this, MyActivity.class);
                                 doQueryWallet();
                                 */
-                                ToastUtils.showMsg(WalletActivity.this,"充值成功");
-
+                                ToastUtils.showMsg(WalletActivity.this, "充值成功");
                                 finish();
                               /*  mainHandler.post(new Runnable() {
                                     @Override
                                     public void run() {
-
-
                                     }
                                 });*/
                             }
                         }).start();
-
-
-
                     }
                 });
                 dialog.show();
             }
         });
-
 
 
         go_back = findViewById(R.id.go_back);
