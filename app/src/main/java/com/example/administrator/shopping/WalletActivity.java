@@ -97,8 +97,10 @@ public class WalletActivity extends AppCompatActivity {
                                 final String userName = intent.getStringExtra("passValue");//登陆后的传值
                                 final int iRow = EntityUserDao.addWallet(userName,jine);
                                 dialog.dismiss();
-                                intent = new Intent(WalletActivity.this, MyActivity.class);
+
+                               /* intent = new Intent(WalletActivity.this, MyActivity.class);
                                 doQueryWallet();
+                                */
                                 ToastUtils.showMsg(WalletActivity.this,"充值成功");
 
                                 finish();

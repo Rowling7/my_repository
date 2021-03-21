@@ -12,7 +12,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.administrator.shopping.dao.EntityUserDao;
 import com.example.administrator.shopping.dao.ShoppingCartDao;
+import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.utils.ToastUtils;
 
 public class SettlementActivity extends AppCompatActivity {
@@ -36,10 +38,10 @@ public class SettlementActivity extends AppCompatActivity {
             } else if (msg.what == 1) {
                 String cartCount = (String) msg.obj;
                 if (cartCount == null) {
-                    tv_cartCount.setText(" 0 个");
+                    tv_cartCount.setText(" 0 种");
 
                 } else
-                    tv_cartCount.setText(cartCount + "个");
+                    tv_cartCount.setText(cartCount + "种");
             }
         }
     };
@@ -67,6 +69,7 @@ public class SettlementActivity extends AppCompatActivity {
         btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+              //  doins
                 ToastUtils.showMsg(SettlementActivity.this, "正在前往支付页面~");
             }
         });
@@ -114,6 +117,49 @@ public class SettlementActivity extends AppCompatActivity {
 
     }
 
+
+   /* btn_pay.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            final PayPasswordDialog dialog = new PayPasswordDialog(WalletActivity.this, R.style.mydialog);
+            dialog.setDialogClick(new PayPasswordDialog.DialogClick() {
+                @Override
+                public void doConfirm(String password) {
+
+                    final String etjine = et_jine.getText().toString().trim();
+                    final String jine = tv_money.getText().toString().trim();
+                    Log.i(TAG, "doConfirm: "+jine);
+                    final EntityUserEntity entityUserEntity = new EntityUserEntity();
+                    entityUserEntity.setWallet(jine);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = getIntent();
+                            final String userName = intent.getStringExtra("passValue");//登陆后的传值
+                            final int iRow = EntityUserDao.addWallet(userName,jine);
+                            dialog.dismiss();
+                            intent = new Intent(WalletActivity.this, MyActivity.class);
+                            doQueryWallet();
+                            ToastUtils.showMsg(WalletActivity.this,"充值成功");
+
+                            finish();
+                              *//*  mainHandler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+
+                                    }
+                                });*//*
+                        }
+                    }).start();
+
+
+
+                }
+            });
+            dialog.show();
+        }
+    });*/
 
 
 }

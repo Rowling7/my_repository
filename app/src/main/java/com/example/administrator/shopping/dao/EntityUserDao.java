@@ -119,7 +119,8 @@ public class EntityUserDao extends DbOpenHelper {
 
         try {
             getConnection();
-            String sql = "SELECT age,phone,area,sex  from entityuser WHERE username = ?AND ISEXIST =1";
+
+            String sql = "SELECT cast( DATEDIFF(CURDATE(),entityuser.birthday)/360 as decimal(15,0)) as age from entityuser WHERE username =? AND ISEXIST =1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userNameForDetails);
             rs = pStmt.executeQuery();

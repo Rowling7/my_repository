@@ -57,7 +57,7 @@ public class MyDetailsActivity extends AppCompatActivity {
 
 
         tv_age = findViewById(R.id.tv_age);
-        tv_age.setOnClickListener(onclicklistener);
+        /*tv_age.setOnClickListener(onclicklistener);*/
         tv_phone = findViewById(R.id.tv_phone);
         tv_phone.setOnClickListener(onclicklistener);
         tv_area = findViewById(R.id.tv_area);
@@ -95,10 +95,10 @@ public class MyDetailsActivity extends AppCompatActivity {
             final String userNameForEdit = intent.getStringExtra("passValueForUser");
             switch (v.getId()) {
 
-                case R.id.tv_age:
+                /*case R.id.tv_age:
                     intent = new Intent(MyDetailsActivity.this, EditAgeActivity.class);
                     intent.putExtra("passValueForEdit", userNameForEdit);
-                    break;
+                    break;*/
                 case R.id.tv_phone:
                     intent = new Intent(MyDetailsActivity.this, EditPhoneActivity.class);
                     intent.putExtra("passValueForEdit", userNameForEdit);

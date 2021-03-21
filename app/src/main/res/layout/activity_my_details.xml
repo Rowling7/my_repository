@@ -140,10 +140,6 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/right" />
             </LinearLayout>
 
             <LinearLayout
