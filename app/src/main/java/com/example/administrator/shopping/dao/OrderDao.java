@@ -16,6 +16,7 @@ public class OrderDao extends DbOpenHelper {
             pStmt.setString(2,goodsPrice);
             pStmt.setString(3,datetime);
             pStmt.setString(4,username);
+            iRow = pStmt.executeUpdate();
         }catch (Exception ex) {
             ex.printStackTrace();
         } finally {
