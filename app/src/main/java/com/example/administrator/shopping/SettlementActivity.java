@@ -6,24 +6,31 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.administrator.shopping.dao.AddressDao;
 import com.example.administrator.shopping.dao.EntityUserDao;
+import com.example.administrator.shopping.dao.OrderDao;
 import com.example.administrator.shopping.dao.ShoppingCartDao;
 import com.example.administrator.shopping.entity.EntityUserEntity;
+import com.example.administrator.shopping.entity.OrderEntity;
+import com.example.administrator.shopping.utils.Myuntils;
 import com.example.administrator.shopping.utils.ToastUtils;
 
 public class SettlementActivity extends AppCompatActivity {
 
-    private Button btn_pay;
+    private Button btn_orderAndPay;
     private TextView tv_allPrice;
     private TextView tv_cartCount;
     private ImageView go_back;
+    private OrderDao orderDao;
     public static final String TAG = "OUTPUT";
+    private Handler mainHandler;     // 主线程
     private final Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -31,17 +38,17 @@ public class SettlementActivity extends AppCompatActivity {
             if (msg.what == 0) {
                 String sum = (String) msg.obj;
                 if (sum == null) {
-                    tv_allPrice.setText("¥ 0");
+                    tv_allPrice.setText("0");
 
                 } else
-                    tv_allPrice.setText("¥ " + sum);
+                    tv_allPrice.setText(sum);
             } else if (msg.what == 1) {
                 String cartCount = (String) msg.obj;
                 if (cartCount == null) {
-                    tv_cartCount.setText(" 0 种");
+                    tv_cartCount.setText("0");
 
                 } else
-                    tv_cartCount.setText(cartCount + "种");
+                    tv_cartCount.setText(cartCount);
             }
         }
     };
@@ -54,7 +61,7 @@ public class SettlementActivity extends AppCompatActivity {
 
         SettingActivity.activityList.add(this);
 
-        btn_pay = findViewById(R.id.btn_pay);
+        btn_orderAndPay = findViewById(R.id.btn_orderAndPay);
         tv_allPrice = findViewById(R.id.tv_allPrice);
         tv_cartCount = findViewById(R.id.tv_cartCount);
 
@@ -65,14 +72,14 @@ public class SettlementActivity extends AppCompatActivity {
                 finish();
             }
         });
-        btn_pay = findViewById(R.id.btn_pay);
-        btn_pay.setOnClickListener(new View.OnClickListener() {
+        //   btn_pay = findViewById(R.id.btn_pay);
+        /*btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  doins
-                ToastUtils.showMsg(SettlementActivity.this, "正在前往支付页面~");
+
+                doInsOrder();
             }
-        });
+        });*/
 
         Log.i(TAG, "onCreate: " + tv_cartCount);
         Log.i(TAG, "onCreate: " + tv_allPrice);
@@ -86,7 +93,7 @@ public class SettlementActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = getIntent();
-                final String userNameForCart = intent.getStringExtra("passValueForpay");//MyActivity的传值
+                final String userNameForCart = intent.getStringExtra("passValue");//MyActivity的传值
                 String count = ShoppingCartDao.getCartCount(userNameForCart);
                 Message msg = Message.obtain();
                 msg.what = 1;   // 查询结果
@@ -104,7 +111,7 @@ public class SettlementActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = getIntent();
-                final String userNameForCart = intent.getStringExtra("passValueForpay");//MyActivity的传值
+                final String userNameForCart = intent.getStringExtra("passValue");//MyActivity的传值
                 String count = ShoppingCartDao.getCartSum(userNameForCart);
                 Message msg = Message.obtain();
                 msg.what = 0;   // 查询结果
@@ -117,50 +124,40 @@ public class SettlementActivity extends AppCompatActivity {
 
     }
 
+    public void btn_on_click_forPay(View view) {
+        final String goodsCount = tv_cartCount.getText().toString().trim();
+        final String goodsPrice = tv_allPrice.getText().toString().trim();
+        final String datetime = Myuntils.getDateStrFromNow();
+        Intent intent = getIntent();
+        final String username = intent.getStringExtra("passValue");//登陆后的传值
 
-   /* btn_pay.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            final PayPasswordDialog dialog = new PayPasswordDialog(WalletActivity.this, R.style.mydialog);
-            dialog.setDialogClick(new PayPasswordDialog.DialogClick() {
-                @Override
-                public void doConfirm(String password) {
-
-                    final String etjine = et_jine.getText().toString().trim();
-                    final String jine = tv_money.getText().toString().trim();
-                    Log.i(TAG, "doConfirm: "+jine);
-                    final EntityUserEntity entityUserEntity = new EntityUserEntity();
-                    entityUserEntity.setWallet(jine);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent intent = getIntent();
-                            final String userName = intent.getStringExtra("passValue");//登陆后的传值
-                            final int iRow = EntityUserDao.addWallet(userName,jine);
-                            dialog.dismiss();
-                            intent = new Intent(WalletActivity.this, MyActivity.class);
-                            doQueryWallet();
-                            ToastUtils.showMsg(WalletActivity.this,"充值成功");
-
-                            finish();
-                              *//*  mainHandler.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-
-
-                                    }
-                                });*//*
-                        }
-                    }).start();
-
-
-
-                }
-            });
-            dialog.show();
-        }
-    });*/
-
-
+        final OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setGoodscount(goodsCount);
+        orderEntity.setGoodsprice(goodsPrice);
+        orderEntity.setDatetime(datetime);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.i(TAG, "run: " + goodsCount);
+                Log.i(TAG, "run: " + goodsPrice);
+                Log.i(TAG, "run: " + datetime);
+                orderDao.insOrder(goodsCount, goodsPrice, username, datetime);
+                ToastUtils.showMsg(SettlementActivity.this, "已创建新的订单，即将支付");
+                Message msg = Message.obtain();
+                msg.what = 99;
+                handler.sendMessage(msg);
+                /*mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtils.showMsg(SettlementActivity.this, "已创建新的订单，即将支付");
+                        setResult(1);
+                        //finish();
+                    }
+                });*/
+            }
+        }).start();
+    }
 }
+
+
 

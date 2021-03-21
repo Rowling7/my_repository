@@ -143,7 +143,7 @@ public class ShoppingCartDao extends DbOpenHelper {
         return iRow;
     }
 
-    /*insert———添加订单*/
+    /*insert———添加订单*//*
     public static int insOrder(String userNameForCart) {
         int iRow = 0;
         try {
@@ -162,5 +162,5 @@ public class ShoppingCartDao extends DbOpenHelper {
             closeAll();
         }
         return iRow;
-    }
+    }*/
 }

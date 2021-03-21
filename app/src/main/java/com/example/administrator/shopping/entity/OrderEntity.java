@@ -3,7 +3,7 @@ package com.example.administrator.shopping.entity;
 public class OrderEntity {
     private long uuid;
     private String goodscount;
-    private int goodsprice;
+    private String goodsprice;
     private String datetime;
     private String status;
     private String isexist;
@@ -42,11 +42,11 @@ public class OrderEntity {
         this.goodscount = goodscount;
     }
 
-    public int getGoodsprice() {
+    public String getGoodsprice() {
         return goodsprice;
     }
 
-    public void setGoodsprice(int goodsprice) {
+    public void setGoodsprice(String goodsprice) {
         this.goodsprice = goodsprice;
     }
 

@@ -114,9 +114,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
         btn_settlement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                doInsOrder();
+
                 Intent intent = new Intent(ShoppingCartActivity.this, SettlementActivity.class);
-                intent.putExtra("passValueForpay", userNameForCart);
+                intent.putExtra("passValue", userNameForCart);
                 startActivity(intent);
             }
         });
@@ -288,7 +288,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         }).start();
     }
 
-    public void doInsOrder() {
+   /* public void doInsOrder() {
         new Thread(new Runnable() {
             Intent intent = getIntent();
             final String userNameForCart = intent.getStringExtra("passValueForCart");//MyActivity的传值
@@ -300,7 +300,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
             }
         }).start();
-    }
+    }*/
 
    /* public View.OnClickListener onclicklistener = new View.OnClickListener() {
 

@@ -201,7 +201,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     }
 
 
-    // 执行查询用户数量的方法
+    // 执行查询钱包的方法
     public void doQueryWallet() {
         new Thread(new Runnable() {
 

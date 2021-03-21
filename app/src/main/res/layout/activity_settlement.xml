@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorbackground"
     android:orientation="vertical"
-    tools:context=".AddressActivity">
+    tools:context=".SettlementActivity">
     <!--
     top栏
     -->
@@ -83,6 +83,16 @@
                     android:text="NULL"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+
+                    android:gravity="center"
+                    android:text="个"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -103,6 +113,16 @@
                     android:layout_weight="4"
                     android:gravity="center_vertical"
                     android:text="合计："
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+
+                    android:gravity="center_vertical"
+                    android:text="¥"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
 
@@ -140,12 +160,13 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_pay"
+            android:id="@+id/btn_orderAndPay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginTop="20dp"
             android:background="@color/colorPurple"
+            android:onClick="btn_on_click_forPay"
             android:text="支付" />
     </LinearLayout>
 
