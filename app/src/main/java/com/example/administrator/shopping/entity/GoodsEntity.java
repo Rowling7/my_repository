@@ -13,6 +13,10 @@ public class GoodsEntity {
     private String star;
     private String format;
 
+
+
+    private String number;
+
     public GoodsEntity() {
 
     }
@@ -22,7 +26,7 @@ public class GoodsEntity {
         return "GoodsEntity{" +
                 "uuid='" + uuid + '\'' +
                 ", price='" + price + '\'' +
-                ", picture='" + picture + '\'' +
+                ", picture=" + picture +
                 ", suppiler='" + suppiler + '\'' +
                 ", name='" + name + '\'' +
                 ", production_date='" + production_date + '\'' +
@@ -31,7 +35,17 @@ public class GoodsEntity {
                 ", origin_place='" + origin_place + '\'' +
                 ", star='" + star + '\'' +
                 ", format='" + format + '\'' +
+                ", number='" + number + '\'' +
                 '}';
+    }
+
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getUuid() {

@@ -17,7 +17,7 @@ public class ShoppingCartDao extends DbOpenHelper {
         List<ShoppingCartEntity> list = new ArrayList<>();
         try {
             getConnection();
-            String sql = "SELECT sc.uuid ,g.NAME as goodsName, g.price \n" +
+            String sql = "SELECT sc.uuid ,g.NAME as goodsName, g.price, g.number\n" +
                     "FROM shoppingcart sc\n" +
                     "LEFT JOIN goods g ON sc.GOODS_UUID = g.UUID \n" +
                     "WHERE sc.USERNAME = ? AND SC.ISEXIST = 1";
@@ -29,6 +29,7 @@ public class ShoppingCartDao extends DbOpenHelper {
                 item.setUuid(rs.getLong("sc.uuid"));
                 item.setName(rs.getString("goodsName"));
                 item.setPrice(rs.getString("price"));
+                item.setNumber(rs.getString("number"));
                 list.add(item);
             }
         } catch (Exception ex) {
@@ -39,12 +40,36 @@ public class ShoppingCartDao extends DbOpenHelper {
         return list;
     }
 
-    /*(真/伪)删除购物车中的数据*/
+    /*删除购物车中的数据*/
     public static int delCart(long uuid) {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "DELETE from  shoppingcart  WHERE  uuid=?";//真
+            String sql = "UPDATE `bishe`.`goods`\n" +
+                    "LEFT JOIN shoppingcart sc ON sc.GOODS_UUID = goods.UUID\n" +
+                    "SET `number` = number+1 \n" +
+                    "WHERE sc.UUID = ?";//真
+            //String sql = "update shoppingcart set isexist=0 where uuid=?";//伪
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setLong(1, uuid);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+    /*删除购物车中的数据*/
+    public static int doLessCart(long uuid) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "UPDATE `bishe`.`goods`\n" +
+                    "LEFT JOIN shoppingcart sc ON sc.GOODS_UUID = goods.UUID\n" +
+                    "SET `number` = number-1 \n" +
+                    "WHERE sc.UUID = ?";//真
             //String sql = "update shoppingcart set isexist=0 where uuid=?";//伪
             pStmt = conn.prepareStatement(sql);
             pStmt.setLong(1, uuid);
@@ -62,7 +87,7 @@ public class ShoppingCartDao extends DbOpenHelper {
         String sum = null;
         try {
             getConnection();
-            String sql = "SELECT cast(SUm(price)as  decimal(15,2)) as SUM\n" +
+            String sql = "SELECT cast(SUm(g.price*g.number)as  decimal(15,2)) as SUM\n" +
                     "from goods g\n" +
                     "LEFT JOIN shoppingcart sc on sc.GOODS_UUID = g.uuid\n" +
                     "where sc.username =? and sc.isexist = 1";

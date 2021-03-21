@@ -32,6 +32,7 @@ public class WalletActivity extends AppCompatActivity {
     private EditText et_jine;
     private TextView tv_wallet;
     private ImageView go_back;
+
     public static final String TAG = "OUTPUT";
     private EntityUserDao entityUserDao;
     private EntityUserEntity entityUserEntity;

@@ -10,6 +10,7 @@ public class ShoppingCartEntity {
 
     private String name;
     private String price;
+    private String number;
 
 
     public ShoppingCartEntity() {
@@ -26,7 +27,17 @@ public class ShoppingCartEntity {
                 ", isExist='" + isExist + '\'' +
                 ", name='" + name + '\'' +
                 ", price='" + price + '\'' +
+                ", number='" + number + '\'' +
                 '}';
+    }
+
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getName() {

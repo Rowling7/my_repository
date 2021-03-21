@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
+import com.example.administrator.shopping.Impl.OnLessBtnClickListener;
 import com.example.administrator.shopping.adapter.GoodsAdapter;
 import com.example.administrator.shopping.adapter.ShoppingCartAdapter;
 import com.example.administrator.shopping.dao.GoodsDao;
@@ -35,6 +36,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private Button btn_settlement;
     private ImageView go_back;
     private Button btn_doAllCart;
+    private Button btn_less;
+    private Button btn_plus;
+    private TextView tv_amount;
 
     /*购物车列表*/
     private ListView lv_cartList;
@@ -55,6 +59,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         }
     };
+    private int count = 1;
 
 
     @Override
@@ -63,7 +68,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shopping_cart);
 
         SettingActivity.activityList.add(this);//用来退出应用
-        initView();
+
 
         Intent intent = getIntent();
         final String userNameForCart = intent.getStringExtra("passValueForCart");//MyActivity的传值
@@ -116,7 +121,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
 
-        btn_doAllCart=findViewById(R.id.btn_delAllCart);
+        btn_doAllCart = findViewById(R.id.btn_delAllCart);
         btn_doAllCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,6 +140,18 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
 
+
+        tv_amount = findViewById(R.id.tv_amount);
+        btn_plus = (Button) findViewById(R.id.btn_plus);
+       /* btn_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                count++;
+                tv_amount.setText(count+"");
+            }
+        });*/
+        btn_less = findViewById(R.id.btn_less);
+        initView();
         /*填充列表*/
         lv_cartList = findViewById(R.id.lv_cartList);
         loadCartDb();
@@ -183,18 +200,18 @@ public class ShoppingCartActivity extends AppCompatActivity {
             public void onDelBtnClick(View view, int position) {
                 //  删除方法
                 final ShoppingCartEntity item = cartList.get(position);
-                new AlertDialog.Builder(ShoppingCartActivity.this)
-                        .setTitle("您确定要删除：")
-                        .setMessage(item.getName() + "？")
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                doDelCart(item.getUuid());
-                            }
-                        })
-                        .setNegativeButton("取消", null)
-                        .create().show();
+                doDelCart(item.getUuid());
             }
+        });
+        // 删除按钮的操作
+        shoppingCartAdapter.setOnLessBtnClickListener(new OnLessBtnClickListener() {
+            @Override
+            public void onLessBtnClick(View v, int position) {
+                //  删除方法
+                final ShoppingCartEntity item = cartList.get(position);
+                doLessCart(item.getUuid());
+            }
+
         });
     }
 
@@ -207,7 +224,24 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtils.showMsg(ShoppingCartActivity.this, "已从购物车移除！");
+
+                        loadCartDb();
+                        doQueryCount();// 重新加载数据
+                    }
+                });
+            }
+        }).start();
+    }
+
+    //执行删除购物车中的数据
+    private void doLessCart(final long uuid) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final int iRow = ShoppingCartDao.doLessCart(uuid);
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
                         loadCartDb();
                         doQueryCount();// 重新加载数据
                     }
@@ -258,6 +292,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             Intent intent = getIntent();
             final String userNameForCart = intent.getStringExtra("passValueForCart");//MyActivity的传值
+
             @Override
             public void run() {
                 ShoppingCartDao.insOrder(userNameForCart);
@@ -267,4 +302,24 @@ public class ShoppingCartActivity extends AppCompatActivity {
         }).start();
     }
 
+   /* public View.OnClickListener onclicklistener = new View.OnClickListener() {
+
+        public void onClick(View v) {
+            switch (v.getId()) {
+
+                case R.id.btn_jia:
+                    tv_amount.setText(Integer.valueOf(tv_amount.getText().toString()) + 1);
+                    break;
+                case R.id.btn_jian:
+                    if (tv_amount.getText().toString().equals("1")) {
+                        tv_amount.setText(1 + "");
+                    } else {
+                        tv_amount.setText(Integer.valueOf(tv_amount.getText().toString()) - 1);
+
+                    }
+                    break;
+
+            }
+        }
+    };*/
 }

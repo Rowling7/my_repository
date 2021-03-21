@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
+import com.example.administrator.shopping.Impl.OnLessBtnClickListener;
+import com.example.administrator.shopping.Impl.OnPlusBtnClickListener;
 import com.example.administrator.shopping.R;
 import com.example.administrator.shopping.entity.ShoppingCartEntity;
 
@@ -27,14 +29,25 @@ public class ShoppingCartAdapter extends BaseAdapter {
         private TextView title;
         private TextView price;
         private Button btn_delCart;
+        private Button btn_plus;
+        private Button btn_less;
+        private TextView tv_amount;
     }
 
     public static final String TAG = "OUTPUT";
     //删除按钮点击事件的监听实例
     private OnDelBtnClickListener onDelBtnClickListener;
+    private OnPlusBtnClickListener onPlusBtnClickListener;
+    private OnLessBtnClickListener onLessBtnClickListener;
 
     public void setOnDelBtnClickListener(OnDelBtnClickListener onDelBtnClickListener) {
         this.onDelBtnClickListener = onDelBtnClickListener;
+    }
+    public void setOnPlusBtnClickListener(OnPlusBtnClickListener onPlusBtnClickListener) {
+        this.onDelBtnClickListener = onDelBtnClickListener;
+    }
+    public void setOnLessBtnClickListener(OnLessBtnClickListener onLessBtnClickListener) {
+        this.onLessBtnClickListener = onLessBtnClickListener;
     }
 
 
@@ -74,7 +87,9 @@ public class ShoppingCartAdapter extends BaseAdapter {
             // viewHolder.iv_picture = convertView.findViewById(R.id.iv_picture);
             viewHolder.title = convertView.findViewById(R.id.title);
             viewHolder.price = convertView.findViewById(R.id.price);
-            viewHolder.btn_delCart = convertView.findViewById(R.id.btn_delCart);
+            viewHolder.btn_less = convertView.findViewById(R.id.btn_less);
+            viewHolder.btn_plus = convertView.findViewById(R.id.btn_plus);
+            viewHolder.tv_amount = convertView.findViewById(R.id.tv_amount);
             // viewHolder.btn_addshop = convertView.findViewById(R.id.btn_addshop);
             convertView.setTag(viewHolder);
         } else {
@@ -85,13 +100,33 @@ public class ShoppingCartAdapter extends BaseAdapter {
         ShoppingCartEntity item = cartList.get(position);
         viewHolder.title.setText(item.getName());
         viewHolder.price.setText(item.getPrice());
+        viewHolder.tv_amount.setText(item.getNumber());
+
 
 
         // 删除按钮
-        viewHolder.btn_delCart.setOnClickListener(new View.OnClickListener() {
+        viewHolder.btn_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onDelBtnClickListener.onDelBtnClick(v, position);
+            }
+        });
+        /*viewHolder.btn_less.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onDelBtnClickListener.onDelBtnClick(v, position);
+            }
+        });*/
+        /* viewHolder.btn_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onPlusBtnClickListener.onPlusBtnClick(v, position);
+            }
+        });*/
+         viewHolder.btn_less.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onLessBtnClickListener.onLessBtnClick(v, position);
             }
         });
         return convertView;

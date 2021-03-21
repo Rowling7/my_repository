@@ -46,24 +46,24 @@ top栏
         android:layout_below="@+id/ll_toopbar">
 
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:layout_below="@+id/ll_toopbar"
-        android:gravity="bottom"
-        android:text="金额：   ¥"
-        android:textColor="@color/colorBlack"
-        android:textSize="45dp" />
-    <TextView
-        android:id="@+id/tv_money"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-       android:layout_weight="2"
-        android:gravity="bottom"
-        android:text=""
-        android:textColor="@color/colorOrange"
-        android:textSize="45dp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_below="@+id/ll_toopbar"
+            android:gravity="bottom"
+            android:text="金额：   ¥"
+            android:textColor="@color/colorBlack"
+            android:textSize="45dp" />
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight="2"
+            android:gravity="bottom"
+            android:text=""
+            android:textColor="@color/colorOrange"
+            android:textSize="45dp" />
 
     </LinearLayout>
     <LinearLayout
