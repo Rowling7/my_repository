@@ -5,13 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+//修改头像  年龄等验证  定位  充值  +1+2
 public class DbOpenHelper {
 
     /*全局静态 */
     private static final String DRIVERS = "com.mysql.jdbc.Driver";
     private static final String URL = "jdbc:mysql://172.30.243.110:3306/bishe?useUnicode=true&characterEncoding=utf8";
-    private static final String USER = "root";
+    private static final String USER = "cys";
     private static final String PWD = "123456";
 
     public static Connection conn;   // 连接对象

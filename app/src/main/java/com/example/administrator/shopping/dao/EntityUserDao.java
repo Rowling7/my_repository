@@ -314,6 +314,24 @@ public class EntityUserDao extends DbOpenHelper {
         return iRow;
     }
 
+    public static int addWallet(String userName,String jine) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "UPDATE `bishe`.`entityuser` SET  wallet = wallet + ? WHERE username = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(2, userName);
+            pStmt.setString(1, jine);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+
 
     /**
      *无用方法

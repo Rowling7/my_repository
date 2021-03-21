@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.administrator.shopping.dao.EntityUserDao;
 
@@ -22,6 +23,7 @@ public class MyDetailsActivity extends AppCompatActivity {
     private TextView tv_area;
     private TextView tv_name;
     private ImageView go_back;
+    private TextView tv_wallet;
     private Handler mainHandler;     // 主线程
     public static final String TAG = "OUTPUT";
 
@@ -63,6 +65,7 @@ public class MyDetailsActivity extends AppCompatActivity {
         tv_sex = findViewById(R.id.tv_sex);
         tv_sex.setOnClickListener(onclicklistener);
 
+
         selectAge();
         selectSex();
         selectPhone();
@@ -83,6 +86,8 @@ public class MyDetailsActivity extends AppCompatActivity {
 
     }
 
+
+
     public View.OnClickListener onclicklistener = new View.OnClickListener(){
 
         public void onClick(View v) {
@@ -90,23 +95,23 @@ public class MyDetailsActivity extends AppCompatActivity {
             final String userNameForEdit = intent.getStringExtra("passValueForUser");
             switch (v.getId()) {
 
-                case R.id.tv_age:    // 登录按钮
+                case R.id.tv_age:
                     intent = new Intent(MyDetailsActivity.this, EditAgeActivity.class);
                     intent.putExtra("passValueForEdit", userNameForEdit);
                     break;
-                case R.id.tv_phone:    // 登录按钮
+                case R.id.tv_phone:
                     intent = new Intent(MyDetailsActivity.this, EditPhoneActivity.class);
                     intent.putExtra("passValueForEdit", userNameForEdit);
                     break;
-                case R.id.tv_sex:    // 登录按钮
+                case R.id.tv_sex:
                     intent = new Intent(MyDetailsActivity.this, EditSexActivity.class);
                     intent.putExtra("passValueForEdit", userNameForEdit);
                     break;
-                case R.id.tv_area:    // 登录按钮
+                case R.id.tv_area:
                     intent = new Intent(MyDetailsActivity.this, EditAreaActivity.class);
                     intent.putExtra("passValueForEdit",userNameForEdit);
                     break;
-            }
+                            }
             startActivity(intent);
         }
     };

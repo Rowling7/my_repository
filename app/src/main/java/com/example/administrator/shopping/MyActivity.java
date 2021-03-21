@@ -150,6 +150,16 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
 
         /*钱包*/
         tv_wallet = findViewById(R.id.tv_wallet);
+        tv_wallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = null;
+                intent = new Intent(MyActivity.this,WalletActivity.class);
+                 intent.putExtra("passValue", userName2);//传递“id”至MainActivity
+                doQueryWallet();
+                startActivity(intent);
+            }
+        });
 
         /*地址管理*/
         tvAddress = findViewById(R.id.tv_addressManager);
@@ -192,7 +202,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
 
 
     // 执行查询用户数量的方法
-    private void doQueryWallet() {
+    public void doQueryWallet() {
         new Thread(new Runnable() {
 
             @Override

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorbackground"
+    android:orientation="vertical"
+    tools:context=".WalletActivity">
+
+    <!--
+top栏
+-->
+    <LinearLayout
+        android:id="@+id/ll_toopbar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/go_back"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="11dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/Shopping_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="充值"
+            android:textColor="@color/colorBlack"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_text"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/ll_toopbar">
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:layout_below="@+id/ll_toopbar"
+        android:gravity="bottom"
+        android:text="金额：   ¥"
+        android:textColor="@color/colorBlack"
+        android:textSize="45dp" />
+    <TextView
+        android:id="@+id/tv_money"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+       android:layout_weight="2"
+        android:gravity="bottom"
+        android:text=""
+        android:textColor="@color/colorOrange"
+        android:textSize="45dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_chonsgzhi1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_text">
+
+        <Button
+            android:id="@+id/btn_20"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_corner"
+            android:text="20元"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/btn_50"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_corner"
+            android:text="50元"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/btn_100"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_corner"
+            android:text="100元"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_chongzhi2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_chonsgzhi1">
+
+        <Button
+            android:id="@+id/btn_150"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_corner"
+            android:text="150元"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/btn_200"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_corner"
+            android:text="200元"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/btn_500"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_corner"
+            android:text="500元"
+            android:textColor="@color/colorPrimary" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ll_chongzhi2"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:text="其他金额："
+            android:textSize="20sp"
+            android:textColor="@color/colorBlack" />
+
+        <EditText
+            android:id="@+id/et_jine"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="50dp"
+            android:hint="其他金额"
+            android:textColor="@color/colorBlack"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_pay"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_corner"
+        android:text="充值"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignParentBottom="true"/>
+
+
+
+</RelativeLayout>

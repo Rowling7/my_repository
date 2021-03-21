@@ -54,7 +54,7 @@
                 android:text="切换账号"
                 android:textColor="@color/colorPrimary" />
 
-            <Button
+         <!--   <Button
                 android:id="@+id/btn_register2"
                 android:layout_width="240dp"
                 android:layout_height="match_parent"
@@ -62,7 +62,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/shape_corner"
                 android:text="注册账号"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary" />-->
 
             <Button
                 android:id="@+id/btn_delUSer"

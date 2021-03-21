@@ -64,7 +64,7 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        btnRegister2 = findViewById(R.id.btn_register2);
+        /*btnRegister2 = findViewById(R.id.btn_register2);
         btnRegister2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +72,7 @@ public class SettingActivity extends AppCompatActivity {
                 intent = new Intent(SettingActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
         btn_delUaser = findViewById(R.id.btn_delUSer);

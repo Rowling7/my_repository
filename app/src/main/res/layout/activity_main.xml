@@ -37,29 +37,23 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@mipmap/search" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_fenlie"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_toopbar">
 
     </LinearLayout>
-   <!--
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:queryHint="搜索"
-        android:searchIcon="@mipmap/search"
-        android:layout_below="@+id/Shopping_name"
-        android:background="@drawable/shape_corner" >
-    </SearchView>-->
 
 
     <ListView
         android:id="@+id/lv_goods"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ll_shoppingName"
+        android:layout_below="@+id/ll_fenlie"
         android:layout_above="@+id/ll_bottomBar"
         android:cacheColorHint="#00000000"
         android:divider="#E4e4e4"
