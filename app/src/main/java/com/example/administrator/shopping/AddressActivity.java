@@ -21,7 +21,9 @@ import com.example.administrator.shopping.Impl.OnEditBtnClickListener;
 import com.example.administrator.shopping.adapter.AddressAdapter;
 import com.example.administrator.shopping.dao.AddressDao;
 import com.example.administrator.shopping.entity.AddressEntity;
+
 import org.jetbrains.annotations.Nullable;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -55,7 +57,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent = getIntent();
         final String userNameForInAd = intent.getStringExtra("passValue2");//登陆后的传值
 
-        tv_address=findViewById(R.id.tv_address);
+        tv_address = findViewById(R.id.tv_address);
 
 
         go_back = findViewById(R.id.go_back);
@@ -129,7 +131,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
                 // 修改按钮的操作
                 AddressEntity item = addressList.get(position);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("userEdit", (Serializable) item);
+                bundle.putSerializable("userEdit", item);
                 intent = new Intent(AddressActivity.this, AddressEditActity.class);
                 intent.putExtra("passValueForEditAd", userNameForInAd);
                 intent.putExtras(bundle);

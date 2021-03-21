@@ -3,8 +3,6 @@ package com.example.administrator.shopping.dao;
 import android.util.Log;
 
 import com.example.administrator.shopping.database.DbOpenHelper;
-import com.example.administrator.shopping.entity.AddressEntity;
-import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.entity.OrderEntity;
 
 import java.util.ArrayList;
@@ -13,24 +11,24 @@ import java.util.List;
 public class OrderDao extends DbOpenHelper {
 
 
-    public static int insOrder(String goodsCount, String goodsPrice,String username,String datetime) {
-        int iRow=0;
-        try{
+    public static int insOrder(String goodsCount, String goodsPrice, String username, String datetime) {
+        int iRow = 0;
+        try {
             getConnection();
-            String sql ="INSERT INTO `bishe`.`order`(`GOODSCOUNT`, `GOODSPRICE`, `CREATE_TIME`, `USERNAME`, `STATUS`, `ISEXIST`)\n" +
-                    "VALUES (?, ?, ?, ?, '0', '1')";
+            String sql = "INSERT INTO `bishe`.`order`(`GOODSCOUNT`, `GOODSPRICE`, `CREATE_TIME`, `USERNAME`, `STATUS`, `ISEXIST`，`ishouhuo`)\n" +
+                    "VALUES (?, ?, ?, ?, '0', '1'，'1')";
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1,goodsCount);
-            pStmt.setString(2,goodsPrice);
-            pStmt.setString(3,datetime);
-            pStmt.setString(4,username);
+            pStmt.setString(1, goodsCount);
+            pStmt.setString(2, goodsPrice);
+            pStmt.setString(3, datetime);
+            pStmt.setString(4, username);
             iRow = pStmt.executeUpdate();
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             closeAll();
         }
-        Log.i("iRow" , "updateStatus: "+iRow);
+        Log.i("iRow", "updateStatus: " + iRow);
         return iRow;
 
     }
@@ -70,26 +68,26 @@ public class OrderDao extends DbOpenHelper {
             getConnection();
             String sql = "UPDATE `bishe`.`order` SET  `STATUS` = '1'WHERE `username` = ?";
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1,username);
+            pStmt.setString(1, username);
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             closeAll();
         }
-        Log.i("iRow2" , "updateStatus: "+iRow);
+        Log.i("iRow2", "updateStatus: " + iRow);
         return iRow;
     }
 
 
-    // 查询所有商品信息
+    // 查询所有订单信息
     public List<OrderEntity> getOrderList(String username) {
         List<OrderEntity> list = new ArrayList<>();
         try {
             getConnection();
             String sql = "select * from bishe.order where username = ? and status = 1";
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1,username);
+            pStmt.setString(1, username);
             rs = pStmt.executeQuery();
             while (rs.next()) {
                 OrderEntity item = new OrderEntity();
@@ -107,14 +105,14 @@ public class OrderDao extends DbOpenHelper {
         return list;
     }
 
-    // 查询所有商品信息
+    // 查询所有订单信息
     public List<OrderEntity> getNotPayOrderList(String username) {
         List<OrderEntity> list = new ArrayList<>();
         try {
             getConnection();
             String sql = "select * from bishe.order where username = ? and status = 0";
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1,username);
+            pStmt.setString(1, username);
             rs = pStmt.executeQuery();
             while (rs.next()) {
                 OrderEntity item = new OrderEntity();

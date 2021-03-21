@@ -59,7 +59,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         }
     };
-    private int count = 1;
+    private final int count = 1;
 
 
     @Override
@@ -142,7 +142,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
 
         tv_amount = findViewById(R.id.tv_amount);
-        btn_plus = (Button) findViewById(R.id.btn_plus);
+        btn_plus = findViewById(R.id.btn_plus);
        /* btn_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

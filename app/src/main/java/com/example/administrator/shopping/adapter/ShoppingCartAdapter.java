@@ -43,9 +43,11 @@ public class ShoppingCartAdapter extends BaseAdapter {
     public void setOnDelBtnClickListener(OnDelBtnClickListener onDelBtnClickListener) {
         this.onDelBtnClickListener = onDelBtnClickListener;
     }
+
     public void setOnPlusBtnClickListener(OnPlusBtnClickListener onPlusBtnClickListener) {
         this.onDelBtnClickListener = onDelBtnClickListener;
     }
+
     public void setOnLessBtnClickListener(OnLessBtnClickListener onLessBtnClickListener) {
         this.onLessBtnClickListener = onLessBtnClickListener;
     }
@@ -103,7 +105,6 @@ public class ShoppingCartAdapter extends BaseAdapter {
         viewHolder.tv_amount.setText(item.getNumber());
 
 
-
         // 删除按钮
         viewHolder.btn_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +124,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 onPlusBtnClickListener.onPlusBtnClick(v, position);
             }
         });*/
-         viewHolder.btn_less.setOnClickListener(new View.OnClickListener() {
+        viewHolder.btn_less.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onLessBtnClickListener.onLessBtnClick(v, position);

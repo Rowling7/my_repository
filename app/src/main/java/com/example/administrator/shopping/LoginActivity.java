@@ -87,8 +87,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-
-
     private void initView() {
         SettingActivity.activityList.add(this);
         mainHandler = new Handler(getMainLooper());//获取主线程

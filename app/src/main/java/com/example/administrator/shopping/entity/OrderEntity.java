@@ -9,8 +9,7 @@ public class OrderEntity {
     private String isexist;
 
 
-
-    public OrderEntity(){
+    public OrderEntity() {
 
     }
 

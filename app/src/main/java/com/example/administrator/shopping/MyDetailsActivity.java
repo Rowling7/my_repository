@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.example.administrator.shopping.dao.EntityUserDao;
 
 
@@ -87,8 +88,7 @@ public class MyDetailsActivity extends AppCompatActivity {
     }
 
 
-
-    public View.OnClickListener onclicklistener = new View.OnClickListener(){
+    public View.OnClickListener onclicklistener = new View.OnClickListener() {
 
         public void onClick(View v) {
             Intent intent = getIntent();
@@ -109,9 +109,9 @@ public class MyDetailsActivity extends AppCompatActivity {
                     break;
                 case R.id.tv_area:
                     intent = new Intent(MyDetailsActivity.this, EditAreaActivity.class);
-                    intent.putExtra("passValueForEdit",userNameForEdit);
+                    intent.putExtra("passValueForEdit", userNameForEdit);
                     break;
-                            }
+            }
             startActivity(intent);
         }
     };

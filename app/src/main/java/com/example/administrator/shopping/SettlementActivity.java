@@ -152,7 +152,7 @@ public class SettlementActivity extends AppCompatActivity {
                 Log.i(TAG, "run: " + goodsCount);
                 Log.i(TAG, "run: " + goodsPrice);
                 Log.i(TAG, "run: " + datetime);
-                orderDao.insOrder(goodsCount, goodsPrice, username, datetime);
+                OrderDao.insOrder(goodsCount, goodsPrice, username, datetime);
                 ToastUtils.showMsg(SettlementActivity.this, "订单已创建，正在前往支付");
               /*  Message msg = Message.obtain();
                 msg.what = 99;
@@ -165,9 +165,9 @@ public class SettlementActivity extends AppCompatActivity {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                               // Looper.perpare();
-                                orderDao.updateStatus(username);
-                                Log.i(TAG, "run: "+username);
+                                // Looper.perpare();
+                                OrderDao.updateStatus(username);
+                                Log.i(TAG, "run: " + username);
                                 ToastUtils.showMsg(SettlementActivity.this, "支付完成,可在待收货中查看");
                                 /*Intent intent = null;
                                 intent =new Intent(SettlementActivity.this,ReceivedActivity.class);

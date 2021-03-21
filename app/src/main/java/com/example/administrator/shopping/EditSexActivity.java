@@ -18,6 +18,7 @@ public class EditSexActivity extends AppCompatActivity {
     private Button btn_edit;
     private ImageView go_back;
     private Handler mainHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +36,8 @@ public class EditSexActivity extends AppCompatActivity {
             }
         });
 
-        et_editSex=findViewById(R.id.et_editSex);
-        btn_edit=findViewById(R.id.btn_edit);
+        et_editSex = findViewById(R.id.et_editSex);
+        btn_edit = findViewById(R.id.btn_edit);
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,7 +53,7 @@ public class EditSexActivity extends AppCompatActivity {
         mainHandler = new Handler(getMainLooper());//获取主线程
     }
 
-    public void  doEdit(){
+    public void doEdit() {
         final Intent intent = getIntent();
         final String keyForEdit = intent.getStringExtra("passValueForEdit");//MyActivity的传值
         final String newSex = et_editSex.getText().toString().trim();
@@ -65,7 +66,7 @@ public class EditSexActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     Intent intent = getIntent();
-                    final int iRow = EntityUserDao.updateSex(keyForEdit,newSex);
+                    final int iRow = EntityUserDao.updateSex(keyForEdit, newSex);
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {

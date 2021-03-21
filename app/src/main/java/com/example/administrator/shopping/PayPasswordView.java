@@ -23,7 +23,7 @@ public class PayPasswordView extends android.support.v7.widget.AppCompatEditText
     //每个密码所占的宽度
     int mPasswordItemWidth;
     //密码位数
-    int mPasswordNum=6;
+    int mPasswordNum = 6;
     //背景色
     int mBgColor = Color.parseColor("#d1d2d6");
     // 背景边框大小
@@ -51,26 +51,27 @@ public class PayPasswordView extends android.support.v7.widget.AppCompatEditText
         setCursorVisible(false);
     }
 
-    public void initAttributeSet(Context context, AttributeSet attrs){
-        TypedArray array=context.obtainStyledAttributes(attrs,R.styleable.PayPasswordView);
+    public void initAttributeSet(Context context, AttributeSet attrs) {
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.PayPasswordView);
         mPasswordRadius = (int) array.getDimension(R.styleable.PayPasswordView_passwordRadius, dip2px(mPasswordRadius));
-        mBgCorner= (int) array.getDimension(R.styleable.PayPasswordView_bgCorner,dip2px(mBgCorner));
-        mBgSize= (int) array.getDimension(R.styleable.PayPasswordView_bgSize,dip2px(mBgSize));
-        mBgColor=array.getColor(R.styleable.PayPasswordView_bgColor,mBgColor);
-        mPasswordNum=array.getInt(R.styleable.PayPasswordView_passwordNumber,6);
-        mDivisionLineSize= (int) array.getDimension(R.styleable.PayPasswordView_divisionLineSize,dip2px(mDivisionLineSize));
+        mBgCorner = (int) array.getDimension(R.styleable.PayPasswordView_bgCorner, dip2px(mBgCorner));
+        mBgSize = (int) array.getDimension(R.styleable.PayPasswordView_bgSize, dip2px(mBgSize));
+        mBgColor = array.getColor(R.styleable.PayPasswordView_bgColor, mBgColor);
+        mPasswordNum = array.getInt(R.styleable.PayPasswordView_passwordNumber, 6);
+        mDivisionLineSize = (int) array.getDimension(R.styleable.PayPasswordView_divisionLineSize, dip2px(mDivisionLineSize));
         mDivisionLineColor = array.getColor(R.styleable.PayPasswordView_divisionLineColor, mDivisionLineColor);
         mPasswordColor = array.getColor(R.styleable.PayPasswordView_passwordColor, mDivisionLineColor);
         array.recycle();
     }
 
     //初始化画笔
-    public void initPaint(){
-        paint=new Paint();
+    public void initPaint() {
+        paint = new Paint();
         paint.setAntiAlias(true);
         paint.setDither(true);
 
     }
+
     /**
      * dip 转 px
      */
@@ -82,8 +83,8 @@ public class PayPasswordView extends android.support.v7.widget.AppCompatEditText
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int passwordWidth=getWidth()-(mPasswordNum-1)*mDivisionLineSize;
-        mPasswordItemWidth=passwordWidth/mPasswordNum;
+        int passwordWidth = getWidth() - (mPasswordNum - 1) * mDivisionLineSize;
+        mPasswordItemWidth = passwordWidth / mPasswordNum;
         //绘制背景；
         drawbg(canvas);
         //绘制分割线
@@ -95,21 +96,22 @@ public class PayPasswordView extends android.support.v7.widget.AppCompatEditText
 
     /**
      * 绘制密码
+     *
      * @param canvas
      */
     private void drawHidePassword(Canvas canvas) {
-        int passwordLength=getText().length();
+        int passwordLength = getText().length();
         paint.setColor(mPasswordColor);
         //设置画笔为实心
         paint.setStyle(Paint.Style.FILL);
-        for (int i=0;i<passwordLength;i++){
-            int cx=i+mDivisionLineSize+i*mPasswordItemWidth+ mPasswordItemWidth / 2 + mBgSize;
+        for (int i = 0; i < passwordLength; i++) {
+            int cx = i + mDivisionLineSize + i * mPasswordItemWidth + mPasswordItemWidth / 2 + mBgSize;
 
-            canvas.drawCircle(cx,getHeight()/2,mPasswordRadius,paint);
+            canvas.drawCircle(cx, getHeight() / 2, mPasswordRadius, paint);
         }
 
-        if (passwordLength>=mPasswordNum){
-            if (payEndListener!=null){
+        if (passwordLength >= mPasswordNum) {
+            if (payEndListener != null) {
                 payEndListener.doEnd(getText().toString().trim());
             }
         }
@@ -120,14 +122,15 @@ public class PayPasswordView extends android.support.v7.widget.AppCompatEditText
     private void drawDivisionLine(Canvas canvas) {
         paint.setColor(mDivisionLineColor);
         paint.setStrokeWidth(mDivisionLineSize);
-        for (int i=0;i<mPasswordNum-1;i++){
-            int startX=(i + 1) * mDivisionLineSize + (i + 1) * mPasswordItemWidth + mBgSize;
-            canvas.drawLine(startX,mBgSize,startX, getHeight() - mBgSize, paint);
+        for (int i = 0; i < mPasswordNum - 1; i++) {
+            int startX = (i + 1) * mDivisionLineSize + (i + 1) * mPasswordItemWidth + mBgSize;
+            canvas.drawLine(startX, mBgSize, startX, getHeight() - mBgSize, paint);
         }
     }
 
     /**
      * 绘制背景
+     *
      * @param canvas
      */
     private void drawbg(Canvas canvas) {
@@ -135,7 +138,7 @@ public class PayPasswordView extends android.support.v7.widget.AppCompatEditText
         //设置画笔为空心
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(mBgSize);
-        RectF rectF=new RectF(mBgSize,mBgSize, getWidth() - mBgSize, getHeight() - mBgSize);
+        RectF rectF = new RectF(mBgSize, mBgSize, getWidth() - mBgSize, getHeight() - mBgSize);
         // 如果没有设置圆角，就画矩形
         if (mBgCorner == 0) {
             canvas.drawRect(rectF, paint);
@@ -146,7 +149,7 @@ public class PayPasswordView extends android.support.v7.widget.AppCompatEditText
 
     }
 
-    public void addPassword(String number){
+    public void addPassword(String number) {
         number = getText().toString().trim() + number;
         if (number.length() > mPasswordNum) {
             return;
@@ -157,12 +160,12 @@ public class PayPasswordView extends android.support.v7.widget.AppCompatEditText
     /**
      * 删除最后一位密码
      */
-    public void delLastPassword(){
-        String currentText=getText().toString().trim();
-        if (TextUtils.isEmpty(currentText)){
+    public void delLastPassword() {
+        String currentText = getText().toString().trim();
+        if (TextUtils.isEmpty(currentText)) {
             return;
         }
-        currentText=currentText.substring(0,currentText.length()-1);
+        currentText = currentText.substring(0, currentText.length() - 1);
         setText(currentText);
     }
 
@@ -172,11 +175,11 @@ public class PayPasswordView extends android.support.v7.widget.AppCompatEditText
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-    public void setPayPasswordEndListener(PayEndListener payEndListener){
-        this.payEndListener=payEndListener;
+    public void setPayPasswordEndListener(PayEndListener payEndListener) {
+        this.payEndListener = payEndListener;
     }
 
-    public interface  PayEndListener{
+    public interface PayEndListener {
         void doEnd(String password);
     }
 }

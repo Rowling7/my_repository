@@ -54,7 +54,7 @@ public class EditAreaActivity extends AppCompatActivity {
         mainHandler = new Handler(getMainLooper());//获取主线程
     }
 
-    public void  doEdit(){
+    public void doEdit() {
         final Intent intent = getIntent();
         final String keyForEdit = intent.getStringExtra("passValueForEdit");//MyActivity的传值
         final String newArea = et_editArea.getText().toString().trim();
@@ -67,7 +67,7 @@ public class EditAreaActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     Intent intent = getIntent();
-                    final int iRow = EntityUserDao.updateArea(keyForEdit,newArea);
+                    final int iRow = EntityUserDao.updateArea(keyForEdit, newArea);
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {

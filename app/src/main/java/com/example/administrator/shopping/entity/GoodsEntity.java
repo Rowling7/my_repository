@@ -14,7 +14,6 @@ public class GoodsEntity {
     private String format;
 
 
-
     private String number;
 
     public GoodsEntity() {

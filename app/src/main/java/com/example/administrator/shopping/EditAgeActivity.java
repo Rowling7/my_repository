@@ -33,12 +33,12 @@ public class EditAgeActivity extends AppCompatActivity {
                 finish();
             }
         });
-        et_editAge=findViewById(R.id.et_editAge);
-        btn_edit=findViewById(R.id.btn_edit);
+        et_editAge = findViewById(R.id.et_editAge);
+        btn_edit = findViewById(R.id.btn_edit);
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               //doEdit();
+                //doEdit();
 
             }
         });
@@ -50,7 +50,7 @@ public class EditAgeActivity extends AppCompatActivity {
         mainHandler = new Handler(getMainLooper());//获取主线程
     }
 
-    public void  doEdit(){
+    public void doEdit() {
         final Intent intent = getIntent();
         final String keyForEdit = intent.getStringExtra("passValueForEdit");//MyActivity的传值
         final String newAge = et_editAge.getText().toString().trim();
@@ -63,7 +63,7 @@ public class EditAgeActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     Intent intent = getIntent();
-                    final int iRow = EntityUserDao.updateAge(keyForEdit,newAge);
+                    final int iRow = EntityUserDao.updateAge(keyForEdit, newAge);
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {

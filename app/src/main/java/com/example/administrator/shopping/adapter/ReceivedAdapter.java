@@ -49,6 +49,7 @@ public class ReceivedAdapter extends BaseAdapter {
     public void setOnInsBtnClickListener(OnInsBtnClickListener onInsBtnClickListener) {
         this.onInsBtnClickListener = onInsBtnClickListener;
     }
+
     public void setOnDelBtnClickListener(OnDelBtnClickListener onDelBtnClickListener) {
         this.onDelBtnClickListener = onDelBtnClickListener;
     }
@@ -99,7 +100,7 @@ public class ReceivedAdapter extends BaseAdapter {
 
         //数据填充
         OrderEntity orders = orderList.get(position);
-        viewHolder.tv_title.setText(orders.getUuid()+"");
+        viewHolder.tv_title.setText(orders.getUuid() + "");
         viewHolder.tv_price.setText(orders.getGoodsprice());
         // viewHolder.iv_picture.setBackgroundResource(goods.getPicture());2/2
 

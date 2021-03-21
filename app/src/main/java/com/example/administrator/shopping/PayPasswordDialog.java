@@ -44,7 +44,7 @@ public class PayPasswordDialog extends Dialog implements View.OnClickListener {
 
         Window window = getWindow();
         WindowManager.LayoutParams mParams = window.getAttributes();
-        mParams.width= WindowManager.LayoutParams.MATCH_PARENT;
+        mParams.width = WindowManager.LayoutParams.MATCH_PARENT;
         window.setGravity(Gravity.BOTTOM);
         window.setAttributes(mParams);
         setCanceledOnTouchOutside(true);
@@ -66,7 +66,7 @@ public class PayPasswordDialog extends Dialog implements View.OnClickListener {
         payPassword.setPayPasswordEndListener(new PayPasswordView.PayEndListener() {
             @Override
             public void doEnd(String password) {
-                if (dialogClick!=null){
+                if (dialogClick != null) {
                     dialogClick.doConfirm(password);
                 }
             }
@@ -85,29 +85,30 @@ public class PayPasswordDialog extends Dialog implements View.OnClickListener {
     }
 
     private void initView() {
-        tvReturn = (TextView) findViewById(R.id.tv_return);
-        payPassword = (PayPasswordView) findViewById(R.id.pay_password);
-        tv1 = (TextView) findViewById(R.id.tv1);
-        tv2 = (TextView) findViewById(R.id.tv2);
-        tv3 = (TextView) findViewById(R.id.tv3);
-        tv4 = (TextView) findViewById(R.id.tv4);
-        tv5 = (TextView) findViewById(R.id.tv5);
-        tv6 = (TextView) findViewById(R.id.tv6);
-        tv7 = (TextView) findViewById(R.id.tv7);
-        tv8 = (TextView) findViewById(R.id.tv8);
-        tv9 = (TextView) findViewById(R.id.tv9);
-        tv = (TextView) findViewById(R.id.tv);
-        tvDel = (TextView) findViewById(R.id.tv_del);
+        tvReturn = findViewById(R.id.tv_return);
+        payPassword = findViewById(R.id.pay_password);
+        tv1 = findViewById(R.id.tv1);
+        tv2 = findViewById(R.id.tv2);
+        tv3 = findViewById(R.id.tv3);
+        tv4 = findViewById(R.id.tv4);
+        tv5 = findViewById(R.id.tv5);
+        tv6 = findViewById(R.id.tv6);
+        tv7 = findViewById(R.id.tv7);
+        tv8 = findViewById(R.id.tv8);
+        tv9 = findViewById(R.id.tv9);
+        tv = findViewById(R.id.tv);
+        tvDel = findViewById(R.id.tv_del);
     }
 
     DialogClick dialogClick;
-    public void setDialogClick(DialogClick dialogClick){
-        this.dialogClick=dialogClick;
+
+    public void setDialogClick(DialogClick dialogClick) {
+        this.dialogClick = dialogClick;
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.tv:
                 payPassword.addPassword("0");
                 break;
@@ -141,7 +142,7 @@ public class PayPasswordDialog extends Dialog implements View.OnClickListener {
         }
     }
 
-    public interface DialogClick{
+    public interface DialogClick {
         void doConfirm(String password);
     }
 

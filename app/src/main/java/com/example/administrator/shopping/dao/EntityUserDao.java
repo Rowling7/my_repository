@@ -72,6 +72,7 @@ public class EntityUserDao extends DbOpenHelper {
 
     /**
      * 查询
+     *
      * @param userNameForCart
      * @return
      */
@@ -216,6 +217,7 @@ public class EntityUserDao extends DbOpenHelper {
 
     /**
      * 删除
+     *
      * @param userNameForSet
      * @return
      */
@@ -239,6 +241,7 @@ public class EntityUserDao extends DbOpenHelper {
 
     /**
      * 修改
+     *
      * @param keyForEdit
      * @param newAge
      * @return
@@ -315,7 +318,7 @@ public class EntityUserDao extends DbOpenHelper {
         return iRow;
     }
 
-    public static int addWallet(String userName,String jine) {
+    public static int addWallet(String userName, String jine) {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
@@ -333,9 +336,9 @@ public class EntityUserDao extends DbOpenHelper {
     }
 
 
-
     /**
-     *无用方法
+     * 无用方法
+     *
      * @param userNameForInfo
      * @return
      */
@@ -372,7 +375,7 @@ public class EntityUserDao extends DbOpenHelper {
         getConnection();
         try {
             if (conn != null && (!conn.isClosed())) {
-                pStmt = (PreparedStatement) conn.prepareStatement(sql);
+                pStmt = conn.prepareStatement(sql);
                 if (pStmt != null) {
                     rs = pStmt.executeQuery();
                     if (rs != null) {
