@@ -56,14 +56,7 @@
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/price">
 
-            <Button
-                android:id="@+id/btn_delOrder"
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:text="取消"
-                android:textColor="@color/colorBlack"
-                android:background="@drawable/shape_corner_red"
-                android:textSize="15sp" />
+
 
             <Button
                 android:id="@+id/btn_payOrder"
@@ -71,7 +64,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="4dp"
                 android:background="@drawable/shape_corner"
-                android:text="支付"
+                android:text="确认收货"
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp" />
 
