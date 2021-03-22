@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnInsBtnClickListener;
 import com.example.administrator.shopping.adapter.GoodsAdapter;
 import com.example.administrator.shopping.adapter.ReceivedAdapter;
@@ -15,6 +16,7 @@ import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.dao.OrderDao;
 import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.entity.OrderEntity;
+import com.example.administrator.shopping.utils.ToastUtils;
 
 import java.util.List;
 
@@ -89,5 +91,31 @@ public class ReceivedActivity extends AppCompatActivity {
             receivedAdapter.notifyDataSetChanged();
         }
 
+        receivedAdapter.setOnDelBtnClickListener(new OnDelBtnClickListener() {
+            @Override
+            public void onDelBtnClick(View view, int position) {
+                final OrderEntity item = orderList.get(position);
+                doConformOrder(item.getUuid());
+            }
+        });
+
+    }
+
+
+    //执行删除购物车中的数据
+    private void doConformOrder(final long uuid) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final int iRow = OrderDao.ConOrder(uuid);
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtils.showMsg(ReceivedActivity.this, "已确认收货");
+                        loadOrderDb();// 重新加载数据
+                    }
+                });
+            }
+        }).start();
     }
 }

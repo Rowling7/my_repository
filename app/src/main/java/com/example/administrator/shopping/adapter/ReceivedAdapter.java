@@ -28,7 +28,7 @@ public class ReceivedAdapter extends BaseAdapter {
         private TextView tv_title;
         private TextView tv_price;
         private Button btn_delOrder;
-        private Button btn_payOrder;
+        private Button btn_conformOrder;
 
     }
 
@@ -92,7 +92,7 @@ public class ReceivedAdapter extends BaseAdapter {
             viewHolder.tv_title = convertView.findViewById(R.id.title);
             viewHolder.tv_price = convertView.findViewById(R.id.price);
             //viewHolder.btn_payOrder = convertView.findViewById(R.id.btn_payOrder);
-            //viewHolder.btn_delOrder = convertView.findViewById(R.id.btn_delorder);
+            viewHolder.btn_conformOrder = convertView.findViewById(R.id.btn_conformOrder);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -110,6 +110,14 @@ public class ReceivedAdapter extends BaseAdapter {
                 onInsBtnClickListener.OnInsBtnClick(v, position);
             }
         });*/
+
+        //取消订单
+        viewHolder.btn_conformOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onDelBtnClickListener.onDelBtnClick(v, position);
+            }
+        });
 
         return convertView;
     }

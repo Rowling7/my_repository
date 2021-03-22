@@ -85,7 +85,7 @@ public class OrderDao extends DbOpenHelper {
         List<OrderEntity> list = new ArrayList<>();
         try {
             getConnection();
-            String sql = "select * from bishe.order where username = ? and status = 1";
+            String sql = "select * from bishe.order where username = ? and status = 1 and isshouhuo = 1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, username);
             rs = pStmt.executeQuery();
@@ -154,6 +154,25 @@ public class OrderDao extends DbOpenHelper {
         try {
             getConnection();   // 取得连接信息
             String sql = "UPDATE `bishe`.`order` SET `status` = '1' WHERE `UUID` = ?";//真
+            //String sql = "update shoppingcart set isexist=0 where uuid=?";//伪
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setLong(1, uuid);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+
+
+    public static int ConOrder(long uuid) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "UPDATE `bishe`.`order` SET `isshouhuo` = '0' WHERE `UUID` = ?";//真
             //String sql = "update shoppingcart set isexist=0 where uuid=?";//伪
             pStmt = conn.prepareStatement(sql);
             pStmt.setLong(1, uuid);
