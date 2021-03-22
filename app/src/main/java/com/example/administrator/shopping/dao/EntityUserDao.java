@@ -2,17 +2,10 @@ package com.example.administrator.shopping.dao;
 
 import android.util.Log;
 
-import com.example.administrator.shopping.SettingActivity;
-import com.example.administrator.shopping.entity.AddressEntity;
 import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.database.DbOpenHelper;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -351,7 +344,7 @@ public class EntityUserDao extends DbOpenHelper {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        Log.i(TAG, "getNumbForNopay: " + numbForNopay);
+        Log.i(TAG, "未付款: " + numbForNopay);
         return numbForNopay;
     }
 
@@ -371,7 +364,7 @@ public class EntityUserDao extends DbOpenHelper {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        Log.i(TAG, "getNumbForReceived: " + numbForNoReceived);
+        Log.i(TAG, "未收货: " + numbForNoReceived);
         return numbForNoReceived;
     }
 

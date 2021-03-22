@@ -60,16 +60,17 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 tv_userName.setText(realName);
             }else if (msg.what == 2) {
                 String numbForNopay = (String) msg.obj;
-                if (numbForNopay.equals(0)) {
-                    tv_numbForNopay.setText(numbForNopay);
-                } else
+                if (numbForNopay.equals("0")) {
                     tv_numbForNopay.setText("");
+                } else
+                tv_numbForNopay.setText(numbForNopay);
             }else if (msg.what == 3) {
                 String numbForNoReceived = (String) msg.obj;
-                if (numbForNoReceived.equals(0)) {
-                    tv_numbForReceived.setText(numbForNoReceived);
+                if (numbForNoReceived.equals("0")) {
+                    tv_numbForReceived.setText("");
                 } else
-                tv_numbForReceived.setText("");
+
+                tv_numbForReceived.setText(numbForNoReceived);
             }
         }
     };
