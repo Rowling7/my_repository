@@ -40,7 +40,7 @@ public class ShoppingCartDao extends DbOpenHelper {
         return list;
     }
 
-    /*删除购物车中的数据*/
+
     public static int delCart(long uuid) {
         int iRow = 0;
         try {
@@ -61,7 +61,7 @@ public class ShoppingCartDao extends DbOpenHelper {
         return iRow;
     }
 
-    /*删除购物车中的数据*/
+
     public static int doLessCart(long uuid) {
         int iRow = 0;
         try {

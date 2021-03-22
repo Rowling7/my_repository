@@ -2,21 +2,31 @@ package com.example.administrator.shopping;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
+import com.example.administrator.shopping.Impl.OnInsBtnClickListener;
 import com.example.administrator.shopping.adapter.NotPayAdapter;
 import com.example.administrator.shopping.dao.OrderDao;
+import com.example.administrator.shopping.dao.ShoppingCartDao;
 import com.example.administrator.shopping.entity.OrderEntity;
+import com.example.administrator.shopping.entity.ShoppingCartEntity;
+import com.example.administrator.shopping.utils.ToastUtils;
 
 import java.util.List;
 
 public class NotPayActivity extends AppCompatActivity {
 
     private ImageView go_back;
+    private Button btn_payOrder;
+    private Button btn_delOrder;
 
     /*商品列表*/
     private ListView lv_orderList;
@@ -33,6 +43,9 @@ public class NotPayActivity extends AppCompatActivity {
         SettingActivity.activityList.add(this);//用来退出应用
         initView();
 
+
+        btn_delOrder = findViewById(R.id.btn_delOrder);
+        btn_payOrder = findViewById(R.id.btn_payOrder);
 
         go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(new View.OnClickListener() {
@@ -84,5 +97,71 @@ public class NotPayActivity extends AppCompatActivity {
             notPayAdapter.notifyDataSetChanged();
         }
 
+
+        notPayAdapter.setOnDelBtnClickListener(new OnDelBtnClickListener() {
+            @Override
+            public void onDelBtnClick(View view, int position) {
+                final OrderEntity item = orderList.get(position);
+                doDelOrder(item.getUuid());
+            }
+        });
+
+        notPayAdapter.setOnInsBtnClickListener(new OnInsBtnClickListener() {
+            @Override
+            public void OnInsBtnClick(View view, int position) {
+                final OrderEntity item = orderList.get(position);
+                doInsOrder(item.getUuid());
+            }
+
+        });
+
+
+    }
+
+    //执行删除购物车中的数据
+    private void doDelOrder(final long uuid) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final int iRow = OrderDao.delOrder(uuid);
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtils.showMsg(NotPayActivity.this, "已取消订单");
+                        loadOrderDb();// 重新加载数据
+                    }
+                });
+            }
+        }).start();
+    }
+
+
+    private void doInsOrder(final long uuid) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final int iRow = OrderDao.payOrder(uuid);
+                Looper.prepare();
+                final PayPasswordDialog dialog = new PayPasswordDialog(NotPayActivity.this, R.style.mydialog);
+                dialog.setDialogClick(new PayPasswordDialog.DialogClick() {
+                    @Override
+                    public void doConfirm(String password) {
+                        dialog.dismiss();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ToastUtils.showMsg(NotPayActivity.this, "支付完成,可在待收货中查看");
+                                loadOrderDb();
+                            }
+                        }).start();
+
+                    }
+                });
+                dialog.show();
+                Looper.loop();
+
+
+            }
+        }).start();
     }
 }

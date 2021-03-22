@@ -15,8 +15,8 @@ public class OrderDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();
-            String sql = "INSERT INTO `bishe`.`order`(`GOODSCOUNT`, `GOODSPRICE`, `CREATE_TIME`, `USERNAME`, `STATUS`, `ISEXIST`，`ishouhuo`)\n" +
-                    "VALUES (?, ?, ?, ?, '0', '1'，'1')";
+            String sql = "INSERT INTO `bishe`.`order`(`GOODSCOUNT`, `GOODSPRICE`, `CREATE_TIME`, `USERNAME`, `STATUS`, `ISEXIST`,`isshouhuo`)\n" +
+                    "VALUES (?,?,?, ?, '0', '1','1')";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, goodsCount);
             pStmt.setString(2, goodsPrice);
@@ -110,7 +110,7 @@ public class OrderDao extends DbOpenHelper {
         List<OrderEntity> list = new ArrayList<>();
         try {
             getConnection();
-            String sql = "select * from bishe.order where username = ? and status = 0";
+            String sql = "select * from bishe.order where username = ? and status = 0 and isexist = 1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, username);
             rs = pStmt.executeQuery();
@@ -128,6 +128,42 @@ public class OrderDao extends DbOpenHelper {
             closeAll();
         }
         return list;
+    }
+
+
+
+    public static int delOrder(long uuid) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "UPDATE `bishe`.`order` SET `ISEXIST` = '0' WHERE `UUID` = ?";//真
+            //String sql = "update shoppingcart set isexist=0 where uuid=?";//伪
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setLong(1, uuid);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+    public static int payOrder(long uuid) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "UPDATE `bishe`.`order` SET `status` = '1' WHERE `UUID` = ?";//真
+            //String sql = "update shoppingcart set isexist=0 where uuid=?";//伪
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setLong(1, uuid);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
     }
 
 }

@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,8 @@ public class SettlementActivity extends AppCompatActivity {
     private TextView tv_cartCount;
     private ImageView go_back;
     private OrderDao orderDao;
+    private TextView tv_phone;
+    private Spinner s_select;
     public static final String TAG = "OUTPUT";
     private Handler mainHandler;     // 主线程
     private final Handler handler = new Handler() {
@@ -48,9 +52,11 @@ public class SettlementActivity extends AppCompatActivity {
                 String cartCount = (String) msg.obj;
                 if (cartCount == null) {
                     tv_cartCount.setText("0");
-
                 } else
                     tv_cartCount.setText(cartCount);
+            } else if (msg.what == 2) {
+                String uPhone = (String) msg.obj;
+                tv_phone.setText(uPhone);
             }
         }
     };
@@ -66,6 +72,7 @@ public class SettlementActivity extends AppCompatActivity {
 
         tv_allPrice = findViewById(R.id.tv_allPrice);
         tv_cartCount = findViewById(R.id.tv_cartCount);
+        tv_phone = findViewById(R.id.tv_phone);
 
         go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(new View.OnClickListener() {
@@ -77,25 +84,19 @@ public class SettlementActivity extends AppCompatActivity {
         //   btn_pay = findViewById(R.id.btn_pay);
 
         btn_orderAndPay = findViewById(R.id.btn_orderAndPay);
-/*        btn_orderAndPay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final PayPasswordDialog dialog = new PayPasswordDialog(SettlementActivity.this, R.style.mydialog);
-                dialog.setDialogClick(new PayPasswordDialog.DialogClick() {
-                    @Override
-                    public void doConfirm(String password) {
-                        dialog.dismiss();
-                        Toast.makeText(SettlementActivity.this, password, Toast.LENGTH_LONG).show();
-                    }
-                });
-                dialog.show();
-            }
-        });*/
+
+        Spinner s_select=findViewById(R.id.s_select);
+        // 建立数据源
+        String[] mItems = {"广西南宁西乡塘区中华路82号中华路82号", "广西南宁西乡塘区中华路60号中华路60号", "广西百色右江区站前大道103-10号", "广西贵港建设路与凤凰一街交叉路口东北侧(丰宝王府井广场西侧)"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mItems);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        s_select.setAdapter(adapter);
 
         Log.i(TAG, "onCreate: " + tv_cartCount);
         Log.i(TAG, "onCreate: " + tv_allPrice);
         doQueryCount();
         doCount();
+        selectPhone();
     }
 
 
@@ -135,6 +136,24 @@ public class SettlementActivity extends AppCompatActivity {
 
     }
 
+    // 查询phone
+    public void selectPhone() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = getIntent();
+                final String userNameForDetails = intent.getStringExtra("passValue");//MyActivity的传值
+                String phone = EntityUserDao.getUserPhone(userNameForDetails);
+                Message msg = Message.obtain();
+                msg.what = 2;   // 查询结果
+                msg.obj = phone;
+                // 向主线程发送数据
+                handler.sendMessage(msg);
+
+            }
+        }).start();
+    }
+
     public void btn_on_click_forPay(View view) {
         final String goodsCount = tv_cartCount.getText().toString().trim();
         final String goodsPrice = tv_allPrice.getText().toString().trim();
@@ -154,9 +173,6 @@ public class SettlementActivity extends AppCompatActivity {
                 Log.i(TAG, "run: " + datetime);
                 OrderDao.insOrder(goodsCount, goodsPrice, username, datetime);
                 ToastUtils.showMsg(SettlementActivity.this, "订单已创建，正在前往支付");
-              /*  Message msg = Message.obtain();
-                msg.what = 99;
-                handler.sendMessage(msg);*/
                 final PayPasswordDialog dialog = new PayPasswordDialog(SettlementActivity.this, R.style.mydialog);
                 dialog.setDialogClick(new PayPasswordDialog.DialogClick() {
                     @Override

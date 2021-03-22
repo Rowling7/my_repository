@@ -8,20 +8,15 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnLessBtnClickListener;
-import com.example.administrator.shopping.adapter.GoodsAdapter;
 import com.example.administrator.shopping.adapter.ShoppingCartAdapter;
-import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.dao.ShoppingCartDao;
-import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.entity.ShoppingCartEntity;
 import com.example.administrator.shopping.utils.ToastUtils;
 
@@ -194,20 +189,19 @@ public class ShoppingCartActivity extends AppCompatActivity {
         }
 
 
-        // 删除按钮的操作
         shoppingCartAdapter.setOnDelBtnClickListener(new OnDelBtnClickListener() {
             @Override
             public void onDelBtnClick(View view, int position) {
-                //  删除方法
+
                 final ShoppingCartEntity item = cartList.get(position);
                 doDelCart(item.getUuid());
             }
         });
-        // 删除按钮的操作
+
         shoppingCartAdapter.setOnLessBtnClickListener(new OnLessBtnClickListener() {
             @Override
             public void onLessBtnClick(View v, int position) {
-                //  删除方法
+
                 final ShoppingCartEntity item = cartList.get(position);
                 doLessCart(item.getUuid());
             }
@@ -215,7 +209,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         });
     }
 
-    //执行删除购物车中的数据
+    //执行删除购物车中的数据+++++1
     private void doDelCart(final long uuid) {
         new Thread(new Runnable() {
             @Override
@@ -233,7 +227,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         }).start();
     }
 
-    //执行删除购物车中的数据
+    //执行删除购物车中的数据-----1
     private void doLessCart(final long uuid) {
         new Thread(new Runnable() {
             @Override
