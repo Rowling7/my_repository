@@ -11,7 +11,7 @@
 
         android:id="@+id/ll_shoppingName"
         android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="44dp">
 
         <ImageView
             android:id="@+id/img_my2"
@@ -46,6 +46,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/ll_shoppingName"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/bgk_bottom_notwhite"
         android:orientation="horizontal">
 
 
@@ -53,7 +57,6 @@
             android:id="@+id/ll_nongchanpin"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -61,8 +64,7 @@
                 android:id="@+id/img_nongchanpin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"
+
                 android:layout_weight="1"
                 android:src="@drawable/nongchanpin" />
 
@@ -80,7 +82,6 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -88,8 +89,6 @@
                 android:id="@+id/img_lingshi"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"
                 android:layout_weight="1"
                 android:src="@drawable/lingshi" />
 
@@ -105,10 +104,11 @@
 
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
+
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -116,8 +116,7 @@
                 android:id="@+id/img_shuiguo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"
+
                 android:layout_weight="1"
                 android:src="@drawable/shuiguo" />
 
@@ -137,7 +136,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
+
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -145,8 +144,6 @@
                 android:id="@+id/img_yinpin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"
                 android:layout_weight="1"
                 android:src="@drawable/yinpin" />
 
@@ -171,6 +168,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/ll_bottomBar"
         android:layout_below="@+id/ll_fenlie"
+        android:layout_marginTop="2dp"
         android:background="@color/colorbackground"
         android:cacheColorHint="#00000000"
         android:divider="#E4e4e4"
