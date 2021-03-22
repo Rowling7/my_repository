@@ -334,7 +334,7 @@ public class EntityUserDao extends DbOpenHelper {
         String numbForNopay = null;   // 购物车总价格
         try {
             getConnection();
-            String sql = "SELECT COUNT(STATUS) as numbForNopay FROM BISHE.ORDER  WHERE STATUS = 0 AND USERNAME = ?";
+            String sql = "SELECT COUNT(STATUS) as numbForNopay FROM BISHE.ORDER  WHERE STATUS = 0 AND ISEXIST =1 AND USERNAME = ?";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userName);
             rs = pStmt.executeQuery();
@@ -354,7 +354,7 @@ public class EntityUserDao extends DbOpenHelper {
         String numbForNoReceived = null;   // 购物车总价格
         try {
             getConnection();
-            String sql = "SELECT COUNT(STATUS) as numbForReceived FROM BISHE.ORDER  WHERE STATUS = 1 AND USERNAME = ?";
+            String sql = "SELECT COUNT(STATUS) as numbForReceived FROM BISHE.ORDER  WHERE STATUS = 1 AND ISSHOUHUO = 1 AND ISEXIST =1 AND USERNAME = ?";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userName);
             rs = pStmt.executeQuery();

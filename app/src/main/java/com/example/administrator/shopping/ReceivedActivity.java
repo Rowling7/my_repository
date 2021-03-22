@@ -12,6 +12,7 @@ import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnInsBtnClickListener;
 import com.example.administrator.shopping.adapter.GoodsAdapter;
 import com.example.administrator.shopping.adapter.ReceivedAdapter;
+import com.example.administrator.shopping.dao.EntityUserDao;
 import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.dao.OrderDao;
 import com.example.administrator.shopping.entity.GoodsEntity;
@@ -45,7 +46,17 @@ public class ReceivedActivity extends AppCompatActivity {
         go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+
+                Intent intent = getIntent();
+                final String userName = intent.getStringExtra("passValue");//登陆后的传值
+                String numbForNoReceived = EntityUserDao.getNumbForReceived(userName);
+                String numbForNopay = EntityUserDao.getNumbForNopay(userName);
+                intent =new Intent(ReceivedActivity.this,MyActivity.class);
+                intent.putExtra("passValue",userName);
+                intent.putExtra("numbForNoReceived",numbForNoReceived);
+                intent.putExtra("numbForNopay",numbForNopay);
+                startActivity(intent);
+               // finish();
             }
         });
         //Intent intent = getIntent();

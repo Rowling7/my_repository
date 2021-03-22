@@ -190,7 +190,7 @@ public class OrderDao extends DbOpenHelper {
         List<OrderEntity> list = new ArrayList<>();
         try {
             getConnection();
-            String sql = "select * from bishe.order where username = ? and status = 1 and isshouhuo = 0";
+            String sql = "select * from bishe.order where username = ? and status = 1 AND ISEXIST =1 and isshouhuo = 0";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, username);
             rs = pStmt.executeQuery();

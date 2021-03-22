@@ -82,10 +82,18 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
 
         SettingActivity.activityList.add(this);//用来退出
 
+
+
+        tv_numbForNopay=findViewById(R.id.tv_numbForNopay);
+        tv_numbForReceived =findViewById(R.id.tv_numbForReceived);
+
         tv_userName = findViewById(R.id.tv_userName);
         Intent intent = getIntent();
         final String userName2 = intent.getStringExtra("passValue");//登陆后的传值
-        final String islogin = intent.getStringExtra("Islogin");//登陆后的传值
+        final String numbForNoReceived = intent.getStringExtra("numbForNoReceived");
+        final String numbForNopay = intent.getStringExtra("numbForNopay");
+        tv_numbForReceived.setText(numbForNoReceived);
+        tv_numbForNopay.setText(numbForNopay);
 
 
         mainHandler = new Handler(getMainLooper());
@@ -163,7 +171,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        tv_numbForNopay=findViewById(R.id.tv_numbForNopay);
+
 
 
         //待收货
@@ -178,7 +186,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        tv_numbForReceived =findViewById(R.id.tv_numbForReceived);
+
 
         /*评价*/
         iv_star = findViewById(R.id.iv_star);

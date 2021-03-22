@@ -3,6 +3,7 @@ package com.example.administrator.shopping;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnInsBtnClickListener;
 import com.example.administrator.shopping.adapter.NotPayAdapter;
+import com.example.administrator.shopping.dao.EntityUserDao;
 import com.example.administrator.shopping.dao.OrderDao;
 import com.example.administrator.shopping.dao.ShoppingCartDao;
 import com.example.administrator.shopping.entity.OrderEntity;
@@ -51,7 +53,17 @@ public class NotPayActivity extends AppCompatActivity {
         go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = getIntent();
+                final String userName = intent.getStringExtra("passValue");//登陆后的传值
+                String numbForNoReceived = EntityUserDao.getNumbForReceived(userName);
+                String numbForNopay = EntityUserDao.getNumbForNopay(userName);
+                intent =new Intent(NotPayActivity.this,MyActivity.class);
+                intent.putExtra("passValue",userName);
+                intent.putExtra("numbForNoReceived",numbForNoReceived);
+                intent.putExtra("numbForNopay",numbForNopay);
+                startActivity(intent);
+
+                //finish();
             }
         });
         //Intent intent = getIntent();
@@ -164,4 +176,5 @@ public class NotPayActivity extends AppCompatActivity {
             }
         }).start();
     }
+
 }
