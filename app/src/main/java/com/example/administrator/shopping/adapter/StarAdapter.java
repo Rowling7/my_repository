@@ -92,7 +92,7 @@ public class StarAdapter extends BaseAdapter {
             viewHolder.tv_price = convertView.findViewById(R.id.price);
             //viewHolder.btn_payOrder = convertView.findViewById(R.id.btn_payOrder);
             viewHolder.btn_pingjia = convertView.findViewById(R.id.btn_pingjia);
-            viewHolder.tv_description =convertView.findViewById(R.id.tv_description);
+            viewHolder.tv_description = convertView.findViewById(R.id.tv_description);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -103,7 +103,7 @@ public class StarAdapter extends BaseAdapter {
         viewHolder.tv_title.setText(orders.getUuid() + "");
         viewHolder.tv_price.setText(orders.getGoodsprice());
         viewHolder.tv_description.setText(orders.getDescription());
-        Log.i(TAG, "getView: "+orders.getDescription());
+        Log.i(TAG, "getView: " + orders.getDescription());
         // viewHolder.iv_picture.setBackgroundResource(goods.getPicture());2/2
 
         /*viewHolder.btn_addshop.setOnClickListener(new View.OnClickListener() {

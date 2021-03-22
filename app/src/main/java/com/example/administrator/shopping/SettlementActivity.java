@@ -85,7 +85,7 @@ public class SettlementActivity extends AppCompatActivity {
 
         btn_orderAndPay = findViewById(R.id.btn_orderAndPay);
 
-        Spinner s_select=findViewById(R.id.s_select);
+        Spinner s_select = findViewById(R.id.s_select);
         // 建立数据源
         String[] mItems = {"广西南宁西乡塘区中华路82号中华路82号", "广西南宁西乡塘区中华路60号中华路60号", "广西百色右江区站前大道103-10号", "广西贵港建设路与凤凰一街交叉路口东北侧(丰宝王府井广场西侧)"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mItems);

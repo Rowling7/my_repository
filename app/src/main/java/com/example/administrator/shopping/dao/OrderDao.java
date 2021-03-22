@@ -132,7 +132,6 @@ public class OrderDao extends DbOpenHelper {
     }
 
 
-
     public static int delOrder(long uuid) {
         int iRow = 0;
         try {
@@ -168,7 +167,6 @@ public class OrderDao extends DbOpenHelper {
     }
 
 
-
     public static int ConOrder(long uuid) {
         int iRow = 0;
         try {
@@ -185,7 +183,6 @@ public class OrderDao extends DbOpenHelper {
         }
         return iRow;
     }
-
 
 
     // 查询所有订单信息
@@ -222,7 +219,7 @@ public class OrderDao extends DbOpenHelper {
             getConnection();   // 取得连接信息
             String sql = "UPDATE `bishe`.`order` SET `description` = ? WHERE `UUID` = ? ";
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1,descriptionEdit.getDescription());
+            pStmt.setString(1, descriptionEdit.getDescription());
             pStmt.setLong(2, descriptionEdit.getUuid());
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {

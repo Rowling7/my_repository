@@ -24,6 +24,7 @@ public class SetpingjiaActivity extends AppCompatActivity {
 
     private Handler mainHandler;
     private OrderEntity descriptionEdit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +33,8 @@ public class SetpingjiaActivity extends AppCompatActivity {
         SettingActivity.activityList.add(this);//用来退出
 
 
-
-        et_pingjiaEdited=findViewById(R.id.et_pingjiaEdited);
-        btn_edit=findViewById(R.id.btn_edit);
+        et_pingjiaEdited = findViewById(R.id.et_pingjiaEdited);
+        btn_edit = findViewById(R.id.btn_edit);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {

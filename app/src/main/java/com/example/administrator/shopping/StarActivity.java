@@ -107,7 +107,7 @@ public class StarActivity extends AppCompatActivity {
                 OrderEntity item = orderList.get(position);
 
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("descriptionEdit",  item);
+                bundle.putSerializable("descriptionEdit", item);
                 intent = new Intent(StarActivity.this, SetpingjiaActivity.class);
                 intent.putExtra("passValus", passValue);
                 intent.putExtras(bundle);
@@ -119,7 +119,6 @@ public class StarActivity extends AppCompatActivity {
                 //doConformOrder(item.getUuid());*/
             }
         });
-
 
 
     }
