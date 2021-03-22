@@ -16,6 +16,9 @@ public class EntityUserEntity {
     private String realName;
     private String create_time;
 
+    private String numbForNopay;
+    private String numbForReceived;
+
 
     public EntityUserEntity() {
 
@@ -36,7 +39,26 @@ public class EntityUserEntity {
                 ", wallet='" + wallet + '\'' +
                 ", realName='" + realName + '\'' +
                 ", create_time='" + create_time + '\'' +
+                ", numbForNopay='" + numbForNopay + '\'' +
+                ", numbForReceived='" + numbForReceived + '\'' +
                 '}';
+    }
+
+
+    public String getNumbForNopay() {
+        return numbForNopay;
+    }
+
+    public void setNumbForNopay(String numbForNopay) {
+        this.numbForNopay = numbForNopay;
+    }
+
+    public String getNumbForReceived() {
+        return numbForReceived;
+    }
+
+    public void setNumbForReceived(String numbForReceived) {
+        this.numbForReceived = numbForReceived;
     }
 
     public String getPassword() {

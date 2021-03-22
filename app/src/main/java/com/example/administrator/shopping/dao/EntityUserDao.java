@@ -336,6 +336,45 @@ public class EntityUserDao extends DbOpenHelper {
     }
 
 
+    //查询未付款数量
+    public static String getNumbForNopay(String userName) {
+        String numbForNopay = null;   // 购物车总价格
+        try {
+            getConnection();
+            String sql = "SELECT COUNT(STATUS) as numbForNopay FROM BISHE.ORDER  WHERE STATUS = 0 AND USERNAME = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userName);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                numbForNopay = rs.getString("numbForNopay");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        Log.i(TAG, "getNumbForNopay: " + numbForNopay);
+        return numbForNopay;
+    }
+
+
+    //查询待收货数量
+    public static String getNumbForReceived(String userName) {
+        String numbForNoReceived = null;   // 购物车总价格
+        try {
+            getConnection();
+            String sql = "SELECT COUNT(STATUS) as numbForReceived FROM BISHE.ORDER  WHERE STATUS = 1 AND USERNAME = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userName);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                numbForNoReceived = rs.getString("numbForReceived");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        Log.i(TAG, "getNumbForReceived: " + numbForNoReceived);
+        return numbForNoReceived;
+    }
+
     /**
      * 无用方法
      *

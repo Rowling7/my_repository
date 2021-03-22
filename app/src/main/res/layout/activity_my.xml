@@ -156,6 +156,7 @@
                         android:layout_weight="2"
                         android:src="@mipmap/fukuan" />
                         <TextView
+                            android:id="@+id/tv_numbForNopay"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="right"
@@ -193,6 +194,7 @@
                         android:layout_weight="2"
                         android:src="@mipmap/shouhuo" />
                         <TextView
+                            android:id="@+id/tv_numbForReceived"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="right"

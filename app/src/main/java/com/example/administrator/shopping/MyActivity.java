@@ -40,6 +40,8 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     private ImageView iv_star;
     private ImageView iv_noPay;
     private ImageView go_back;
+    private TextView tv_numbForNopay;
+    private TextView tv_numbForReceived;
 
     private String Name;
     private Handler mainHandler;     // 主线程
@@ -56,6 +58,18 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             } else if (msg.what == 1) {
                 String realName = (String) msg.obj;
                 tv_userName.setText(realName);
+            }else if (msg.what == 2) {
+                String numbForNopay = (String) msg.obj;
+                if (numbForNopay.equals(0)) {
+                    tv_numbForNopay.setText(numbForNopay);
+                } else
+                    tv_numbForNopay.setText("");
+            }else if (msg.what == 3) {
+                String numbForNoReceived = (String) msg.obj;
+                if (numbForNoReceived.equals(0)) {
+                    tv_numbForReceived.setText(numbForNoReceived);
+                } else
+                tv_numbForReceived.setText("");
             }
         }
     };
@@ -147,6 +161,10 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
             }
         });
+
+        tv_numbForNopay=findViewById(R.id.tv_numbForNopay);
+
+
         //待收货
         iv_received = findViewById(R.id.iv_received);
         iv_received.setOnClickListener(new View.OnClickListener() {
@@ -158,6 +176,8 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
             }
         });
+
+        tv_numbForReceived =findViewById(R.id.tv_numbForReceived);
 
         /*评价*/
         iv_star = findViewById(R.id.iv_star);
@@ -222,6 +242,8 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
 
         doQueryWallet();
         doQueryrealName();
+        doQueryNumbForNopay();
+        doQueryNumbForReceived();
     }
 
 
@@ -258,6 +280,46 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 Message msg = Message.obtain();
                 msg.what = 1;   // 查询结果
                 msg.obj = realName;
+                // 向主线程发送数据
+                handler.sendMessage(msg);
+            }
+
+        }).start();
+    }
+
+    // 执行查询待付款的方法
+    public void doQueryNumbForNopay() {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                Intent intent = getIntent();
+                final String userName = intent.getStringExtra("passValue");//登陆后的传值
+                String numbForNopay = EntityUserDao.getNumbForNopay(userName);
+
+                Message msg = Message.obtain();
+                msg.what = 2;   // 查询结果
+                msg.obj = numbForNopay;
+                // 向主线程发送数据
+                handler.sendMessage(msg);
+            }
+
+        }).start();
+    }
+
+    // 执行查询待收货的方法
+    public void doQueryNumbForReceived () {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                Intent intent = getIntent();
+                final String userName = intent.getStringExtra("passValue");//登陆后的传值
+                String numbForNoReceived = EntityUserDao.getNumbForReceived(userName);
+
+                Message msg = Message.obtain();
+                msg.what = 3;   // 查询结果
+                msg.obj = numbForNoReceived;
                 // 向主线程发送数据
                 handler.sendMessage(msg);
             }
