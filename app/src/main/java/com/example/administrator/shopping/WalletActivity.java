@@ -76,6 +76,24 @@ public class WalletActivity extends AppCompatActivity {
         et_jine.setOnClickListener(onclicklistener);
         tv_wallet = findViewById(R.id.tv_wallet);
 
+        go_back = findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                final String userName2 = intent.getStringExtra("passValue");//登陆后的传值
+                Log.i(TAG, "usernmae2: "+userName2);
+                String userWallet2 = EntityUserDao.getUserWallet2(userName2);//未查到值
+                intent =new Intent(WalletActivity.this,MyActivity.class);
+                intent.putExtra("passValue", userName2);
+                intent.putExtra("userWallet", userWallet2);
+                Log.i(TAG, "usernmae2: "+userName2);
+                Log.i(TAG, "钱包2.2: "+userWallet2);
+                startActivity(intent);
+
+                //finish();
+            }
+        });
 
         btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +120,7 @@ public class WalletActivity extends AppCompatActivity {
                                 doQueryWallet();
                                 */
                                 ToastUtils.showMsg(WalletActivity.this, "充值成功");
-                                finish();
+                                //finish();
                               /*  mainHandler.post(new Runnable() {
                                     @Override
                                     public void run() {
@@ -117,13 +135,7 @@ public class WalletActivity extends AppCompatActivity {
         });
 
 
-        go_back = findViewById(R.id.go_back);
-        go_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
 
     }
 

@@ -58,19 +58,19 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             } else if (msg.what == 1) {
                 String realName = (String) msg.obj;
                 tv_userName.setText(realName);
-            }else if (msg.what == 2) {
+            } else if (msg.what == 2) {
                 String numbForNopay = (String) msg.obj;
                 if (numbForNopay.equals("0")) {
                     tv_numbForNopay.setText("");
                 } else
-                tv_numbForNopay.setText(numbForNopay);
-            }else if (msg.what == 3) {
+                    tv_numbForNopay.setText(numbForNopay);
+            } else if (msg.what == 3) {
                 String numbForNoReceived = (String) msg.obj;
                 if (numbForNoReceived.equals("0")) {
                     tv_numbForReceived.setText("");
                 } else
 
-                tv_numbForReceived.setText(numbForNoReceived);
+                    tv_numbForReceived.setText(numbForNoReceived);
             }
         }
     };
@@ -83,9 +83,8 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         SettingActivity.activityList.add(this);//用来退出
 
 
-
-        tv_numbForNopay=findViewById(R.id.tv_numbForNopay);
-        tv_numbForReceived =findViewById(R.id.tv_numbForReceived);
+        tv_numbForNopay = findViewById(R.id.tv_numbForNopay);
+        tv_numbForReceived = findViewById(R.id.tv_numbForReceived);
 
         tv_userName = findViewById(R.id.tv_userName);
         Intent intent = getIntent();
@@ -94,6 +93,13 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         final String numbForNopay = intent.getStringExtra("numbForNopay");
         tv_numbForReceived.setText(numbForNoReceived);
         tv_numbForNopay.setText(numbForNopay);
+
+        tv_wallet=findViewById(R.id.tv_wallet);
+        final String userWallet = intent.getStringExtra("userWallet");//登陆后的传值
+        Log.i("TAG", "钱包3: "+userWallet);
+        tv_wallet.setText(userWallet);
+
+
 
 
         mainHandler = new Handler(getMainLooper());
@@ -170,8 +176,6 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
             }
         });
-
-
 
 
         //待收货
@@ -265,7 +269,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 Intent intent = getIntent();
                 final String userName2 = intent.getStringExtra("passValue");//登陆后的传值
                 String userWallet = EntityUserDao.getUserWallet(userName2);
-
+                Log.i("TAG", "钱包1: "+userWallet);
                 Message msg = Message.obtain();
                 msg.what = 0;   // 查询结果
                 msg.obj = userWallet;
@@ -317,7 +321,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     }
 
     // 执行查询待收货的方法
-    public void doQueryNumbForReceived () {
+    public void doQueryNumbForReceived() {
         new Thread(new Runnable() {
 
             @Override

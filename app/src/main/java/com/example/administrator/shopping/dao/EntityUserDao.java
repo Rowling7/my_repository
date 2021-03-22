@@ -89,6 +89,26 @@ public class EntityUserDao extends DbOpenHelper {
         return walletgeneral;
     }
 
+    /*查询钱包金额*/
+    public static String getUserWallet2(String userNameForCart) {
+        String walletgeneral = null;   // 购物车总价格
+
+        try {
+            getConnection();
+            String sql = "SELECT cast(wallet as  decimal(15,2))as wallet from entityuser where username =?AND ISEXIST =1";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userNameForCart);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                walletgeneral = rs.getString("wallet");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        Log.i(TAG, "getUserWallet: "+walletgeneral);
+        return walletgeneral;
+    }
+
     /*update*/
     public static int updateAddress(EntityUserEntity entityUserEntity) {
         int iRow = 0;
