@@ -1,12 +1,15 @@
 package com.example.administrator.shopping.entity;
 
-public class OrderEntity {
+import java.io.Serializable;
+
+public class OrderEntity implements Serializable {
     private long uuid;
     private String goodscount;
     private String goodsprice;
     private String datetime;
     private String status;
     private String isexist;
+    private String description;
 
 
     public OrderEntity() {
@@ -18,11 +21,20 @@ public class OrderEntity {
         return "OrderEntity{" +
                 "uuid=" + uuid +
                 ", goodscount='" + goodscount + '\'' +
-                ", goodsprice=" + goodsprice +
+                ", goodsprice='" + goodsprice + '\'' +
                 ", datetime='" + datetime + '\'' +
                 ", status='" + status + '\'' +
                 ", isexist='" + isexist + '\'' +
+                ", description='" + description + '\'' +
                 '}';
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getUuid() {

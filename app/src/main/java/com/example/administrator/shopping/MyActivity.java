@@ -37,6 +37,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     private TextView tv_share;
     private TextView tv_userName;
     private TextView tv_wallet;
+    private ImageView iv_star;
     private ImageView iv_noPay;
     private ImageView go_back;
 
@@ -154,6 +155,18 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 Intent intent = null;
                 intent = new Intent(MyActivity.this, ReceivedActivity.class);
                 intent.putExtra("passValue", userName2);//传递“id”至MainActivity
+                startActivity(intent);
+            }
+        });
+
+        /*评价*/
+        iv_star = findViewById(R.id.iv_star);
+        iv_star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = null;
+                intent = new Intent(MyActivity.this, StarActivity.class);
+                intent.putExtra("passValue", userName2);//传递“id”至ShoppingCartActivity
                 startActivity(intent);
             }
         });

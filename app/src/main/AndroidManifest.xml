@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".StarActivity"></activity>
+        <activity android:name=".SetpingjiaActivity"></activity>
+        <activity android:name=".adapter.SetpingjiaActivity" />
+        <activity android:name=".StarActivity" />
         <activity android:name=".ReceivedActivity" />
         <activity android:name=".WalletActivity" />
         <activity android:name=".NotPayActivity" />

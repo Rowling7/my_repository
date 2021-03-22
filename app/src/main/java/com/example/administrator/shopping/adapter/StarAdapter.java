@@ -26,7 +26,8 @@ public class StarAdapter extends BaseAdapter {
         private TextView tv_title;
         private TextView tv_price;
         private Button btn_delOrder;
-        private Button btn_payOrder;
+        private Button btn_pingjia;
+        private TextView tv_description;
 
     }
 
@@ -83,14 +84,15 @@ public class StarAdapter extends BaseAdapter {
         ViewHolder viewHolder = null;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.received_list_item, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.star_list_item, null);
             viewHolder = new ViewHolder();
 
             //viewHolder.iv_picture = convertView.findViewById(R.id.iv_picture);//1/2
             viewHolder.tv_title = convertView.findViewById(R.id.title);
             viewHolder.tv_price = convertView.findViewById(R.id.price);
             //viewHolder.btn_payOrder = convertView.findViewById(R.id.btn_payOrder);
-            //viewHolder.btn_delOrder = convertView.findViewById(R.id.btn_delorder);
+            viewHolder.btn_pingjia = convertView.findViewById(R.id.btn_pingjia);
+            viewHolder.tv_description =convertView.findViewById(R.id.tv_description);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -100,6 +102,8 @@ public class StarAdapter extends BaseAdapter {
         OrderEntity orders = orderList.get(position);
         viewHolder.tv_title.setText(orders.getUuid() + "");
         viewHolder.tv_price.setText(orders.getGoodsprice());
+        viewHolder.tv_description.setText(orders.getDescription());
+        Log.i(TAG, "getView: "+orders.getDescription());
         // viewHolder.iv_picture.setBackgroundResource(goods.getPicture());2/2
 
         /*viewHolder.btn_addshop.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +112,14 @@ public class StarAdapter extends BaseAdapter {
                 onInsBtnClickListener.OnInsBtnClick(v, position);
             }
         });*/
+
+        //取消订单
+        viewHolder.btn_pingjia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onDelBtnClickListener.onDelBtnClick(v, position);
+            }
+        });
 
         return convertView;
     }

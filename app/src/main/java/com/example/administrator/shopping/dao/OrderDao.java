@@ -3,6 +3,7 @@ package com.example.administrator.shopping.dao;
 import android.util.Log;
 
 import com.example.administrator.shopping.database.DbOpenHelper;
+import com.example.administrator.shopping.entity.AddressEntity;
 import com.example.administrator.shopping.entity.OrderEntity;
 
 import java.util.ArrayList;
@@ -176,6 +177,53 @@ public class OrderDao extends DbOpenHelper {
             //String sql = "update shoppingcart set isexist=0 where uuid=?";//伪
             pStmt = conn.prepareStatement(sql);
             pStmt.setLong(1, uuid);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
+
+
+    // 查询所有订单信息
+    public List<OrderEntity> getFinishList(String username) {
+        List<OrderEntity> list = new ArrayList<>();
+        try {
+            getConnection();
+            String sql = "select * from bishe.order where username = ? and status = 1 and isshouhuo = 0";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, username);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                OrderEntity item = new OrderEntity();
+                item.setUuid(rs.getLong("uuid"));
+                item.setGoodsprice(rs.getString("goodsPrice"));
+                item.setDescription(rs.getString("description"));
+                //item.setPrice(rs.getString("price"));
+                //item.setPicture(rs.getString("picture"));
+                list.add(item);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return list;
+    }
+
+
+    /*update——更改地址*/
+    public static int setDescription(OrderEntity descriptionEdit) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "UPDATE `bishe`.`order` SET `description` = ? WHERE `UUID` = ? ";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1,descriptionEdit.getDescription());
+            pStmt.setLong(2, descriptionEdit.getUuid());
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
