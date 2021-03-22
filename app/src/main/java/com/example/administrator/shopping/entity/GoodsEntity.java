@@ -6,12 +6,13 @@ public class GoodsEntity {
     private int picture;
     private String suppiler;
     private String name;
-    private String production_date;
-    private String shelf_life;
+    private String productionDate;
+    private String shelfLife;
     private String weight;
-    private String origin_place;
+    private String originPlace;
     private String star;
     private String format;
+    private String description;
 
 
     private String number;
@@ -28,23 +29,15 @@ public class GoodsEntity {
                 ", picture=" + picture +
                 ", suppiler='" + suppiler + '\'' +
                 ", name='" + name + '\'' +
-                ", production_date='" + production_date + '\'' +
-                ", shelf_life='" + shelf_life + '\'' +
+                ", productionDate='" + productionDate + '\'' +
+                ", shelfLife='" + shelfLife + '\'' +
                 ", weight='" + weight + '\'' +
-                ", origin_place='" + origin_place + '\'' +
+                ", originPlace='" + originPlace + '\'' +
                 ", star='" + star + '\'' +
                 ", format='" + format + '\'' +
+                ", description='" + description + '\'' +
                 ", number='" + number + '\'' +
                 '}';
-    }
-
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public String getUuid() {
@@ -87,20 +80,20 @@ public class GoodsEntity {
         this.name = name;
     }
 
-    public String getProduction_date() {
-        return production_date;
+    public String getProductionDate() {
+        return productionDate;
     }
 
-    public void setProduction_date(String production_date) {
-        this.production_date = production_date;
+    public void setProductionDate(String productionDate) {
+        this.productionDate = productionDate;
     }
 
-    public String getShelf_life() {
-        return shelf_life;
+    public String getShelfLife() {
+        return shelfLife;
     }
 
-    public void setShelf_life(String shelf_life) {
-        this.shelf_life = shelf_life;
+    public void setShelfLife(String shelfLife) {
+        this.shelfLife = shelfLife;
     }
 
     public String getWeight() {
@@ -111,12 +104,12 @@ public class GoodsEntity {
         this.weight = weight;
     }
 
-    public String getOrigin_place() {
-        return origin_place;
+    public String getOriginPlace() {
+        return originPlace;
     }
 
-    public void setOrigin_place(String origin_place) {
-        this.origin_place = origin_place;
+    public void setOriginPlace(String originPlace) {
+        this.originPlace = originPlace;
     }
 
     public String getStar() {
@@ -135,5 +128,19 @@ public class GoodsEntity {
         this.format = format;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 }

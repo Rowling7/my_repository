@@ -32,6 +32,8 @@ public class ShoppingCartAdapter extends BaseAdapter {
         private Button btn_plus;
         private Button btn_less;
         private TextView tv_amount;
+        private TextView tv_place;
+        private TextView tv_description;
     }
 
     public static final String TAG = "OUTPUT";
@@ -92,6 +94,8 @@ public class ShoppingCartAdapter extends BaseAdapter {
             viewHolder.btn_less = convertView.findViewById(R.id.btn_less);
             viewHolder.btn_plus = convertView.findViewById(R.id.btn_plus);
             viewHolder.tv_amount = convertView.findViewById(R.id.tv_amount);
+            viewHolder.tv_description =convertView.findViewById(R.id.tv_description);
+            viewHolder.tv_place =convertView.findViewById(R.id.tv_place);
             // viewHolder.btn_addshop = convertView.findViewById(R.id.btn_addshop);
             convertView.setTag(viewHolder);
         } else {
@@ -103,6 +107,8 @@ public class ShoppingCartAdapter extends BaseAdapter {
         viewHolder.title.setText(item.getName());
         viewHolder.price.setText(item.getPrice());
         viewHolder.tv_amount.setText(item.getNumber());
+        viewHolder.tv_place.setText(item.getOriginPlace());
+        viewHolder.tv_description.setText(item.getDescription());
 
 
         // 删除按钮

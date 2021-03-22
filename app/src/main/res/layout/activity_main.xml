@@ -69,12 +69,12 @@
             <TextView
                 android:id="@+id/tv_nongchanpin"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="农产品"
                 android:textColor="#000000"
-                android:textSize="10sp" />
+                android:textSize="18dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,12 +96,12 @@
             <TextView
                 android:id="@+id/tv_lingshi"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="零食"
                 android:textColor="#000000"
-                android:textSize="10sp" />
+                android:textSize="18sp" />
 
 
         </LinearLayout>
@@ -124,12 +124,12 @@
             <TextView
                 android:id="@+id/tv_shuiguo"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="水果"
                 android:textColor="#000000"
-                android:textSize="10sp" />
+                android:textSize="18sp" />
 
 
         </LinearLayout>
@@ -153,12 +153,12 @@
             <TextView
                 android:id="@+id/tv_yinpin"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="饮品"
                 android:textColor="#000000"
-                android:textSize="10sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 

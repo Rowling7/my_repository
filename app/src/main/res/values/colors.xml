@@ -9,6 +9,8 @@
     <color name="colorSilver">#CCCCCC</color>
     <color name="colorbackground">#EEEEEE</color>
     <color name="colorOrange">#FF5722</color>
+    <color name="colorRed">#FF0000</color>
+    <color name="colorTopBar">#CCFFFF</color>
 
 
 </resources>

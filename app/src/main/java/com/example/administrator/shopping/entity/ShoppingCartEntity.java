@@ -11,6 +11,8 @@ public class ShoppingCartEntity {
     private String name;
     private String price;
     private String number;
+    private String originPlace;
+    private String description;
 
 
     public ShoppingCartEntity() {
@@ -28,9 +30,28 @@ public class ShoppingCartEntity {
                 ", name='" + name + '\'' +
                 ", price='" + price + '\'' +
                 ", number='" + number + '\'' +
+                ", originPlace='" + originPlace + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 
+    public String getOriginPlace() {
+        return originPlace;
+    }
+
+    public void setOriginPlace(String originPlace) {
+        this.originPlace = originPlace;
+    }
+
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getNumber() {
         return number;

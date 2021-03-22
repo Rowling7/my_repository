@@ -25,6 +25,8 @@ public class GoodsDao extends DbOpenHelper {
                 item.setUuid(rs.getString("uuid"));
                 item.setName(rs.getString("name"));
                 item.setPrice(rs.getString("price"));
+                item.setDescription(rs.getString("description"));
+                item.setOriginPlace(rs.getString("originPlace"));
                 //item.setPicture(rs.getString("picture"));
                 list.add(item);
             }
@@ -50,6 +52,8 @@ public class GoodsDao extends DbOpenHelper {
                 item.setUuid(rs.getString("uuid"));
                 item.setName(rs.getString("name"));
                 item.setPrice(rs.getString("price"));
+                item.setDescription(rs.getString("description"));
+                item.setOriginPlace(rs.getString("originPlace"));
                 //item.setPicture(rs.getString("picture"));
                 list.add(item);
             }
@@ -94,6 +98,8 @@ public class GoodsDao extends DbOpenHelper {
                 item.setUuid(rs.getString("uuid"));
                 item.setName(rs.getString("name"));
                 item.setPrice(rs.getString("price"));
+                item.setDescription(rs.getString("description"));
+                item.setOriginPlace(rs.getString("originPlace"));
                 //item.setPicture(rs.getString("picture"));
                 list.add(item);
             }
@@ -118,6 +124,8 @@ public class GoodsDao extends DbOpenHelper {
                 item.setUuid(rs.getString("uuid"));
                 item.setName(rs.getString("name"));
                 item.setPrice(rs.getString("price"));
+                item.setDescription(rs.getString("description"));
+                item.setOriginPlace(rs.getString("originPlace"));
                 //item.setPicture(rs.getString("picture"));
                 list.add(item);
             }
@@ -142,6 +150,8 @@ public class GoodsDao extends DbOpenHelper {
                 item.setUuid(rs.getString("uuid"));
                 item.setName(rs.getString("name"));
                 item.setPrice(rs.getString("price"));
+                item.setDescription(rs.getString("description"));
+                item.setOriginPlace(rs.getString("originPlace"));
                 //item.setPicture(rs.getString("picture"));
                 list.add(item);
             }
@@ -166,6 +176,8 @@ public class GoodsDao extends DbOpenHelper {
                 item.setUuid(rs.getString("uuid"));
                 item.setName(rs.getString("name"));
                 item.setPrice(rs.getString("price"));
+                item.setDescription(rs.getString("description"));
+                item.setOriginPlace(rs.getString("originPlace"));
                 //item.setPicture(rs.getString("picture"));
                 list.add(item);
             }
