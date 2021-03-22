@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler;
     private TextView ivpicture;
     private ImageView iv_search;
+    private ImageView iv_nongchanpin;
+    private ImageView iv_lingshi;
+    private ImageView iv_shuiguo;
+    private ImageView iv_yinpin;
+    private TextView tv_nongchanpin;
+    private TextView tv_lingshi;
+    private TextView tv_shuiguo;
+    private TextView tv_yinpin;
 
     /*商品列表*/
     private ListView lv_goods;
@@ -121,6 +130,59 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //分类
+        iv_lingshi = findViewById(R.id.img_lingshi);
+        tv_lingshi = findViewById(R.id.tv_lingshi);
+        iv_lingshi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadlingshiDb();
+                tv_nongchanpin.setText("农产品");
+                tv_lingshi.setText("->零食<-");
+                tv_shuiguo.setText("水果");
+                tv_yinpin.setText("饮品");
+
+            }
+        });
+        iv_nongchanpin = findViewById(R.id.img_nongchanpin);
+        tv_nongchanpin = findViewById(R.id.tv_nongchanpin);
+        iv_nongchanpin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadnongchanpinDb();
+                tv_nongchanpin.setText("->农产品<-");
+                tv_lingshi.setText("零食");
+                tv_shuiguo.setText("水果");
+                tv_yinpin.setText("饮品");
+            }
+        });
+        iv_shuiguo = findViewById(R.id.img_shuiguo);
+        tv_shuiguo = findViewById(R.id.tv_shuiguo);
+        iv_shuiguo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadshuiguoDb();
+                tv_nongchanpin.setText("农产品");
+                tv_lingshi.setText("零食");
+                tv_shuiguo.setText("->水果<-");
+                tv_yinpin.setText("饮品");
+            }
+        });
+        iv_yinpin = findViewById(R.id.img_yinpin);
+        tv_yinpin = findViewById(R.id.tv_yinpin);
+        iv_yinpin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadyinpinDb();
+                tv_nongchanpin.setText("农产品");
+                tv_lingshi.setText("零食");
+                tv_shuiguo.setText("水果");
+                tv_yinpin.setText("->饮品<-");
+            }
+        });
+        //结束分类
+
+
         /*填充列表*/
         lv_goods = findViewById(R.id.lv_goods);
         loadGoodsDb();
@@ -147,6 +209,69 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
     }
+
+    //分类
+    private void loadnongchanpinDb() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                goodsList = goodsDao.getnongchanpinList();
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        showLvData();
+                    }
+                });
+            }
+        }).start();
+    }
+
+    private void loadlingshiDb() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                goodsList = goodsDao.getlingshiList();
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        showLvData();
+                    }
+                });
+            }
+        }).start();
+    }
+
+    private void loadshuiguoDb() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                goodsList = goodsDao.getshuiguoList();
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        showLvData();
+                    }
+                });
+            }
+        }).start();
+    }
+
+    private void loadyinpinDb() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                goodsList = goodsDao.getyinpinList();
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        showLvData();
+                    }
+                });
+            }
+        }).start();
+    }
+    //分类
+
 
     private void showLvData() {
         if (goodsAdapter == null) {
@@ -191,5 +316,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
     }
+
 
 }

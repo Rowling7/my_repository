@@ -81,4 +81,101 @@ public class GoodsDao extends DbOpenHelper {
     }
 
 
+    //分类
+    public List<GoodsEntity> getnongchanpinList() {
+        List<GoodsEntity> list = new ArrayList<>();
+        try {
+            getConnection();
+            String sql = "select * from goods where type = 0";
+            pStmt = conn.prepareStatement(sql);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                GoodsEntity item = new GoodsEntity();
+                item.setUuid(rs.getString("uuid"));
+                item.setName(rs.getString("name"));
+                item.setPrice(rs.getString("price"));
+                //item.setPicture(rs.getString("picture"));
+                list.add(item);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return list;
+    }
+
+    // 查询所有商品信息
+    public List<GoodsEntity> getlingshiList() {
+        List<GoodsEntity> list = new ArrayList<>();
+        try {
+            getConnection();
+            String sql = "select * from goods where type = 4";
+            pStmt = conn.prepareStatement(sql);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                GoodsEntity item = new GoodsEntity();
+                item.setUuid(rs.getString("uuid"));
+                item.setName(rs.getString("name"));
+                item.setPrice(rs.getString("price"));
+                //item.setPicture(rs.getString("picture"));
+                list.add(item);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return list;
+    }
+
+    // 查询所有商品信息
+    public List<GoodsEntity> getshuiguoList() {
+        List<GoodsEntity> list = new ArrayList<>();
+        try {
+            getConnection();
+            String sql = "select * from goods where type = 1";
+            pStmt = conn.prepareStatement(sql);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                GoodsEntity item = new GoodsEntity();
+                item.setUuid(rs.getString("uuid"));
+                item.setName(rs.getString("name"));
+                item.setPrice(rs.getString("price"));
+                //item.setPicture(rs.getString("picture"));
+                list.add(item);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return list;
+    }
+
+    // 查询所有商品信息
+    public List<GoodsEntity> getyinpinList() {
+        List<GoodsEntity> list = new ArrayList<>();
+        try {
+            getConnection();
+            String sql = "select * from goods where type = 3";
+            pStmt = conn.prepareStatement(sql);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                GoodsEntity item = new GoodsEntity();
+                item.setUuid(rs.getString("uuid"));
+                item.setName(rs.getString("name"));
+                item.setPrice(rs.getString("price"));
+                //item.setPicture(rs.getString("picture"));
+                list.add(item);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return list;
+    }
+    //结束分类
+
 }
