@@ -33,6 +33,11 @@
             android:textColor="@color/colorBlack"
             android:textSize="20dp"
             android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/iv_received"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/shouhuo" />
 
 
     </LinearLayout>

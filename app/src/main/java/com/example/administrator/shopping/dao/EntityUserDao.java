@@ -371,7 +371,7 @@ public class EntityUserDao extends DbOpenHelper {
 
     //查询待收货数量
     public static String getNumbForReceived(String userName) {
-        String numbForNoReceived = null;   // 购物车总价格
+        String numbForNoReceived = null;
         try {
             getConnection();
             String sql = "SELECT COUNT(STATUS) as numbForReceived FROM BISHE.ORDER  WHERE STATUS = 1 AND ISSHOUHUO = 1 AND ISEXIST =1 AND USERNAME = ?";
@@ -387,6 +387,75 @@ public class EntityUserDao extends DbOpenHelper {
         Log.i(TAG, "未收货: " + numbForNoReceived);
         return numbForNoReceived;
     }
+
+
+    //判断是否能付款
+    public static String confWallet(String goodsPrice, String username) {
+        String isNull = null;
+        try{
+            getConnection();
+            String sql = "SELECT (EU.WALLET-?)>0 AS ISNULL FROM entityuser eu WHERE USERNAME =?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1,goodsPrice);
+            pStmt.setString(2,username);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                isNull = rs.getString("isnull");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        Log.i(TAG, "是否可支付: " + isNull);
+        return isNull;
+    }
+
+
+    //恢复钱包
+    public static int reConfWallet(String goodsPrice, String username) {
+        int iRow = 0;
+        try{
+            getConnection();
+            String sql = "UPDATE `bishe`.`entityuser` SET `wallet` = wallet + ? WHERE `username` = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1,goodsPrice);
+            pStmt.setString(2,username);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+       closeAll();
+        return iRow;
+    }
+
+    /*update——更改地址*/
+    public static int updateWallet(String goodsPrice ,String username) {
+        int iRow = 0;
+        try {
+            getConnection();
+            String sql = "UPDATE `bishe`.`entityuser` EU  SET `wallet` = EU.wallet- ? WHERE USERNAME = ? ";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1,goodsPrice);
+            pStmt.setString(2, username);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        Log.i("iRow2", "updateStatus: " + iRow);
+        return iRow;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 无用方法

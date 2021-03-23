@@ -18,6 +18,7 @@ public class EntityUserEntity {
 
     private String numbForNopay;
     private String numbForReceived;
+    private String isnull;
 
 
     public EntityUserEntity() {
@@ -41,9 +42,18 @@ public class EntityUserEntity {
                 ", create_time='" + create_time + '\'' +
                 ", numbForNopay='" + numbForNopay + '\'' +
                 ", numbForReceived='" + numbForReceived + '\'' +
+                ", isnull='" + isnull + '\'' +
                 '}';
     }
 
+
+    public String getIsnull() {
+        return isnull;
+    }
+
+    public void setIsnull(String isnull) {
+        this.isnull = isnull;
+    }
 
     public String getNumbForNopay() {
         return numbForNopay;

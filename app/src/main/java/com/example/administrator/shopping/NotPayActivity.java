@@ -11,11 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnInsBtnClickListener;
 import com.example.administrator.shopping.adapter.NotPayAdapter;
 import com.example.administrator.shopping.dao.EntityUserDao;
+import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.dao.OrderDao;
 import com.example.administrator.shopping.dao.ShoppingCartDao;
 import com.example.administrator.shopping.entity.OrderEntity;
@@ -29,6 +31,7 @@ public class NotPayActivity extends AppCompatActivity {
     private ImageView go_back;
     private Button btn_payOrder;
     private Button btn_delOrder;
+    private TextView tvprice;
 
     /*商品列表*/
     private ListView lv_orderList;
@@ -48,6 +51,8 @@ public class NotPayActivity extends AppCompatActivity {
 
         btn_delOrder = findViewById(R.id.btn_delOrder);
         btn_payOrder = findViewById(R.id.btn_payOrder);
+        tvprice = findViewById(R.id.price);
+
 
         go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +154,10 @@ public class NotPayActivity extends AppCompatActivity {
 
 
     private void doInsOrder(final long uuid) {
+        tvprice = findViewById(R.id.price);
+        final String goodsPrice = tvprice.getText().toString().trim();
+        final Intent intent = getIntent();
+        final String username = intent.getStringExtra("passValue");//登陆后的传值
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -162,7 +171,21 @@ public class NotPayActivity extends AppCompatActivity {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
+                                String isnull = EntityUserDao.confWallet(goodsPrice, username);
+                                if (isnull.equals(0 + "")) {
+                                    Intent intent = null;
+                                    EntityUserDao.reConfWallet(goodsPrice, username);
+                                    intent = new Intent(NotPayActivity.this,WalletActivity.class);
+                                    intent.putExtra("passValue", username);
+                                    startActivity(intent);
+
+                                    //  ToastUtils.showMsg(SettlementActivity.this, "余额不足无法完成支付！");
+                                } else
+                                    OrderDao.updateStatus(username);//更新订单
+                                EntityUserDao.updateWallet(goodsPrice, username);//更新钱包余额
                                 ToastUtils.showMsg(NotPayActivity.this, "支付完成,可在待收货中查看");
+                                ShoppingCartDao.delAllCart(username);//清空购物车
+                                GoodsDao.updateNumber();//更新goods数量
                                 loadOrderDb();
                             }
                         }).start();

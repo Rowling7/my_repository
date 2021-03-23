@@ -13,18 +13,26 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
+import com.example.administrator.shopping.Impl.OnLessBtnClickListener;
+import com.example.administrator.shopping.adapter.ShoppingCartAdapter;
 import com.example.administrator.shopping.dao.AddressDao;
 import com.example.administrator.shopping.dao.EntityUserDao;
+import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.dao.OrderDao;
 import com.example.administrator.shopping.dao.ShoppingCartDao;
 import com.example.administrator.shopping.entity.EntityUserEntity;
 import com.example.administrator.shopping.entity.OrderEntity;
+import com.example.administrator.shopping.entity.ShoppingCartEntity;
 import com.example.administrator.shopping.utils.Myuntils;
 import com.example.administrator.shopping.utils.ToastUtils;
+
+import java.util.List;
 
 public class SettlementActivity extends AppCompatActivity {
 
@@ -32,11 +40,12 @@ public class SettlementActivity extends AppCompatActivity {
     private TextView tv_allPrice;
     private TextView tv_cartCount;
     private ImageView go_back;
+    private ImageView iv_received;
     private OrderDao orderDao;
     private TextView tv_phone;
     private Spinner s_select;
     public static final String TAG = "OUTPUT";
-    private Handler mainHandler;     // 主线程
+    private Handler mainHandler;// 主线程
     private final Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -81,6 +90,19 @@ public class SettlementActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        iv_received = findViewById(R.id.iv_received);
+        iv_received.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = getIntent();
+                final String userName2 = intent.getStringExtra("passValue");//MyActivity的传值
+                intent = new Intent(SettlementActivity.this, ReceivedActivity.class);
+                intent.putExtra("passValue", userName2);
+                startActivity(intent);
+            }
+        });
+
         //   btn_pay = findViewById(R.id.btn_pay);
 
         btn_orderAndPay = findViewById(R.id.btn_orderAndPay);
@@ -182,13 +204,22 @@ public class SettlementActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 // Looper.perpare();
-                                OrderDao.updateStatus(username);
                                 Log.i(TAG, "run: " + username);
+                                String isnull = EntityUserDao.confWallet(goodsPrice, username);
+                                if (isnull.equals(0 + "")) {
+                                    Intent intent = null;
+                                    EntityUserDao.reConfWallet(goodsPrice, username);
+                                    intent = new Intent(SettlementActivity.this,WalletActivity.class);
+                                    intent.putExtra("passValue", username);
+                                    startActivity(intent);
+
+                                  //  ToastUtils.showMsg(SettlementActivity.this, "余额不足无法完成支付！");
+                                } else
+                                    OrderDao.updateStatus(username);//更新订单
+                                EntityUserDao.updateWallet(goodsPrice, username);//更新钱包余额
                                 ToastUtils.showMsg(SettlementActivity.this, "支付完成,可在待收货中查看");
-                                /*Intent intent = null;
-                                intent =new Intent(SettlementActivity.this,ReceivedActivity.class);
-                                intent.putExtra("passValue", "passValue");//传递“id”至MainActivity
-                                startActivity(intent);*/
+                                ShoppingCartDao.delAllCart(username);//清空购物车
+                                GoodsDao.updateNumber();//更新goods数量
                             }
                         }).start();
 /*
@@ -201,7 +232,6 @@ public class SettlementActivity extends AppCompatActivity {
             }
         }).start();
     }
-
 
 }
 

@@ -190,4 +190,21 @@ public class GoodsDao extends DbOpenHelper {
     }
     //结束分类
 
+
+    /*update——更改地址*/
+    public static int updateNumber() {
+        int iRow = 0;
+        try {
+            getConnection();
+            String sql = "UPDATE `bishe`.`goods`   SET `number` = '1'";
+            pStmt = conn.prepareStatement(sql);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
+
 }
