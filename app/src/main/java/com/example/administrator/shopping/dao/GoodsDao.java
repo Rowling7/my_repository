@@ -196,7 +196,8 @@ public class GoodsDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();
-            String sql = "UPDATE `bishe`.`goods`   SET `number` = '1'";
+           // String sql = "UPDATE `bishe`.`goods`   SET `number` = '1'";
+            String sql = "UPDATE `bishe`.`goods`   SET `amount` = '1'";
             pStmt = conn.prepareStatement(sql);
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnLessBtnClickListener;
 import com.example.administrator.shopping.adapter.ShoppingCartAdapter;
+import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.dao.ShoppingCartDao;
 import com.example.administrator.shopping.entity.ShoppingCartEntity;
 import com.example.administrator.shopping.utils.ToastUtils;
@@ -270,6 +271,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = getIntent();
                 final String userNameForCart = intent.getStringExtra("passValueForCart");//MyActivity的传值
+                GoodsDao.updateNumber();
                 final int iRow = ShoppingCartDao.delAllCart(userNameForCart);
                 mainHandler.post(new Runnable() {
                     @Override

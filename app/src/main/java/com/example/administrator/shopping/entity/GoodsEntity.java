@@ -16,10 +16,13 @@ public class GoodsEntity {
 
 
     private String number;
+    private  String amount;
+
 
     public GoodsEntity() {
 
     }
+
 
     @Override
     public String toString() {
@@ -37,7 +40,16 @@ public class GoodsEntity {
                 ", format='" + format + '\'' +
                 ", description='" + description + '\'' +
                 ", number='" + number + '\'' +
+                ", amount='" + amount + '\'' +
                 '}';
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     public String getUuid() {

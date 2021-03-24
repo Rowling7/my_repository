@@ -17,7 +17,11 @@ public class ShoppingCartDao extends DbOpenHelper {
         List<ShoppingCartEntity> list = new ArrayList<>();
         try {
             getConnection();
-            String sql = "SELECT sc.uuid ,g.NAME as goodsName, g.price, g.number,g.originplace,g.description\n" +
+          /*  String sql = "SELECT sc.uuid ,g.NAME as goodsName, g.price, g.number,g.originplace,g.description\n" +
+                    "FROM shoppingcart sc\n" +
+                    "LEFT JOIN goods g ON sc.GOODS_UUID = g.UUID \n" +
+                    "WHERE sc.USERNAME = ? AND SC.ISEXIST = 1";*/
+            String sql = "SELECT sc.uuid ,g.NAME as goodsName, g.price, g.amount,g.originplace,g.description\n" +
                     "FROM shoppingcart sc\n" +
                     "LEFT JOIN goods g ON sc.GOODS_UUID = g.UUID \n" +
                     "WHERE sc.USERNAME = ? AND SC.ISEXIST = 1";
@@ -29,7 +33,7 @@ public class ShoppingCartDao extends DbOpenHelper {
                 item.setUuid(rs.getLong("sc.uuid"));
                 item.setName(rs.getString("goodsName"));
                 item.setPrice(rs.getString("price"));
-                item.setNumber(rs.getString("number"));
+                item.setNumber(rs.getString("amount"));
                 item.setDescription(rs.getString("description"));
                 item.setOriginPlace(rs.getString("originPlace"));
                 list.add(item);
@@ -47,11 +51,14 @@ public class ShoppingCartDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "UPDATE `bishe`.`goods`\n" +
+            /*String sql = "UPDATE `bishe`.`goods`\n" +
                     "LEFT JOIN shoppingcart sc ON sc.GOODS_UUID = goods.UUID\n" +
                     "SET `number` = number+1 \n" +
+                    "WHERE sc.UUID = ?";//真*/
+            String sql = "UPDATE `bishe`.`goods`\n" +
+                    "LEFT JOIN shoppingcart sc ON sc.GOODS_UUID = goods.UUID\n" +
+                    "SET `amount` = amount+1 \n" +
                     "WHERE sc.UUID = ?";//真
-            //String sql = "update shoppingcart set isexist=0 where uuid=?";//伪
             pStmt = conn.prepareStatement(sql);
             pStmt.setLong(1, uuid);
             iRow = pStmt.executeUpdate();
@@ -68,9 +75,13 @@ public class ShoppingCartDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "UPDATE `bishe`.`goods`\n" +
+            /*String sql = "UPDATE `bishe`.`goods`\n" +
                     "LEFT JOIN shoppingcart sc ON sc.GOODS_UUID = goods.UUID\n" +
                     "SET `number` = number-1 \n" +
+                    "WHERE sc.UUID = ?";//真*/
+            String sql = "UPDATE `bishe`.`goods`\n" +
+                    "LEFT JOIN shoppingcart sc ON sc.GOODS_UUID = goods.UUID\n" +
+                    "SET `amount` = amount-1 \n" +
                     "WHERE sc.UUID = ?";//真
             //String sql = "update shoppingcart set isexist=0 where uuid=?";//伪
             pStmt = conn.prepareStatement(sql);
@@ -89,7 +100,11 @@ public class ShoppingCartDao extends DbOpenHelper {
         String sum = null;
         try {
             getConnection();
-            String sql = "SELECT cast(SUm(g.price*g.number)as  decimal(15,2)) as SUM\n" +
+           /* String sql = "SELECT cast(SUm(g.price*g.number)as  decimal(15,2)) as SUM\n" +
+                    "from goods g\n" +
+                    "LEFT JOIN shoppingcart sc on sc.GOODS_UUID = g.uuid\n" +
+                    "where sc.username =? and sc.isexist = 1";*/
+            String sql = "SELECT cast(SUm(g.price*g.amount)as  decimal(15,2)) as SUM\n" +
                     "from goods g\n" +
                     "LEFT JOIN shoppingcart sc on sc.GOODS_UUID = g.uuid\n" +
                     "where sc.username =? and sc.isexist = 1";
