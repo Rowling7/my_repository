@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
+import com.example.administrator.shopping.Impl.OnEditBtnClickListener;
 import com.example.administrator.shopping.Impl.OnInsBtnClickListener;
 import com.example.administrator.shopping.Impl.OnLessBtnClickListener;
 import com.example.administrator.shopping.Impl.OnPlusBtnClickListener;
@@ -29,6 +30,7 @@ public class ReceivedAdapter extends BaseAdapter {
         private TextView tv_price;
         private Button btn_delOrder;
         private Button btn_conformOrder;
+        private TextView tv_kefu;
 
     }
 
@@ -45,6 +47,14 @@ public class ReceivedAdapter extends BaseAdapter {
     public ReceivedAdapter() {
 
     }
+
+
+
+    private OnEditBtnClickListener onEditBtnClickListener;   //修改按钮点击事件的监听实例
+    public void setOnEditBtnClickListener(OnEditBtnClickListener onEditBtnClickListener) {
+        this.onEditBtnClickListener = onEditBtnClickListener;
+    }
+
 
     public void setOnInsBtnClickListener(OnInsBtnClickListener onInsBtnClickListener) {
         this.onInsBtnClickListener = onInsBtnClickListener;
@@ -93,6 +103,7 @@ public class ReceivedAdapter extends BaseAdapter {
             viewHolder.tv_price = convertView.findViewById(R.id.price);
             //viewHolder.btn_payOrder = convertView.findViewById(R.id.btn_payOrder);
             viewHolder.btn_conformOrder = convertView.findViewById(R.id.btn_conformOrder);
+            viewHolder.tv_kefu=convertView.findViewById(R.id.tv_kefu);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -110,6 +121,16 @@ public class ReceivedAdapter extends BaseAdapter {
                 onInsBtnClickListener.OnInsBtnClick(v, position);
             }
         });*/
+
+        //修改
+        viewHolder.tv_kefu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onEditBtnClickListener.onEditBtnClick(view, position);
+            }
+        });
+
+
 
         //取消订单
         viewHolder.btn_conformOrder.setOnClickListener(new View.OnClickListener() {

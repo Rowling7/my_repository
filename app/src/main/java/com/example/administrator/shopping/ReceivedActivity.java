@@ -7,14 +7,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
+import com.example.administrator.shopping.Impl.OnEditBtnClickListener;
 import com.example.administrator.shopping.Impl.OnInsBtnClickListener;
 import com.example.administrator.shopping.adapter.GoodsAdapter;
 import com.example.administrator.shopping.adapter.ReceivedAdapter;
 import com.example.administrator.shopping.dao.EntityUserDao;
 import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.dao.OrderDao;
+import com.example.administrator.shopping.entity.AddressEntity;
 import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.entity.OrderEntity;
 import com.example.administrator.shopping.utils.ToastUtils;
@@ -24,6 +27,7 @@ import java.util.List;
 public class ReceivedActivity extends AppCompatActivity {
 
     private ImageView go_back;
+    private TextView tv_kefu;
 
     /*商品列表*/
     private ListView lv_orderList;
@@ -61,6 +65,15 @@ public class ReceivedActivity extends AppCompatActivity {
         });
         //Intent intent = getIntent();
         // final String userNameForMain = intent.getStringExtra("passValue");//MyActivity的传值
+
+
+
+
+
+
+
+        tv_kefu=findViewById(R.id.tv_kefu);
+
 
         /*填充列表*/
         lv_orderList = findViewById(R.id.lv_orderList);
@@ -109,6 +122,25 @@ public class ReceivedActivity extends AppCompatActivity {
                 doConformOrder(item.getUuid());
             }
         });
+
+
+        // 修改按钮的操作
+        receivedAdapter.setOnEditBtnClickListener(new OnEditBtnClickListener() {
+            @Override
+            public void onEditBtnClick(View view, int position) {
+                Intent intent = getIntent();
+                final String passValue = intent.getStringExtra("passValue");//登陆后的传值
+                // 修改按钮的操作
+                OrderEntity item = orderList.get(position);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("userEdit", item);
+                intent = new Intent(ReceivedActivity.this, KefuActivity.class);
+                intent.putExtra("passValue", passValue);
+                intent.putExtras(bundle);
+                startActivityForResult(intent, 1);
+            }
+        });
+
 
     }
 

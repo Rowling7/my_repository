@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:background="@mipmap/background2"
+    android:orientation="vertical"
+    tools:context=".KefuActivity">
+
+    <!--
+  top栏
+  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <ImageView
+            android:id="@+id/go_back"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="150dp"
+        android:gravity="center"
+        android:text="客服反馈"
+        android:textColor="@color/colorBlack"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/et_dingdanhao"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="订单号"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/et_addressEdited"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="您的问题"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+
+    <!-- android:onClick="btn_on_click"-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_addressEdited"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp">
+
+        <Button
+            android:id="@+id/btn_tijiaokefu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPurple"
+            android:onClick="btn_on_click"
+            android:text="确     认" />
+    </LinearLayout>
+
+
+</LinearLayout>
