@@ -15,6 +15,7 @@ public class EntityUserEntity {
     private String wallet;
     private String realName;
     private String create_time;
+    private String head;
 
     private String numbForNopay;
     private String numbForReceived;
@@ -40,12 +41,20 @@ public class EntityUserEntity {
                 ", wallet='" + wallet + '\'' +
                 ", realName='" + realName + '\'' +
                 ", create_time='" + create_time + '\'' +
+                ", head='" + head + '\'' +
                 ", numbForNopay='" + numbForNopay + '\'' +
                 ", numbForReceived='" + numbForReceived + '\'' +
                 ", isnull='" + isnull + '\'' +
                 '}';
     }
 
+    public String getHead() {
+        return head;
+    }
+
+    public void setHead(String head) {
+        this.head = head;
+    }
 
     public String getIsnull() {
         return isnull;

@@ -446,16 +446,43 @@ public class EntityUserDao extends DbOpenHelper {
         return iRow;
     }
 
+    /*insert———添加头像*/
+    public static int insertHead(String imageString,String username) {
+        int iRow = 0;
+        try {
+            getConnection();   // 取得连接信息
+            String sql = "UPDATE `bishe`.`entityuser` SET  `head` = ? WHERE username = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1,imageString);
+            pStmt.setString(2, username);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return iRow;
+    }
 
 
-
-
-
-
-
-
-
-
+    //查询头像
+    public static String getHead(String userName) {
+        String imgHead = null;
+        try {
+            getConnection();
+            String sql = "SELECT head FROM `entityuser` WHERE username =?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userName);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                imgHead = rs.getString("head");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        Log.i(TAG, "未收货: " + imgHead);
+        return imgHead;
+    }
 
     /**
      * 无用方法

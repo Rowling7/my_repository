@@ -1,19 +1,32 @@
 package com.example.administrator.shopping;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.shopping.dao.EntityUserDao;
+import com.example.administrator.shopping.database.DbOpenHelper;
+import com.example.administrator.shopping.utils.ToastUtils;
+import com.mysql.jdbc.PreparedStatement;
 
+import java.io.ByteArrayOutputStream;
+import java.sql.SQLException;
+
+
+import static com.example.administrator.shopping.database.DbOpenHelper.getConnection;
 
 public class MyDetailsActivity extends AppCompatActivity {
 
@@ -24,8 +37,13 @@ public class MyDetailsActivity extends AppCompatActivity {
     private TextView tv_area;
     private TextView tv_name;
     private ImageView go_back;
+    private ImageView img_head;
     private TextView tv_wallet;
     private Handler mainHandler;     // 主线程
+
+    Uri uri;//头像
+    String imageString;
+
     public static final String TAG = "OUTPUT";
 
     private final Handler handler = new Handler() {
@@ -66,7 +84,7 @@ public class MyDetailsActivity extends AppCompatActivity {
         tv_sex = findViewById(R.id.tv_sex);
         tv_sex.setOnClickListener(onclicklistener);
 
-
+        dohead();
         selectAge();
         selectSex();
         selectPhone();
@@ -81,7 +99,29 @@ public class MyDetailsActivity extends AppCompatActivity {
         go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = getIntent();
+                final String userNameForInfo = intent.getStringExtra("passValueForUser");//MyActivity的传值
+                intent =new Intent(MyDetailsActivity.this,MyActivity.class);
+                intent.putExtra("passValue", userNameForInfo);
+                startActivity(intent);
+                //finish();
+            }
+        });
+
+
+        //主线程使用网络请求
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        img_head = findViewById(R.id.img_head);
+        //选择本地图片
+        img_head.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
+                galleryIntent.setType("image/*");//图片
+                startActivityForResult(galleryIntent, 0);
             }
         });
 
@@ -120,6 +160,18 @@ public class MyDetailsActivity extends AppCompatActivity {
         mainHandler = new Handler(getMainLooper());//获取主线程
     }
 
+
+
+    public  void  dohead(){
+        img_head =findViewById(R.id.img_head);
+        Intent intent = getIntent();
+        final String userName = intent.getStringExtra("passValueForUser");//登陆后的传值
+        String imgHead = EntityUserDao.getHead(userName);
+        byte[] imageBytes = Base64.decode(imgHead, Base64.DEFAULT);
+        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+        img_head.setImageBitmap(decodedImage);
+
+    }
     // 查询age
     public void selectAge() {
         new Thread(new Runnable() {
@@ -193,5 +245,33 @@ public class MyDetailsActivity extends AppCompatActivity {
             }
         }).start();
     }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // TODO Auto-generated method stub
+        if (requestCode == 0 && resultCode == -1) {
+            uri = data.getData();
+            img_head.setImageURI(uri);
+
+            //将图片转换成Base64编码
+            try {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] imageBytes = baos.toByteArray();
+                imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+                Intent intent = getIntent();
+                final String userName = intent.getStringExtra("passValueForUser");//MyActivity的传值
+                EntityUserDao.insertHead(imageString, userName);
+
+                ToastUtils.showMsg(this,"上传成功！");
+            } catch (Exception e) {
+            }
+        }
+
+    }
+
 
 }
