@@ -6,7 +6,7 @@
     android:padding="16dp">
 
     <ImageView
-        android:id="@+id/iv_searchPicture"
+        android:id="@+id/iv_picture"
         android:layout_width="100dp"
         android:layout_height="80dp"
         android:layout_centerVertical="true"
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/iv_searchPicture">
+        android:layout_toRightOf="@+id/iv_picture">
 
         <TextView
             android:id="@+id/tv_searchTitle"
