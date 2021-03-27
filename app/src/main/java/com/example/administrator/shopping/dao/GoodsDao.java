@@ -1,7 +1,7 @@
 package com.example.administrator.shopping.dao;
 
+
 import android.util.Log;
-import android.widget.EditText;
 
 import com.example.administrator.shopping.entity.GoodsEntity;
 import com.example.administrator.shopping.database.DbOpenHelper;
@@ -17,7 +17,7 @@ public class GoodsDao extends DbOpenHelper {
         List<GoodsEntity> list = new ArrayList<>();
         try {
             getConnection();
-            String sql = "select * from goods";
+            String sql = "select uuid,name,price,description,originPlace,picture,uuid from bishe.goods";
             pStmt = conn.prepareStatement(sql);
             rs = pStmt.executeQuery();
             while (rs.next()) {
@@ -27,8 +27,13 @@ public class GoodsDao extends DbOpenHelper {
                 item.setPrice(rs.getString("price"));
                 item.setDescription(rs.getString("description"));
                 item.setOriginPlace(rs.getString("originPlace"));
-                //item.setPicture(rs.getString("picture"));
+                item.setPicture(rs.getString("picture"));
+            /*    byte[] imageBytes = Base64.decode(rs.getString("picture"), Base64.DEFAULT);
+                Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                item.setPicture(decodedImage+"");*/
+
                 list.add(item);
+
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -54,7 +59,7 @@ public class GoodsDao extends DbOpenHelper {
                 item.setPrice(rs.getString("price"));
                 item.setDescription(rs.getString("description"));
                 item.setOriginPlace(rs.getString("originPlace"));
-                //item.setPicture(rs.getString("picture"));
+                item.setPicture(rs.getString("picture"));
                 list.add(item);
             }
         } catch (Exception ex) {
@@ -100,7 +105,7 @@ public class GoodsDao extends DbOpenHelper {
                 item.setPrice(rs.getString("price"));
                 item.setDescription(rs.getString("description"));
                 item.setOriginPlace(rs.getString("originPlace"));
-                //item.setPicture(rs.getString("picture"));
+                item.setPicture(rs.getString("picture"));
                 list.add(item);
             }
         } catch (Exception ex) {
@@ -126,7 +131,7 @@ public class GoodsDao extends DbOpenHelper {
                 item.setPrice(rs.getString("price"));
                 item.setDescription(rs.getString("description"));
                 item.setOriginPlace(rs.getString("originPlace"));
-                //item.setPicture(rs.getString("picture"));
+                item.setPicture(rs.getString("picture"));
                 list.add(item);
             }
         } catch (Exception ex) {
@@ -152,7 +157,7 @@ public class GoodsDao extends DbOpenHelper {
                 item.setPrice(rs.getString("price"));
                 item.setDescription(rs.getString("description"));
                 item.setOriginPlace(rs.getString("originPlace"));
-                //item.setPicture(rs.getString("picture"));
+                item.setPicture(rs.getString("picture"));
                 list.add(item);
             }
         } catch (Exception ex) {
@@ -178,7 +183,7 @@ public class GoodsDao extends DbOpenHelper {
                 item.setPrice(rs.getString("price"));
                 item.setDescription(rs.getString("description"));
                 item.setOriginPlace(rs.getString("originPlace"));
-                //item.setPicture(rs.getString("picture"));
+                item.setPicture(rs.getString("picture"));
                 list.add(item);
             }
         } catch (Exception ex) {
@@ -196,7 +201,7 @@ public class GoodsDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();
-           // String sql = "UPDATE `bishe`.`goods`   SET `number` = '1'";
+            // String sql = "UPDATE `bishe`.`goods`   SET `number` = '1'";
             String sql = "UPDATE `bishe`.`goods`   SET `amount` = '1'";
             pStmt = conn.prepareStatement(sql);
             iRow = pStmt.executeUpdate();

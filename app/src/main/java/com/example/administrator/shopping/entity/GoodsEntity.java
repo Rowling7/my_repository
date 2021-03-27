@@ -1,9 +1,11 @@
 package com.example.administrator.shopping.entity;
 
+import android.graphics.Bitmap;
+
 public class GoodsEntity {
     private String uuid;
     private String price;
-    private int picture;
+    private String picture;
     private String suppiler;
     private String name;
     private String productionDate;
@@ -68,11 +70,11 @@ public class GoodsEntity {
         this.price = price;
     }
 
-    public int getPicture() {
+    public String getPicture() {
         return picture;
     }
 
-    public void setPicture(int picture) {
+    public void setPicture(String picture) {
         this.picture = picture;
     }
 

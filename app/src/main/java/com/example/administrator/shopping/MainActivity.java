@@ -3,6 +3,7 @@ package com.example.administrator.shopping;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,8 +59,15 @@ public class MainActivity extends AppCompatActivity {
         SettingActivity.activityList.add(this);//用来退出应用
         initView();
 
+
         Intent intent = getIntent();
         final String userNameForMain = intent.getStringExtra("passValueForMain");//MyActivity的传值
+
+
+
+        //主线程使用网络请求
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         iv_search = findViewById(R.id.iv_search);
         iv_search.setOnClickListener(new View.OnClickListener() {

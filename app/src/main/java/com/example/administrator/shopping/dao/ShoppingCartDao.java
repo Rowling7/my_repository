@@ -21,7 +21,7 @@ public class ShoppingCartDao extends DbOpenHelper {
                     "FROM shoppingcart sc\n" +
                     "LEFT JOIN goods g ON sc.GOODS_UUID = g.UUID \n" +
                     "WHERE sc.USERNAME = ? AND SC.ISEXIST = 1";*/
-            String sql = "SELECT sc.uuid ,g.NAME as goodsName, g.price, g.amount,g.originplace,g.description\n" +
+            String sql = "SELECT sc.uuid ,g.NAME as goodsName, g.price,g.picture, g.amount,g.originplace,g.description\n" +
                     "FROM shoppingcart sc\n" +
                     "LEFT JOIN goods g ON sc.GOODS_UUID = g.UUID \n" +
                     "WHERE sc.USERNAME = ? AND SC.ISEXIST = 1";
@@ -36,6 +36,7 @@ public class ShoppingCartDao extends DbOpenHelper {
                 item.setNumber(rs.getString("amount"));
                 item.setDescription(rs.getString("description"));
                 item.setOriginPlace(rs.getString("originPlace"));
+                item.setPicture(rs.getString("picture"));
                 list.add(item);
             }
         } catch (Exception ex) {

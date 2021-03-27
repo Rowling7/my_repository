@@ -13,11 +13,13 @@ public class ShoppingCartEntity {
     private String number;
     private String originPlace;
     private String description;
+    private String picture;
 
 
     public ShoppingCartEntity() {
 
     }
+
 
     @Override
     public String toString() {
@@ -32,6 +34,7 @@ public class ShoppingCartEntity {
                 ", number='" + number + '\'' +
                 ", originPlace='" + originPlace + '\'' +
                 ", description='" + description + '\'' +
+                ", picture='" + picture + '\'' +
                 '}';
     }
 
@@ -43,7 +46,13 @@ public class ShoppingCartEntity {
         this.originPlace = originPlace;
     }
 
+    public String getPicture() {
+        return picture;
+    }
 
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 
     public String getDescription() {
         return description;

@@ -1,6 +1,9 @@
 package com.example.administrator.shopping.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,12 +84,13 @@ public class GoodsAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.goods_list_item, null);
             viewHolder = new ViewHolder();
 
-            //viewHolder.iv_picture = convertView.findViewById(R.id.iv_picture);//1/2
+            viewHolder.iv_picture = convertView.findViewById(R.id.iv_picture);//1/2
+
             viewHolder.tv_title = convertView.findViewById(R.id.tv_title);
             viewHolder.tv_price2 = convertView.findViewById(R.id.tv_price2);
             viewHolder.btn_addshop = convertView.findViewById(R.id.btn_addshop);
-            viewHolder.tv_description =convertView.findViewById(R.id.tv_description);
-            viewHolder.tv_place =convertView.findViewById(R.id.tv_place);
+            viewHolder.tv_description = convertView.findViewById(R.id.tv_description);
+            viewHolder.tv_place = convertView.findViewById(R.id.tv_place);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -98,7 +102,12 @@ public class GoodsAdapter extends BaseAdapter {
         viewHolder.tv_price2.setText(goods.getPrice());
         viewHolder.tv_place.setText(goods.getOriginPlace());
         viewHolder.tv_description.setText(goods.getDescription());
-        // viewHolder.iv_picture.setBackgroundResource(goods.getPicture());2/2
+
+        //mysql 读取图片 转成base64 在转回来
+        byte[] imageBytes = Base64.decode(goods.getPicture(), Base64.DEFAULT);
+        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+        viewHolder.iv_picture.setImageBitmap(decodedImage);
+
 
         viewHolder.btn_addshop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,5 +118,6 @@ public class GoodsAdapter extends BaseAdapter {
 
         return convertView;
     }
+
 
 }

@@ -1,13 +1,17 @@
 package com.example.administrator.shopping.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.nfc.Tag;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
@@ -34,6 +38,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
         private TextView tv_amount;
         private TextView tv_place;
         private TextView tv_description;
+        private ImageView iv_img;
     }
 
     public static final String TAG = "OUTPUT";
@@ -88,14 +93,14 @@ public class ShoppingCartAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.shoppingcart_list_item, null);
             viewHolder = new ViewHolder();
 
-            // viewHolder.iv_picture = convertView.findViewById(R.id.iv_picture);
+            viewHolder.iv_img = convertView.findViewById(R.id.iv_img);
             viewHolder.title = convertView.findViewById(R.id.title);
             viewHolder.price = convertView.findViewById(R.id.price);
             viewHolder.btn_less = convertView.findViewById(R.id.btn_less);
             viewHolder.btn_plus = convertView.findViewById(R.id.btn_plus);
             viewHolder.tv_amount = convertView.findViewById(R.id.tv_amount);
-            viewHolder.tv_description =convertView.findViewById(R.id.tv_description);
-            viewHolder.tv_place =convertView.findViewById(R.id.tv_place);
+            viewHolder.tv_description = convertView.findViewById(R.id.tv_description);
+            viewHolder.tv_place = convertView.findViewById(R.id.tv_place);
             // viewHolder.btn_addshop = convertView.findViewById(R.id.btn_addshop);
             convertView.setTag(viewHolder);
         } else {
@@ -110,6 +115,10 @@ public class ShoppingCartAdapter extends BaseAdapter {
         viewHolder.tv_place.setText(item.getOriginPlace());
         viewHolder.tv_description.setText(item.getDescription());
 
+
+        byte[] imageBytes = Base64.decode(item.getPicture(), Base64.DEFAULT);
+        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+        viewHolder.iv_img.setImageBitmap(decodedImage);
 
         // 删除按钮
         viewHolder.btn_plus.setOnClickListener(new View.OnClickListener() {
