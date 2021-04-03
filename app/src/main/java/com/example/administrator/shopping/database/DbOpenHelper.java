@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+//sett 商品详情 支付成功  （灰色） 弹窗 直接跳转   TOast提示中间  评论 角标  商品详情页面  单位  多用户登录
 //商品数  星好评  各种评价
-//修改头像  年龄等验证  定位  充值  +1+2
 public class DbOpenHelper {
 
     /*全局静态 */

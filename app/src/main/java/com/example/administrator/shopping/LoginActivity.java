@@ -128,11 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 ToastUtils.showMsg(LoginActivity.this, "用户名或密码错误");
                             } else {
                                 ToastUtils.showMsg(LoginActivity.this, "登录成功，欢迎！");
-                                // 跳转到“我的”界面
-                                //String phoneAndUuid= et_UserName.getText().toString();
                                 Intent intent = new Intent(LoginActivity.this, MyActivity.class);
-                                //  Intent intentForValue =new Intent(phoneAndUuid);
-                                // LocalBroadcastManager.getInstance(LoginActivity.this).sendBroadcast(intentForValue);
                                 intent.putExtra("passValue", et_UserName.getText().toString());//传递“id”至MyActivity
                                 startActivity(intent);
 
