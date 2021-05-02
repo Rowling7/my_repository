@@ -52,13 +52,12 @@ public class AddressEditActity extends AppCompatActivity {
     // 确定按钮的点击事件处理
     public void btn_on_click(View view) {
         final String newAddress = et_addressEdited.getText().toString().trim();
-
         if (TextUtils.isEmpty(newAddress)) {
             ToastUtils.showMsg(this, "请输入地址或返回");
             et_addressEdited.requestFocus();
         } else {
             addressEdit.setAddress(newAddress);
-            new Thread(new Runnable() {
+            new Thread(new Runnable() {//新线程
                 @Override
                 public void run() {
                     Intent intent = getIntent();
@@ -66,8 +65,8 @@ public class AddressEditActity extends AppCompatActivity {
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtils.showMsg(AddressEditActity.this, "更改成功~~");
-                            setResult(1);   // 使用参数表示当前界面操作成功，并返回管理界面
+                            ToastUtils.showMsg(AddressEditActity.this, "更改成功");
+                            setResult(1);   // 使用参数表示当前界面操作成功
                             finish();
                         }
                     });

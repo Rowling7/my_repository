@@ -83,7 +83,6 @@ public class SearchActivity extends AppCompatActivity {
     /*填充商品列表*/
 
     private void loadSearchGoodsDb() {
-
         new Thread(new Runnable() {
             @Override
             public void run() {

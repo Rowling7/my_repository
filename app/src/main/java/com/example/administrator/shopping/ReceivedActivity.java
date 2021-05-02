@@ -66,12 +66,6 @@ public class ReceivedActivity extends AppCompatActivity {
         //Intent intent = getIntent();
         // final String userNameForMain = intent.getStringExtra("passValue");//MyActivity的传值
 
-
-
-
-
-
-
         tv_kefu=findViewById(R.id.tv_kefu);
 
 

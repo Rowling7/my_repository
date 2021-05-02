@@ -61,7 +61,7 @@ public class AddressInsActivity extends AppCompatActivity {
         final String etaddressEdited = et_addressEdited.getText().toString().trim();
         final String etusername = et_userName.getText().toString().trim();
         Intent intent = getIntent();
-        final String userNameInsAd = intent.getStringExtra("passValueForInsAd");//登陆后的传值
+        final String userNameInsAd = intent.getStringExtra("passValueForInsAd");
         if (TextUtils.isEmpty(etusername)) {
             ToastUtils.showMsg(this, "请输入账户");
             et_userName.requestFocus();

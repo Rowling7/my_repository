@@ -112,20 +112,10 @@ public class WalletActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 Intent intent = getIntent();
-                                final String userName = intent.getStringExtra("passValue");//登陆后的传值
+                                final String userName = intent.getStringExtra("passValue");
                                 final int iRow = EntityUserDao.addWallet(userName, jine);
                                 dialog.dismiss();
-
-                               /* intent = new Intent(WalletActivity.this, MyActivity.class);
-                                doQueryWallet();
-                                */
                                 ToastUtils.showMsg(WalletActivity.this, "充值成功");
-                                //finish();
-                              /*  mainHandler.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                    }
-                                });*/
                             }
                         }).start();
                     }

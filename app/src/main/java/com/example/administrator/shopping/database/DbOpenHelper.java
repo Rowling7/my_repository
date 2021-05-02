@@ -12,6 +12,7 @@ public class DbOpenHelper {
     /*全局静态 */
     private static final String DRIVERS = "com.mysql.jdbc.Driver";
     private static final String URL = "jdbc:mysql://172.30.243.110:3306/bishe?useUnicode=true&characterEncoding=utf8";
+    //private static final String URL = "jdbc:mysql://172.30.245.185:3306/bishe?useUnicode=true&characterEncoding=utf8";
     private static final String USER = "cys";
     private static final String PWD = "123456";
 

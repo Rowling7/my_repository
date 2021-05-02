@@ -22,7 +22,6 @@ public class EntityUserDao extends DbOpenHelper {
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, UserName);// 获取用户名
             pStmt.setString(2, Password);//获取密码
-
             rs = pStmt.executeQuery();//回传数据
             if (rs.next()) {
                 entityUserEntity = new EntityUserEntity();
