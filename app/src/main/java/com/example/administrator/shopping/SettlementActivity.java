@@ -213,19 +213,19 @@ public class SettlementActivity extends AppCompatActivity {
                                     intent = new Intent(SettlementActivity.this,WalletActivity.class);
                                     intent.putExtra("passValue", username);
                                     startActivity(intent);
-
-                                  //  ToastUtils.showMsg(SettlementActivity.this, "余额不足无法完成支付！");
-                                } else
+                                    ToastUtils.showMsg(SettlementActivity.this, "余额不足无法完成支付！");
+                                } else {
                                     OrderDao.updateStatus(username);//更新订单
-                                EntityUserDao.updateWallet(goodsPrice, username);//更新钱包余额
-                                ToastUtils.showMsg(SettlementActivity.this, "支付完成,可在待收货中查看");
-                                ShoppingCartDao.delAllCart(username);//清空购物车
-                                GoodsDao.updateNumber();//更新goods数量
-                                Intent intent = getIntent();
-                                final String userName2 = intent.getStringExtra("passValue");
-                                intent = new Intent(SettlementActivity.this, MainActivity.class);
-                                intent.putExtra("passValueForMain", userName2);
-                                startActivity(intent);
+                                    EntityUserDao.updateWallet(goodsPrice, username);//更新钱包余额
+                                    ToastUtils.showMsg(SettlementActivity.this, "支付完成,可在待收货中查看");
+                                    ShoppingCartDao.delAllCart(username);//清空购物车
+                                    GoodsDao.updateNumber();//更新goods数量
+                                    Intent intent = getIntent();
+                                    final String userName2 = intent.getStringExtra("passValue");
+                                    intent = new Intent(SettlementActivity.this, MainActivity.class);
+                                    intent.putExtra("passValueForMain", userName2);
+                                    startActivity(intent);
+                                }
                             }
                         }).start();
                     }

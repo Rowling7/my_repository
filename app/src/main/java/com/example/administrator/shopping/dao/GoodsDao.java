@@ -195,8 +195,7 @@ public class GoodsDao extends DbOpenHelper {
     }
     //结束分类
 
-
-    /*update——更改地址*/
+    /*update*/
     public static int updateNumber() {
         int iRow = 0;
         try {
@@ -213,4 +212,25 @@ public class GoodsDao extends DbOpenHelper {
         return iRow;
     }
 
+    /*查询goodsAmount*/
+    public static int getGoodsAmount(long uuid) {
+        int goodsAmount = 0;
+        try {
+            getConnection();
+            String sql = "SELECT amount AS goodsAmount\n" +
+                    "FROM goods g\n" +
+                    "LEFT JOIN shoppingcart sc ON sc.GOODS_UUID = g.UUID\n" +
+                    "WHERE SC.UUID =?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setLong(1, uuid);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                goodsAmount= (int) rs.getLong("goodsAmount");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        Log.i("TAG", "??: "+uuid);
+        return goodsAmount;
+    }
 }

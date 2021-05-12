@@ -298,6 +298,7 @@ public class MainActivity extends AppCompatActivity {
             public void OnInsBtnClick(View view, int position) {
                 //  方法
                 final GoodsEntity item = goodsList.get(position);
+                goodsDao.updateNumber();
                 doInsCart(item.getUuid());
             }
         });

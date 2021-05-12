@@ -21,10 +21,10 @@ public class ShoppingCartDao extends DbOpenHelper {
                     "FROM shoppingcart sc\n" +
                     "LEFT JOIN goods g ON sc.GOODS_UUID = g.UUID \n" +
                     "WHERE sc.USERNAME = ? AND SC.ISEXIST = 1";*/
-            String sql = "SELECT sc.uuid ,g.NAME as goodsName, g.price,g.picture, g.amount,g.originplace,g.description\n" +
+            String sql = "SELECT sc.uuid ,g.NAME as goodsName, g.price,g.picture, g.amount,g.originplace,g.description,g.uuid as goodsUuid\n" +
                     "FROM shoppingcart sc\n" +
                     "LEFT JOIN goods g ON sc.GOODS_UUID = g.UUID \n" +
-                    "WHERE sc.USERNAME = ? AND SC.ISEXIST = 1";
+                    "WHERE sc.USERNAME = ? AND SC.ISEXIST = 1 AND amount >0";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userNameForCart);
             rs = pStmt.executeQuery();
@@ -37,6 +37,7 @@ public class ShoppingCartDao extends DbOpenHelper {
                 item.setDescription(rs.getString("description"));
                 item.setOriginPlace(rs.getString("originPlace"));
                 item.setPicture(rs.getString("picture"));
+                item.setGoods_uuid(rs.getString("goodsUuid"));
                 list.add(item);
             }
         } catch (Exception ex) {
@@ -44,10 +45,11 @@ public class ShoppingCartDao extends DbOpenHelper {
         } finally {
             closeAll();
         }
+        Log.i("UUID", "!!: "+list);
         return list;
     }
 
-
+//+++
     public static int delCart(long uuid) {
         int iRow = 0;
         try {
@@ -71,7 +73,7 @@ public class ShoppingCartDao extends DbOpenHelper {
         return iRow;
     }
 
-
+//---
     public static int doLessCart(long uuid) {
         int iRow = 0;
         try {
@@ -95,6 +97,7 @@ public class ShoppingCartDao extends DbOpenHelper {
         }
         return iRow;
     }
+
 
     /*查询购物车总金额*/
     public static String getCartSum(String userNameForCart) {
@@ -144,7 +147,7 @@ public class ShoppingCartDao extends DbOpenHelper {
         return cartConut;
     }
 
-    /*（真）清空购物车中的胡数据*/
+    /*清空购物车中的胡数据*/
     public static int delAllCart(String userNameForCart) {
         int iRow = 0;
         try {
@@ -161,18 +164,14 @@ public class ShoppingCartDao extends DbOpenHelper {
         return iRow;
     }
 
-    /*insert———添加订单*//*
-    public static int insOrder(String userNameForCart) {
+    /*清空为 0 的数据*/
+    public static int delGoods(long uuid) {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "INSERT INTO `bishe`.`order`( `goodsprice`, `goodscount`,`username`) \n" +
-                    "SELECT sum( g.price ),count( g.price ),sc.username \n" +
-                    "FROM\tgoods g\n" +
-                    "Right JOIN shoppingcart sc ON sc.GOODS_UUID = g.uuid \n" +
-                    "WHERE \tsc.username = ?";
+            String sql = "DELETE from  shoppingcart  WHERE UUID = ?";
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1, userNameForCart);
+            pStmt.setLong(1, uuid);
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -180,5 +179,6 @@ public class ShoppingCartDao extends DbOpenHelper {
             closeAll();
         }
         return iRow;
-    }*/
+    }
+
 }

@@ -19,7 +19,7 @@
 
     <style name="spinner_style">
         <item name="android:textColor">@color/colorBlack</item>
-      <!--  <item name="android:paddingLeft">5dip</item>-->
+            <item name="android:paddingLeft">5dip</item>
     </style>
 
 </resources>

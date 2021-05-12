@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnLessBtnClickListener;
 import com.example.administrator.shopping.adapter.ShoppingCartAdapter;
+import com.example.administrator.shopping.dao.EntityUserDao;
 import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.dao.ShoppingCartDao;
 import com.example.administrator.shopping.entity.ShoppingCartEntity;
@@ -36,6 +38,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private Button btn_less;
     private Button btn_plus;
     private TextView tv_amount;
+    public int goodsAmount;
 
     /*购物车列表*/
     private ListView lv_cartList;
@@ -140,13 +143,6 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
         tv_amount = findViewById(R.id.tv_amount);
         btn_plus = findViewById(R.id.btn_plus);
-       /* btn_plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                count++;
-                tv_amount.setText(count+"");
-            }
-        });*/
         btn_less = findViewById(R.id.btn_less);
         initView();
         /*填充列表*/
@@ -211,6 +207,18 @@ public class ShoppingCartActivity extends AppCompatActivity {
         });
     }
 
+    /*    // 执行goodsAmount
+        public void doQueryAmount() {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = getIntent();
+                    final String userNameForCart = intent.getStringExtra("passValueForCart");//登陆后的传值
+                    goodsAmount = GoodsDao.getGoodsAmount(userNameForCart);
+                    Log.i("TAG", "钱包1: "+goodsAmount);
+                }
+            }).start();
+        }*/
     //执行删除购物车中的数据+++++1
     private void doDelCart(final long uuid) {
         new Thread(new Runnable() {
@@ -235,16 +243,29 @@ public class ShoppingCartActivity extends AppCompatActivity {
             @Override
             public void run() {
                 final int iRow = ShoppingCartDao.doLessCart(uuid);
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        loadCartDb();
-                        doQueryCount();// 重新加载数据
-                    }
-                });
+                int goodsAmount = GoodsDao.getGoodsAmount(uuid);
+                if (goodsAmount == 0) {
+                    ShoppingCartDao.delGoods(uuid);
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadCartDb();
+                            doQueryCount();// 重新加载数据
+                        }
+                    });
+                } else{
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadCartDb();
+                            doQueryCount();// 重新加载数据
+                        }
+                    });
+                }
             }
         }).start();
     }
+
 
     // 查询购物车总金额
     public void doQueryCount() {
