@@ -22,7 +22,6 @@ import java.util.List;
 public class SettlementAdapter extends BaseAdapter {
 
 
-
     private final Context context;//上下文信息 谁是操作源对象
     private List<ShoppingCartEntity> settlementList;//商品的数据集合
 
@@ -40,9 +39,11 @@ public class SettlementAdapter extends BaseAdapter {
         this.settlementList = settlementList;
         Log.i(TAG, "数量：" + settlementList.size());
     }
-        public void setSettlementList(List<ShoppingCartEntity> settlementList) {
+
+    public void setSettlementList(List<ShoppingCartEntity> settlementList) {
         this.settlementList = settlementList;
     }
+
     @Override
     public int getCount() {
         return settlementList.size();

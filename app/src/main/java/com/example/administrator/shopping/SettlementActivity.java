@@ -136,8 +136,6 @@ public class SettlementActivity extends AppCompatActivity {
     }
 
 
-
-
     private void initView() {
         mainHandler = new Handler(getMainLooper());//获取主线程
         shoppingCartDao = new ShoppingCartDao();
