@@ -56,7 +56,7 @@ public class WalletActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet);
-
+        SettingActivity.activityList.add(this);
         initView();
 
         tv_money = findViewById(R.id.tv_money);

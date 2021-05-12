@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
             android:layout_marginTop="10dp"
-            android:text="价格(元):"
+            android:text="价格:"
             android:textColor="#FF8F03"
             android:textSize="20sp" />
 
@@ -68,19 +68,23 @@
             <Button
                 android:id="@+id/btn_less"
                 android:layout_width="30dp"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_centerInParent="true"
-                android:text="——"
-                android:textColor="@color/colorWhite"
-                android:textSize="15sp" />
+                android:text="—"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"
+                android:background="@drawable/shape_circle" />
 
             <TextView
                 android:id="@+id/tv_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:text="1"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:textColor="#FF8F03"
                 android:textSize="20sp" />
 
@@ -88,11 +92,13 @@
             <Button
                 android:id="@+id/btn_plus"
                 android:layout_width="30dp"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_centerInParent="true"
+                android:layout_marginTop="5dp"
                 android:text="+"
-                android:textColor="@color/colorWhite"
-                android:textSize="15sp" />
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"
+                android:background="@drawable/shape_circle"/>
 
         </LinearLayout>
         <LinearLayout

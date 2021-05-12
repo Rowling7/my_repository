@@ -49,7 +49,7 @@
         android:layout_above="@+id/ll_pay"
         android:layout_below="@+id/ll_topbar"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical"
         android:paddingTop="20dp">
 
@@ -95,12 +95,39 @@
                     android:layout_width="20dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10dp"
-
                     android:gravity="center"
                     android:text="个"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
             </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_settlement"
+                android:layout_width="match_parent"
+                android:layout_height="380dp"
+                android:layout_below="@+id/ll_name"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shape_corner"
+                android:orientation="horizontal">
+
+                <ListView
+                    android:id="@+id/lv_settlement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="2dp"
+                    android:cacheColorHint="#00000000"
+                    android:divider="#E4e4e4"
+                    android:dividerHeight="1dp"
+                    android:fadingEdge="none"
+                    android:listSelector="#00000000"
+                    android:scrollbars="none" />
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/ll_age"
@@ -127,7 +154,6 @@
                     android:layout_width="10dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
-
                     android:gravity="center_vertical"
                     android:text="¥"
                     android:textColor="@color/colorBlack"

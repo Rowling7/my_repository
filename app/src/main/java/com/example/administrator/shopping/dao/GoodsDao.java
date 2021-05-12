@@ -76,7 +76,7 @@ public class GoodsDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "INSERT INTO shoppingcart(  GOODS_UUID, ISEXIST, USERNAME) VALUES (?, '1', ?);\n";
+            String sql = "INSERT INTO shoppingcart(GOODS_UUID, ISEXIST, USERNAME) VALUES (?, '1', ?);\n";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, uuid);
             pStmt.setString(2, username);

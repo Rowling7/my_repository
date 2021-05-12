@@ -387,6 +387,25 @@ public class EntityUserDao extends DbOpenHelper {
         return numbForNoReceived;
     }
 
+    //查询评价数量
+    public static String getNumbForStar(String userName) {
+        String numbForStar = null;
+        try {
+            getConnection();
+            String sql = "SELECT COUNT(DESCRIPTION) as numbForStar FROM BISHE.ORDER  WHERE STATUS = 1 AND ISSHOUHUO = 0 AND ISEXIST =1 AND USERNAME = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, userName);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                numbForStar = rs.getString("numbForStar");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        Log.i(TAG, "评价: " + numbForStar);
+        return numbForStar;
+    }
+
 
     //判断是否能付款
     public static String confWallet(String goodsPrice, String username) {

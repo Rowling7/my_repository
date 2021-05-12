@@ -45,6 +45,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     private ImageView go_back;
     private TextView tv_numbForNopay;
     private TextView tv_numbForReceived;
+    private TextView tv_numbForStar;
 
     private String Name;
     private Handler mainHandler;     // 主线程
@@ -74,6 +75,13 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 } else
 
                     tv_numbForReceived.setText(numbForNoReceived);
+            }else if (msg.what == 4) {
+                String numbForStar = (String) msg.obj;
+                if (numbForStar.equals("0")) {
+                    tv_numbForStar.setText("");
+                } else
+
+                    tv_numbForStar.setText(numbForStar);
             }
         }
     };
@@ -88,6 +96,8 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
 
         tv_numbForNopay = findViewById(R.id.tv_numbForNopay);
         tv_numbForReceived = findViewById(R.id.tv_numbForReceived);
+        tv_numbForStar = findViewById(R.id.tv_numbForStar);
+
 
         tv_userName = findViewById(R.id.tv_userName);
         Intent intent = getIntent();
@@ -263,6 +273,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         doQueryrealName();
         doQueryNumbForNopay();
         doQueryNumbForReceived();
+        doQueryNumbForStar();
     }
 
 
@@ -335,10 +346,28 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 Intent intent = getIntent();
                 final String userName = intent.getStringExtra("passValue");//登陆后的传值
                 String numbForNoReceived = EntityUserDao.getNumbForReceived(userName);
-
                 Message msg = Message.obtain();
                 msg.what = 3;   // 查询结果
                 msg.obj = numbForNoReceived;
+                // 向主线程发送数据
+                handler.sendMessage(msg);
+            }
+
+        }).start();
+    }
+
+    // 执行查询评价的方法
+    public void doQueryNumbForStar() {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                Intent intent = getIntent();
+                final String userName = intent.getStringExtra("passValue");//登陆后的传值
+                String numbForStar = EntityUserDao.getNumbForStar(userName);
+                Message msg = Message.obtain();
+                msg.what = 4;   // 查询结果
+                msg.obj = numbForStar;
                 // 向主线程发送数据
                 handler.sendMessage(msg);
             }

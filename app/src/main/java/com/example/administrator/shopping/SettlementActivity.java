@@ -78,6 +78,8 @@ public class SettlementActivity extends AppCompatActivity {
 
         SettingActivity.activityList.add(this);
 
+        Intent intent = getIntent();
+        final String username2 = intent.getStringExtra("passValue");//MyActivity的传值
 
         tv_allPrice = findViewById(R.id.tv_allPrice);
         tv_cartCount = findViewById(R.id.tv_cartCount);
@@ -96,7 +98,7 @@ public class SettlementActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
-                final String userName2 = intent.getStringExtra("passValue");//MyActivity的传值
+                final String userName2 = intent.getStringExtra("passValue");
                 intent = new Intent(SettlementActivity.this, ReceivedActivity.class);
                 intent.putExtra("passValue", userName2);
                 startActivity(intent);
@@ -150,7 +152,6 @@ public class SettlementActivity extends AppCompatActivity {
                 Message msg = Message.obtain();
                 msg.what = 0;   // 查询结果
                 msg.obj = count;
-
                 // 向主线程发送数据
                 handler.sendMessage(msg);
             }
@@ -220,11 +221,13 @@ public class SettlementActivity extends AppCompatActivity {
                                 ToastUtils.showMsg(SettlementActivity.this, "支付完成,可在待收货中查看");
                                 ShoppingCartDao.delAllCart(username);//清空购物车
                                 GoodsDao.updateNumber();//更新goods数量
+                                Intent intent = getIntent();
+                                final String userName2 = intent.getStringExtra("passValue");
+                                intent = new Intent(SettlementActivity.this, MainActivity.class);
+                                intent.putExtra("passValueForMain", userName2);
+                                startActivity(intent);
                             }
                         }).start();
-/*
-                        intent =new Intent(SettlementActivity.this,)
-*/
                     }
                 });
                 dialog.show();
