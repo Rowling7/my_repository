@@ -45,11 +45,11 @@ public class ShoppingCartDao extends DbOpenHelper {
         } finally {
             closeAll();
         }
-        Log.i("UUID", "!!: "+list);
+        Log.i("UUID", "!!: " + list);
         return list;
     }
 
-//+++
+    //+++
     public static int delCart(long uuid) {
         int iRow = 0;
         try {
@@ -73,7 +73,7 @@ public class ShoppingCartDao extends DbOpenHelper {
         return iRow;
     }
 
-//---
+    //---
     public static int doLessCart(long uuid) {
         int iRow = 0;
         try {

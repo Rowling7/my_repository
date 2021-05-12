@@ -253,7 +253,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                             doQueryCount();// 重新加载数据
                         }
                     });
-                } else{
+                } else {
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {

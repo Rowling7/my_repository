@@ -46,10 +46,12 @@
             android:text="1000"
             android:textColor="#FF62"
             android:textSize="20sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_searchPrice">
+
             <TextView
                 android:id="@+id/tv_place"
                 android:layout_width="0dp"

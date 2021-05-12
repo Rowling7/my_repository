@@ -48,7 +48,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="6dp"
-       android:background="@drawable/shape_corner_search"
+        android:background="@drawable/shape_corner_search"
         android:orientation="horizontal">
 
         <EditText
@@ -61,8 +61,7 @@
             android:padding="5dp"
             android:layout_marginLeft="20dp"
             android:textColor="@color/colorOrange"
-            android:textSize="16dp"
-            />
+            android:textSize="16dp" />
 
         <ImageView
             android:id="@+id/iv_search"

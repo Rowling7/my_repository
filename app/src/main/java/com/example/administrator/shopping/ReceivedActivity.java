@@ -55,18 +55,18 @@ public class ReceivedActivity extends AppCompatActivity {
                 final String userName = intent.getStringExtra("passValue");//登陆后的传值
                 String numbForNoReceived = EntityUserDao.getNumbForReceived(userName);
                 String numbForNopay = EntityUserDao.getNumbForNopay(userName);
-                intent =new Intent(ReceivedActivity.this,MyActivity.class);
-                intent.putExtra("passValue",userName);
-                intent.putExtra("numbForNoReceived",numbForNoReceived);
-                intent.putExtra("numbForNopay",numbForNopay);
+                intent = new Intent(ReceivedActivity.this, MyActivity.class);
+                intent.putExtra("passValue", userName);
+                intent.putExtra("numbForNoReceived", numbForNoReceived);
+                intent.putExtra("numbForNopay", numbForNopay);
                 startActivity(intent);
-               // finish();
+                // finish();
             }
         });
         //Intent intent = getIntent();
         // final String userNameForMain = intent.getStringExtra("passValue");//MyActivity的传值
 
-        tv_kefu=findViewById(R.id.tv_kefu);
+        tv_kefu = findViewById(R.id.tv_kefu);
 
 
         /*填充列表*/

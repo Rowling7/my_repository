@@ -18,6 +18,7 @@ public class KefuActivity extends AppCompatActivity {
     private TextView et_dingdanhao;
     private OrderEntity orderUuid;
     private Button btn_tijiaokefu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +31,8 @@ public class KefuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = getIntent();
                 final String passValue = intent.getStringExtra("passValue");//登陆后的传值
-                intent =new Intent(KefuActivity.this,ReceivedActivity.class);
-                intent.putExtra("passValue",passValue);
+                intent = new Intent(KefuActivity.this, ReceivedActivity.class);
+                intent.putExtra("passValue", passValue);
                 startActivity(intent);
             }
         });
@@ -41,19 +42,19 @@ public class KefuActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             orderUuid = (OrderEntity) bundle.getSerializable("userEdit");
-            et_dingdanhao.setText(orderUuid.getUuid()+"");
+            et_dingdanhao.setText(orderUuid.getUuid() + "");
         }
 
 
-        btn_tijiaokefu=findViewById(R.id.btn_tijiaokefu);
+        btn_tijiaokefu = findViewById(R.id.btn_tijiaokefu);
         btn_tijiaokefu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
                 final String passValue = intent.getStringExtra("passValue");//登陆后的传值
-                intent =new Intent(KefuActivity.this,ReceivedActivity.class);
-                intent.putExtra("passValue",passValue);
-                ToastUtils.showMsg(KefuActivity.this,"已提交客服，请等待回复");
+                intent = new Intent(KefuActivity.this, ReceivedActivity.class);
+                intent.putExtra("passValue", passValue);
+                ToastUtils.showMsg(KefuActivity.this, "已提交客服，请等待回复");
                 startActivity(intent);
             }
         });

@@ -29,7 +29,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
     private final Context context;//上下文信息 谁是操作源对象
     private List<ShoppingCartEntity> cartList;//商品的数据集合
 
-    private class ViewHolder {
+    class ViewHolder {
         private TextView title;
         private TextView price;
         private Button btn_delCart;

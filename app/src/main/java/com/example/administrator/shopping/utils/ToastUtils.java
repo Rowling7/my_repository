@@ -25,7 +25,7 @@ public class ToastUtils {
     public static void showCenterMsg(Context context, String msg) {
         if (myToast == null) {
             myToast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
-            myToast.setGravity(Gravity.CENTER,0,0);
+            myToast.setGravity(Gravity.CENTER, 0, 0);
         } else {
             myToast.setText(msg);
         }
@@ -36,7 +36,7 @@ public class ToastUtils {
     public static void showTopMsg(Context context, String msg) {
         if (myToast == null) {
             myToast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
-            myToast.setGravity(Gravity.TOP,0,0);
+            myToast.setGravity(Gravity.TOP, 0, 0);
         } else {
             myToast.setText(msg);
         }

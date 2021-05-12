@@ -18,6 +18,7 @@
             android:text="订单号: "
             android:textColor="@color/colorOrange"
             android:textSize="20dp" />
+
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -55,7 +56,6 @@
             android:gravity="right"
             android:orientation="vertical"
             android:layout_toRightOf="@+id/price">
-
 
 
             <Button

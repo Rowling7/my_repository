@@ -104,7 +104,7 @@ public class EntityUserDao extends DbOpenHelper {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        Log.i(TAG, "getUserWallet: "+walletgeneral);
+        Log.i(TAG, "getUserWallet: " + walletgeneral);
         return walletgeneral;
     }
 
@@ -410,12 +410,12 @@ public class EntityUserDao extends DbOpenHelper {
     //判断是否能付款
     public static String confWallet(String goodsPrice, String username) {
         String isNull = null;
-        try{
+        try {
             getConnection();
             String sql = "SELECT (EU.WALLET-?)>0 AS ISNULL FROM entityuser eu WHERE USERNAME =?";
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1,goodsPrice);
-            pStmt.setString(2,username);
+            pStmt.setString(1, goodsPrice);
+            pStmt.setString(2, username);
             rs = pStmt.executeQuery();
             while (rs.next()) {
                 isNull = rs.getString("isnull");
@@ -431,28 +431,28 @@ public class EntityUserDao extends DbOpenHelper {
     //恢复钱包
     public static int reConfWallet(String goodsPrice, String username) {
         int iRow = 0;
-        try{
+        try {
             getConnection();
             String sql = "UPDATE `bishe`.`entityuser` SET `wallet` = wallet + ? WHERE `username` = ?";
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1,goodsPrice);
-            pStmt.setString(2,username);
+            pStmt.setString(1, goodsPrice);
+            pStmt.setString(2, username);
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-       closeAll();
+        closeAll();
         return iRow;
     }
 
     /*update——更改地址*/
-    public static int updateWallet(String goodsPrice ,String username) {
+    public static int updateWallet(String goodsPrice, String username) {
         int iRow = 0;
         try {
             getConnection();
             String sql = "UPDATE `bishe`.`entityuser` EU  SET `wallet` = EU.wallet- ? WHERE USERNAME = ? ";
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1,goodsPrice);
+            pStmt.setString(1, goodsPrice);
             pStmt.setString(2, username);
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
@@ -465,13 +465,13 @@ public class EntityUserDao extends DbOpenHelper {
     }
 
     /*insert———添加头像*/
-    public static int insertHead(String imageString,String username) {
+    public static int insertHead(String imageString, String username) {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
             String sql = "UPDATE `bishe`.`entityuser` SET  `head` = ? WHERE username = ?";
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1,imageString);
+            pStmt.setString(1, imageString);
             pStmt.setString(2, username);
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {

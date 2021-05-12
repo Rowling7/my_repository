@@ -101,7 +101,7 @@ public class MyDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = getIntent();
                 final String userNameForInfo = intent.getStringExtra("passValueForUser");//MyActivity的传值
-                intent =new Intent(MyDetailsActivity.this,MyActivity.class);
+                intent = new Intent(MyDetailsActivity.this, MyActivity.class);
                 intent.putExtra("passValue", userNameForInfo);
                 startActivity(intent);
                 //finish();
@@ -161,9 +161,8 @@ public class MyDetailsActivity extends AppCompatActivity {
     }
 
 
-
-    public  void  dohead(){
-        img_head =findViewById(R.id.img_head);
+    public void dohead() {
+        img_head = findViewById(R.id.img_head);
         Intent intent = getIntent();
         final String userName = intent.getStringExtra("passValueForUser");//登陆后的传值
         String imgHead = EntityUserDao.getHead(userName);
@@ -172,6 +171,7 @@ public class MyDetailsActivity extends AppCompatActivity {
         img_head.setImageBitmap(decodedImage);
 
     }
+
     // 查询age
     public void selectAge() {
         new Thread(new Runnable() {
@@ -266,7 +266,7 @@ public class MyDetailsActivity extends AppCompatActivity {
                 final String userName = intent.getStringExtra("passValueForUser");//MyActivity的传值
                 EntityUserDao.insertHead(imageString, userName);
 
-                ToastUtils.showMsg(this,"上传成功！");
+                ToastUtils.showMsg(this, "上传成功！");
             } catch (Exception e) {
             }
         }

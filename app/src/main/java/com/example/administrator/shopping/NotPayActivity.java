@@ -62,10 +62,10 @@ public class NotPayActivity extends AppCompatActivity {
                 final String userName = intent.getStringExtra("passValue");//登陆后的传值
                 String numbForNoReceived = EntityUserDao.getNumbForReceived(userName);
                 String numbForNopay = EntityUserDao.getNumbForNopay(userName);
-                intent =new Intent(NotPayActivity.this,MyActivity.class);
-                intent.putExtra("passValue",userName);
-                intent.putExtra("numbForNoReceived",numbForNoReceived);
-                intent.putExtra("numbForNopay",numbForNopay);
+                intent = new Intent(NotPayActivity.this, MyActivity.class);
+                intent.putExtra("passValue", userName);
+                intent.putExtra("numbForNoReceived", numbForNoReceived);
+                intent.putExtra("numbForNopay", numbForNopay);
                 startActivity(intent);
 
                 //finish();
@@ -175,7 +175,7 @@ public class NotPayActivity extends AppCompatActivity {
                                 if (isnull.equals(0 + "")) {
                                     Intent intent = null;
                                     EntityUserDao.reConfWallet(goodsPrice, username);
-                                    intent = new Intent(NotPayActivity.this,WalletActivity.class);
+                                    intent = new Intent(NotPayActivity.this, WalletActivity.class);
                                     intent.putExtra("passValue", username);
                                     startActivity(intent);
 

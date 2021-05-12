@@ -49,8 +49,8 @@ public class ReceivedAdapter extends BaseAdapter {
     }
 
 
-
     private OnEditBtnClickListener onEditBtnClickListener;   //修改按钮点击事件的监听实例
+
     public void setOnEditBtnClickListener(OnEditBtnClickListener onEditBtnClickListener) {
         this.onEditBtnClickListener = onEditBtnClickListener;
     }
@@ -103,7 +103,7 @@ public class ReceivedAdapter extends BaseAdapter {
             viewHolder.tv_price = convertView.findViewById(R.id.price);
             //viewHolder.btn_payOrder = convertView.findViewById(R.id.btn_payOrder);
             viewHolder.btn_conformOrder = convertView.findViewById(R.id.btn_conformOrder);
-            viewHolder.tv_kefu=convertView.findViewById(R.id.tv_kefu);
+            viewHolder.tv_kefu = convertView.findViewById(R.id.tv_kefu);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -129,7 +129,6 @@ public class ReceivedAdapter extends BaseAdapter {
                 onEditBtnClickListener.onEditBtnClick(view, position);
             }
         });
-
 
 
         //取消订单

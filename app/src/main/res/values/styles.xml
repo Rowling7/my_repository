@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="mydialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -19,7 +20,7 @@
 
     <style name="spinner_style">
         <item name="android:textColor">@color/colorBlack</item>
-            <item name="android:paddingLeft">5dip</item>
+        <item name="android:paddingLeft">5dip</item>
     </style>
 
 </resources>

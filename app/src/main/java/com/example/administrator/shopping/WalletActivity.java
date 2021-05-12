@@ -82,13 +82,13 @@ public class WalletActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = getIntent();
                 final String userName2 = intent.getStringExtra("passValue");//登陆后的传值
-                Log.i(TAG, "usernmae2: "+userName2);
+                Log.i(TAG, "usernmae2: " + userName2);
                 String userWallet2 = EntityUserDao.getUserWallet2(userName2);//未查到值
-                intent =new Intent(WalletActivity.this,MyActivity.class);
+                intent = new Intent(WalletActivity.this, MyActivity.class);
                 intent.putExtra("passValue", userName2);
                 intent.putExtra("userWallet", userWallet2);
-                Log.i(TAG, "usernmae2: "+userName2);
-                Log.i(TAG, "钱包2.2: "+userWallet2);
+                Log.i(TAG, "usernmae2: " + userName2);
+                Log.i(TAG, "钱包2.2: " + userWallet2);
                 startActivity(intent);
 
                 //finish();
@@ -123,8 +123,6 @@ public class WalletActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-
-
 
 
     }

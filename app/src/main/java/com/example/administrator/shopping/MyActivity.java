@@ -75,7 +75,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 } else
 
                     tv_numbForReceived.setText(numbForNoReceived);
-            }else if (msg.what == 4) {
+            } else if (msg.what == 4) {
                 String numbForStar = (String) msg.obj;
                 if (numbForStar.equals("0")) {
                     tv_numbForStar.setText("");
@@ -107,12 +107,10 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         tv_numbForReceived.setText(numbForNoReceived);
         tv_numbForNopay.setText(numbForNopay);
 
-        tv_wallet=findViewById(R.id.tv_wallet);
+        tv_wallet = findViewById(R.id.tv_wallet);
         final String userWallet = intent.getStringExtra("userWallet");//登陆后的传值
-        Log.i("TAG", "钱包3: "+userWallet);
+        Log.i("TAG", "钱包3: " + userWallet);
         tv_wallet.setText(userWallet);
-
-
 
 
         mainHandler = new Handler(getMainLooper());
@@ -286,7 +284,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 Intent intent = getIntent();
                 final String userName2 = intent.getStringExtra("passValue");//登陆后的传值
                 String userWallet = EntityUserDao.getUserWallet(userName2);
-                Log.i("TAG", "钱包1: "+userWallet);
+                Log.i("TAG", "钱包1: " + userWallet);
                 Message msg = Message.obtain();
                 msg.what = 0;   // 查询结果
                 msg.obj = userWallet;
@@ -376,7 +374,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     }
 
 
-    public  void  dohead(){
+    public void dohead() {
         Intent intent = getIntent();
         final String userName = intent.getStringExtra("passValue");//登陆后的传值
         String imgHead = EntityUserDao.getHead(userName);

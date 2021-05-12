@@ -55,6 +55,7 @@ top栏
             android:text="金额：   ¥"
             android:textColor="@color/colorBlack"
             android:textSize="45dp" />
+
         <TextView
             android:id="@+id/tv_money"
             android:layout_width="0dp"
@@ -66,6 +67,7 @@ top栏
             android:textSize="45dp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_chonsgzhi1"
         android:layout_width="match_parent"
@@ -140,12 +142,14 @@ top栏
             android:textColor="@color/colorPrimary" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/ll_chongzhi2"
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -161,8 +165,9 @@ top栏
             android:layout_weight="3"
             android:layout_height="50dp"
             android:hint="其他金额"
-            android:textColor="@color/colorBlack"/>
+            android:textColor="@color/colorBlack" />
     </LinearLayout>
+
     <Button
         android:id="@+id/btn_pay"
         android:layout_width="match_parent"
@@ -171,8 +176,7 @@ top栏
         android:background="@drawable/shape_corner"
         android:text="充值"
         android:textColor="@color/colorPrimary"
-        android:layout_alignParentBottom="true"/>
-
+        android:layout_alignParentBottom="true" />
 
 
 </RelativeLayout>

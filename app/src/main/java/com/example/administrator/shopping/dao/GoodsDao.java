@@ -225,12 +225,12 @@ public class GoodsDao extends DbOpenHelper {
             pStmt.setLong(1, uuid);
             rs = pStmt.executeQuery();
             while (rs.next()) {
-                goodsAmount= (int) rs.getLong("goodsAmount");
+                goodsAmount = (int) rs.getLong("goodsAmount");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        Log.i("TAG", "??: "+uuid);
+        Log.i("TAG", "??: " + uuid);
         return goodsAmount;
     }
 }

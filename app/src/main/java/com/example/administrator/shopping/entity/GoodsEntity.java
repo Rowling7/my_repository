@@ -18,7 +18,7 @@ public class GoodsEntity {
 
 
     private String number;
-    private  String amount;
+    private String amount;
 
 
     public GoodsEntity() {

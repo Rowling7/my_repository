@@ -5,13 +5,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 //sett 商品详情 支付成功  （灰色） 弹窗 直接跳转   TOast提示中间  评论 角标  商品详情页面  单位  多用户登录
 //商品数  星好评  各种评价
 public class DbOpenHelper {
 
     /*全局静态 */
     private static final String DRIVERS = "com.mysql.jdbc.Driver";
-   // private static final String URL = "jdbc:mysql://172.30.243.110:3306/bishe?useUnicode=true&characterEncoding=utf8";
+    // private static final String URL = "jdbc:mysql://172.30.243.110:3306/bishe?useUnicode=true&characterEncoding=utf8";
     private static final String URL = "jdbc:mysql://172.29.90.112:3306/bishe?useUnicode=true&characterEncoding=utf8";
     private static final String USER = "cys";
     private static final String PWD = "123456";

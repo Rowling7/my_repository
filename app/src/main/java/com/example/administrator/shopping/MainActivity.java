@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         final String userNameForMain = intent.getStringExtra("passValueForMain");//MyActivity的传值
 
 
-
         //主线程使用网络请求
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);

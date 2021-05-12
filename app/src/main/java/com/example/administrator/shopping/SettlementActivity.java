@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
 import com.example.administrator.shopping.Impl.OnLessBtnClickListener;
+import com.example.administrator.shopping.adapter.SettlementAdapter;
 import com.example.administrator.shopping.adapter.ShoppingCartAdapter;
 import com.example.administrator.shopping.dao.AddressDao;
 import com.example.administrator.shopping.dao.EntityUserDao;
@@ -45,7 +46,14 @@ public class SettlementActivity extends AppCompatActivity {
     private TextView tv_phone;
     private Spinner s_select;
     public static final String TAG = "OUTPUT";
-    private Handler mainHandler;// 主线程
+
+    /*购物车列表*/
+    private ListView lv_settlement;
+    private ShoppingCartDao shoppingCartDao;
+    private List<ShoppingCartEntity> settlementList;
+    private SettlementAdapter settlementAdapter;
+    private Handler mainHandler;     // 主线程
+
     private final Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -121,6 +129,48 @@ public class SettlementActivity extends AppCompatActivity {
         doQueryCount();
         doCount();
         selectPhone();
+        initView();
+        /*填充列表*/
+        lv_settlement = findViewById(R.id.lv_settlement);
+        loadCartDb();
+    }
+
+
+
+
+    private void initView() {
+        mainHandler = new Handler(getMainLooper());//获取主线程
+        shoppingCartDao = new ShoppingCartDao();
+    }
+
+    /*填充商品列表*/
+    private void loadCartDb() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = getIntent();
+                final String passValue = intent.getStringExtra("passValue");
+                settlementList = shoppingCartDao.getCartListById(passValue);
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        showCartLvData();
+                        doQueryCount();
+                    }
+                });
+            }
+        }).start();
+    }
+
+    //展示数据
+    private void showCartLvData() {
+        if (settlementAdapter == null) {
+            settlementAdapter = new SettlementAdapter(this, settlementList);
+            lv_settlement.setAdapter(settlementAdapter);
+        } else {
+            settlementAdapter.setSettlementList(settlementList);
+            settlementAdapter.notifyDataSetChanged();
+        }
     }
 
 
@@ -210,7 +260,7 @@ public class SettlementActivity extends AppCompatActivity {
                                 if (isnull.equals(0 + "")) {
                                     Intent intent = null;
                                     EntityUserDao.reConfWallet(goodsPrice, username);
-                                    intent = new Intent(SettlementActivity.this,WalletActivity.class);
+                                    intent = new Intent(SettlementActivity.this, WalletActivity.class);
                                     intent.putExtra("passValue", username);
                                     startActivity(intent);
                                     ToastUtils.showMsg(SettlementActivity.this, "余额不足无法完成支付！");
@@ -235,6 +285,7 @@ public class SettlementActivity extends AppCompatActivity {
             }
         }).start();
     }
+
 
 }
 
