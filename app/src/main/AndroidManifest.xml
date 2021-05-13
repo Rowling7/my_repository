@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".GoodsDetailActivity"></activity>
+        <activity android:name=".HisWalletActivity"></activity>
+        <activity android:name=".GoodsDetailActivity" />
         <activity android:name=".KefuActivity" />
         <activity android:name=".SetpingjiaActivity" />
         <activity android:name=".adapter.SetpingjiaActivity" />

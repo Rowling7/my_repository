@@ -300,17 +300,17 @@ public class MainActivity extends AppCompatActivity {
                 final GoodsEntity item = goodsList.get(position);
                 goodsDao.updateNumber();
                 doInsCart(item.getUuid());
-                }
+            }
         });
         goodsAdapter.setOnDetailsBtnClickListener(new OnDetailsBtnClickListener() {
             @Override
             public void OnDetailsBtnClick(View view, int position) {
-                final GoodsEntity item =goodsList.get(position);
+                final GoodsEntity item = goodsList.get(position);
                 Intent intent = getIntent();
                 final String userNameForMain = intent.getStringExtra("passValueForMain");//MyActivity的传值
                 intent = new Intent(MainActivity.this, GoodsDetailActivity.class);
                 intent.putExtra("passValue", item.getUuid());
-                intent.putExtra("username",userNameForMain);
+                intent.putExtra("username", userNameForMain);
                 startActivity(intent);
             }
         });

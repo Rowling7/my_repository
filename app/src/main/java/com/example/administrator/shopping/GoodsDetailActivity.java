@@ -52,6 +52,7 @@ public class GoodsDetailActivity extends AppCompatActivity {
 
 
     public static final String TAG = "GoodsDetails";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,6 +142,7 @@ public class GoodsDetailActivity extends AppCompatActivity {
             }
         }).start();
     }
+
     public void selectGoodsPlace() {
         new Thread(new Runnable() {
             @Override
@@ -156,6 +158,7 @@ public class GoodsDetailActivity extends AppCompatActivity {
             }
         }).start();
     }
+
     public void selectGoodsDescription() {
         new Thread(new Runnable() {
             @Override
@@ -179,7 +182,7 @@ public class GoodsDetailActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 final String uuid = intent.getStringExtra("passValue");
                 final String username = intent.getStringExtra("username");
-                int iRow = GoodsDao.insCart(uuid,username);
+                int iRow = GoodsDao.insCart(uuid, username);
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -194,7 +197,6 @@ public class GoodsDetailActivity extends AppCompatActivity {
             }
         }).start();
     }
-
 
 
 }

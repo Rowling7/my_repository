@@ -38,6 +38,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     private TextView tv_numbForNopay;
     private TextView tv_numbForReceived;
     private TextView tv_numbForStar;
+    private TextView tv_hisWallet;
 
     private String Name;
     private Handler mainHandler;     // 主线程
@@ -104,7 +105,16 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         Log.i("TAG", "钱包3: " + userWallet);
         tv_wallet.setText(userWallet);
 
-
+        tv_hisWallet = findViewById(R.id.tv_hisWallet);
+        tv_hisWallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = null;
+                intent = new Intent(MyActivity.this, HisWalletActivity.class);
+                intent.putExtra("passValue", userName2);//传递“id”至MainActivity
+                startActivity(intent);
+            }
+        });
         mainHandler = new Handler(getMainLooper());
 
         go_back = findViewById(R.id.go_back);

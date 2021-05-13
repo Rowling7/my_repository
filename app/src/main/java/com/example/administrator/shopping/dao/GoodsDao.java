@@ -243,13 +243,14 @@ public class GoodsDao extends DbOpenHelper {
             pStmt.setString(1, uuid);
             rs = pStmt.executeQuery();
             while (rs.next()) {
-                imgGoods =  rs.getString("picture");
+                imgGoods = rs.getString("picture");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return imgGoods;
     }
+
     public static String getGoodsName(String uuid) {
         String name = null;
         try {
@@ -259,7 +260,7 @@ public class GoodsDao extends DbOpenHelper {
             pStmt.setString(1, uuid);
             rs = pStmt.executeQuery();
             while (rs.next()) {
-                name =  rs.getString("name");
+                name = rs.getString("name");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -267,6 +268,7 @@ public class GoodsDao extends DbOpenHelper {
         Log.i("TAG", "??: " + uuid);
         return name;
     }
+
     public static String getGoodsPrice(String uuid) {
         String price = null;
         try {
@@ -276,13 +278,14 @@ public class GoodsDao extends DbOpenHelper {
             pStmt.setString(1, uuid);
             rs = pStmt.executeQuery();
             while (rs.next()) {
-                price =  rs.getString("price");
+                price = rs.getString("price");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return price;
     }
+
     public static String getGoodsPlace(String uuid) {
         String place = null;
         try {
@@ -292,13 +295,14 @@ public class GoodsDao extends DbOpenHelper {
             pStmt.setString(1, uuid);
             rs = pStmt.executeQuery();
             while (rs.next()) {
-                place =  rs.getString("originplace");
+                place = rs.getString("originplace");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return place;
     }
+
     public static String getGoodsDescription(String uuid) {
         String description = null;
         try {
@@ -308,7 +312,7 @@ public class GoodsDao extends DbOpenHelper {
             pStmt.setString(1, uuid);
             rs = pStmt.executeQuery();
             while (rs.next()) {
-                description =  rs.getString("description");
+                description = rs.getString("description");
             }
         } catch (Exception ex) {
             ex.printStackTrace();

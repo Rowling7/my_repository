@@ -230,4 +230,31 @@ public class OrderDao extends DbOpenHelper {
         return iRow;
     }
 
+
+    // 查询所有订单信息
+    public List<OrderEntity> getHisWallet(String username) {
+        List<OrderEntity> list = new ArrayList<>();
+        try {
+            getConnection();
+            Log.i("TAG", "getHisWallet: " + username);
+            String sql = "SELECT * FROM BISHE.order WHERE USERNAME =?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, username);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                OrderEntity item = new OrderEntity();
+                // item.setUuid(rs.getLong("uuid"));
+                item.setGoodsprice(rs.getString("GOODSPRICE"));
+                item.setDatetime(rs.getString("create_time"));
+                list.add(item);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        Log.i("TAG", "getHisWallet: " + list);
+        return list;
+    }
+
 }

@@ -239,9 +239,6 @@ public class SettlementActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Looper.prepare();
-                Log.i(TAG, "run: " + goodsCount);
-                Log.i(TAG, "run: " + goodsPrice);
-                Log.i(TAG, "run: " + datetime);
                 OrderDao.insOrder(goodsCount, goodsPrice, username, datetime);
                 ToastUtils.showMsg(SettlementActivity.this, "订单已创建，正在前往支付");
                 final PayPasswordDialog dialog = new PayPasswordDialog(SettlementActivity.this, R.style.mydialog);

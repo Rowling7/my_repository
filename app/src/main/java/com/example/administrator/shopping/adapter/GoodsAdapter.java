@@ -51,7 +51,8 @@ public class GoodsAdapter extends BaseAdapter {
     public void setOnInsBtnClickListener(OnInsBtnClickListener onInsBtnClickListener) {
         this.onInsBtnClickListener = onInsBtnClickListener;
     }
-    public  void setOnDetailsBtnClickListener(OnDetailsBtnClickListener onDetailsBtnClickListener){
+
+    public void setOnDetailsBtnClickListener(OnDetailsBtnClickListener onDetailsBtnClickListener) {
         this.onDetailsBtnClickListener = onDetailsBtnClickListener;
     }
 
@@ -123,7 +124,7 @@ public class GoodsAdapter extends BaseAdapter {
         viewHolder.iv_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onDetailsBtnClickListener.OnDetailsBtnClick(v,position);
+                onDetailsBtnClickListener.OnDetailsBtnClick(v, position);
             }
         });
 
