@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.administrator.shopping.Impl.OnDetailsBtnClickListener;
 import com.example.administrator.shopping.Impl.OnInsBtnClickListener;
 import com.example.administrator.shopping.dao.GoodsDao;
 import com.example.administrator.shopping.entity.GoodsEntity;
@@ -299,6 +300,18 @@ public class MainActivity extends AppCompatActivity {
                 final GoodsEntity item = goodsList.get(position);
                 goodsDao.updateNumber();
                 doInsCart(item.getUuid());
+                }
+        });
+        goodsAdapter.setOnDetailsBtnClickListener(new OnDetailsBtnClickListener() {
+            @Override
+            public void OnDetailsBtnClick(View view, int position) {
+                final GoodsEntity item =goodsList.get(position);
+                Intent intent = getIntent();
+                final String userNameForMain = intent.getStringExtra("passValueForMain");//MyActivity的传值
+                intent = new Intent(MainActivity.this, GoodsDetailActivity.class);
+                intent.putExtra("passValue", item.getUuid());
+                intent.putExtra("username",userNameForMain);
+                startActivity(intent);
             }
         });
     }

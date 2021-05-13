@@ -392,7 +392,7 @@ public class EntityUserDao extends DbOpenHelper {
         String numbForStar = null;
         try {
             getConnection();
-            String sql = "SELECT COUNT(DESCRIPTION) as numbForStar FROM BISHE.ORDER  WHERE STATUS = 1 AND ISSHOUHUO = 0 AND ISEXIST =1 AND USERNAME = ?";
+            String sql = "SELECT COUNT(UUID) as numbForStar FROM BISHE.ORDER  WHERE STATUS = 1 AND ISSHOUHUO = 0 AND ISEXIST =1 AND USERNAME = ? and DESCRIPTION IS NOT NULL";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userName);
             rs = pStmt.executeQuery();

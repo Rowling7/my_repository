@@ -11,7 +11,6 @@ import java.util.List;
 
 public class GoodsDao extends DbOpenHelper {
 
-
     // 查询所有商品信息
     public List<GoodsEntity> getAllGoodsList() {
         List<GoodsEntity> list = new ArrayList<>();
@@ -232,5 +231,88 @@ public class GoodsDao extends DbOpenHelper {
         }
         Log.i("TAG", "??: " + uuid);
         return goodsAmount;
+    }
+
+
+    public static String getGoodsPicture(String uuid) {
+        String imgGoods = null;
+        try {
+            getConnection();
+            String sql = "SELECT picture FROM goods WHERE uuid = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, uuid);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                imgGoods =  rs.getString("picture");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return imgGoods;
+    }
+    public static String getGoodsName(String uuid) {
+        String name = null;
+        try {
+            getConnection();
+            String sql = "SELECT name FROM goods WHERE uuid = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, uuid);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                name =  rs.getString("name");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        Log.i("TAG", "??: " + uuid);
+        return name;
+    }
+    public static String getGoodsPrice(String uuid) {
+        String price = null;
+        try {
+            getConnection();
+            String sql = "SELECT price FROM goods WHERE uuid = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, uuid);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                price =  rs.getString("price");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return price;
+    }
+    public static String getGoodsPlace(String uuid) {
+        String place = null;
+        try {
+            getConnection();
+            String sql = "SELECT originplace FROM goods WHERE uuid = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, uuid);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                place =  rs.getString("originplace");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return place;
+    }
+    public static String getGoodsDescription(String uuid) {
+        String description = null;
+        try {
+            getConnection();
+            String sql = "SELECT description FROM goods WHERE uuid = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, uuid);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                description =  rs.getString("description");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return description;
     }
 }

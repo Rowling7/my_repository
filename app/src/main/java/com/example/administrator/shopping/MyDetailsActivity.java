@@ -135,10 +135,6 @@ public class MyDetailsActivity extends AppCompatActivity {
             final String userNameForEdit = intent.getStringExtra("passValueForUser");
             switch (v.getId()) {
 
-                /*case R.id.tv_age:
-                    intent = new Intent(MyDetailsActivity.this, EditAgeActivity.class);
-                    intent.putExtra("passValueForEdit", userNameForEdit);
-                    break;*/
                 case R.id.tv_phone:
                     intent = new Intent(MyDetailsActivity.this, EditPhoneActivity.class);
                     intent.putExtra("passValueForEdit", userNameForEdit);

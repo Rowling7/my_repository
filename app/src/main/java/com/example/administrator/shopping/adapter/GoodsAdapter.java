@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.shopping.Impl.OnDelBtnClickListener;
+import com.example.administrator.shopping.Impl.OnDetailsBtnClickListener;
 import com.example.administrator.shopping.Impl.OnEditBtnClickListener;
 import com.example.administrator.shopping.Impl.OnInsBtnClickListener;
 import com.example.administrator.shopping.entity.GoodsEntity;
@@ -41,6 +42,7 @@ public class GoodsAdapter extends BaseAdapter {
 
     public final String TAG = "OUTPUT";
     private OnInsBtnClickListener onInsBtnClickListener;     //添加按钮点击事件的监听实例
+    private OnDetailsBtnClickListener onDetailsBtnClickListener;
 
     public GoodsAdapter() {
 
@@ -48,6 +50,9 @@ public class GoodsAdapter extends BaseAdapter {
 
     public void setOnInsBtnClickListener(OnInsBtnClickListener onInsBtnClickListener) {
         this.onInsBtnClickListener = onInsBtnClickListener;
+    }
+    public  void setOnDetailsBtnClickListener(OnDetailsBtnClickListener onDetailsBtnClickListener){
+        this.onDetailsBtnClickListener = onDetailsBtnClickListener;
     }
 
     public GoodsAdapter(Context context, List<GoodsEntity> goodsList) {
@@ -100,8 +105,8 @@ public class GoodsAdapter extends BaseAdapter {
         GoodsEntity goods = goodsList.get(position);
         viewHolder.tv_title.setText(goods.getName());
         viewHolder.tv_price2.setText(goods.getPrice());
-        viewHolder.tv_place.setText(goods.getOriginPlace());
-        viewHolder.tv_description.setText(goods.getDescription());
+        //viewHolder.tv_place.setText(goods.getOriginPlace());
+        //viewHolder.tv_description.setText(goods.getDescription());
 
         //mysql 读取图片 转成base64 在转回来
         byte[] imageBytes = Base64.decode(goods.getPicture(), Base64.DEFAULT);
@@ -113,6 +118,12 @@ public class GoodsAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 onInsBtnClickListener.OnInsBtnClick(v, position);
+            }
+        });
+        viewHolder.iv_picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onDetailsBtnClickListener.OnDetailsBtnClick(v,position);
             }
         });
 
