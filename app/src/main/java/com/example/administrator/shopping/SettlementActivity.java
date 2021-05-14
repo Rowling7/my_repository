@@ -240,6 +240,7 @@ public class SettlementActivity extends AppCompatActivity {
             public void run() {
                 Looper.prepare();
                 OrderDao.insOrder(goodsCount, goodsPrice, username, datetime);
+                Log.i(TAG, "run1: "+datetime);
                 ToastUtils.showMsg(SettlementActivity.this, "订单已创建，正在前往支付");
                 final PayPasswordDialog dialog = new PayPasswordDialog(SettlementActivity.this, R.style.mydialog);
                 dialog.setDialogClick(new PayPasswordDialog.DialogClick() {
@@ -254,13 +255,15 @@ public class SettlementActivity extends AppCompatActivity {
                                 String isnull = EntityUserDao.confWallet(goodsPrice, username);
                                 if (isnull.equals(0 + "")) {
                                     Intent intent = null;
-                                    EntityUserDao.reConfWallet(goodsPrice, username);
+                                    //EntityUserDao.reConfWallet(goodsPrice, username);
                                     intent = new Intent(SettlementActivity.this, WalletActivity.class);
                                     intent.putExtra("passValue", username);
                                     startActivity(intent);
                                     ToastUtils.showMsg(SettlementActivity.this, "余额不足无法完成支付！");
-                                } else {
-                                    OrderDao.updateStatus(username);//更新订单
+                                } else if(isnull.equals(1+"")){
+                                    Log.i(TAG, "run2: "+datetime);
+                                    OrderDao.updateStatus2(datetime);//更新订单
+                                    Log.i(TAG, "run2: "+datetime);
                                     EntityUserDao.updateWallet(goodsPrice, username);//更新钱包余额
                                     ToastUtils.showMsg(SettlementActivity.this, "支付完成,可在待收货中查看");
                                     ShoppingCartDao.delAllCart(username);//清空购物车

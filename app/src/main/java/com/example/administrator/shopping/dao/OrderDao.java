@@ -16,7 +16,7 @@ public class OrderDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();
-            String sql = "INSERT INTO `bishe`.`order`(`GOODSCOUNT`, `GOODSPRICE`, `CREATE_TIME`, `USERNAME`, `STATUS`, `ISEXIST`,`isshouhuo`,`NUMBER`)\n" +
+            String sql = "INSERT INTO `bishe`.`order`(`GOODSCOUNT`, `GOODSPRICE`, `CREATE_TIME`, `USERNAME`, `STATUS`, `ISEXIST`,`isshouhuo`)\n" +
                     "VALUES (?,?,?, ?, '0', '1','1')";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, goodsCount);
@@ -62,7 +62,6 @@ public class OrderDao extends DbOpenHelper {
     }*/
 
 
-    /*update——更改地址*/
     public static int updateStatus(String username) {
         int iRow = 0;
         try {
@@ -79,6 +78,23 @@ public class OrderDao extends DbOpenHelper {
         Log.i("iRow2", "updateStatus: " + iRow);
         return iRow;
     }
+    public static int updateStatus2(String datetime) {
+        int iRow = 0;
+        try {
+            getConnection();
+            String sql = "UPDATE `bishe`.`order` SET  `STATUS` = '1'WHERE `create_time` = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, datetime);
+            iRow = pStmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        Log.i("iRow2", "updateStatus: " + iRow);
+        return iRow;
+    }
+
 
 
     // 查询所有订单信息
@@ -86,7 +102,7 @@ public class OrderDao extends DbOpenHelper {
         List<OrderEntity> list = new ArrayList<>();
         try {
             getConnection();
-            String sql = "select * from bishe.order where username = ? and status = 1 and isshouhuo = 1";
+            String sql = "select * from bishe.order where username = ? and status = 1 and isshouhuo = 1 and isexist=1";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, username);
             rs = pStmt.executeQuery();
@@ -109,6 +125,7 @@ public class OrderDao extends DbOpenHelper {
     // 查询所有订单信息
     public List<OrderEntity> getNotPayOrderList(String username) {
         List<OrderEntity> list = new ArrayList<>();
+       // Log.i("TAG", "payOrder: "+uuid);
         try {
             getConnection();
             String sql = "select * from bishe.order where username = ? and status = 0 and isexist = 1";
@@ -151,6 +168,7 @@ public class OrderDao extends DbOpenHelper {
 
     public static int payOrder(long uuid) {
         int iRow = 0;
+        Log.i("TAG", "payOrder: "+uuid);
         try {
             getConnection();   // 取得连接信息
             String sql = "UPDATE `bishe`.`order` SET `status` = '1' WHERE `UUID` = ?";//真
@@ -257,4 +275,23 @@ public class OrderDao extends DbOpenHelper {
         return list;
     }
 
+    /*realname*//*
+    public static String selectOrderDatetime(String datetime) {
+        String datetime3 = null;   // 购物车总价格
+
+        try {
+            getConnection();
+            String sql = "select uuid from bishe.order where datetime=?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, datetime);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                datetime3 = rs.getString("datetime");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return datetime3;
+    }
+*/
 }
