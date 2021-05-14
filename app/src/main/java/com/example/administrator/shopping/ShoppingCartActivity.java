@@ -243,7 +243,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             @Override
             public void run() {
                 final int iRow = ShoppingCartDao.doLessCart(uuid);
-                int goodsAmount = GoodsDao.getGoodsAmount(uuid);
+                int goodsAmount = ShoppingCartDao.getGoodsAmount(uuid);
                 if (goodsAmount == 0) {
                     ShoppingCartDao.delGoods(uuid);
                     mainHandler.post(new Runnable() {

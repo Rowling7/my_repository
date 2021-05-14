@@ -16,7 +16,7 @@ public class OrderDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();
-            String sql = "INSERT INTO `bishe`.`order`(`GOODSCOUNT`, `GOODSPRICE`, `CREATE_TIME`, `USERNAME`, `STATUS`, `ISEXIST`,`isshouhuo`)\n" +
+            String sql = "INSERT INTO `bishe`.`order`(`GOODSCOUNT`, `GOODSPRICE`, `CREATE_TIME`, `USERNAME`, `STATUS`, `ISEXIST`,`isshouhuo`,`NUMBER`)\n" +
                     "VALUES (?,?,?, ?, '0', '1','1')";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, goodsCount);

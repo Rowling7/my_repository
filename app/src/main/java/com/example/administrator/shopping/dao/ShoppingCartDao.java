@@ -21,7 +21,7 @@ public class ShoppingCartDao extends DbOpenHelper {
                     "FROM shoppingcart sc\n" +
                     "LEFT JOIN goods g ON sc.GOODS_UUID = g.UUID \n" +
                     "WHERE sc.USERNAME = ? AND SC.ISEXIST = 1";*/
-            String sql = "SELECT sc.uuid ,g.NAME as goodsName, g.price,g.picture, g.amount,g.originplace,g.description,g.uuid as goodsUuid\n" +
+            String sql = "SELECT sc.uuid ,g.NAME as goodsName, g.price,g.picture, sc.number,g.originplace,g.description,g.uuid as goodsUuid\n" +
                     "FROM shoppingcart sc\n" +
                     "LEFT JOIN goods g ON sc.GOODS_UUID = g.UUID \n" +
                     "WHERE sc.USERNAME = ? AND SC.ISEXIST = 1 AND amount >0";
@@ -33,7 +33,7 @@ public class ShoppingCartDao extends DbOpenHelper {
                 item.setUuid(rs.getLong("sc.uuid"));
                 item.setName(rs.getString("goodsName"));
                 item.setPrice(rs.getString("price"));
-                item.setNumber(rs.getString("amount"));
+                item.setNumber(rs.getString("number"));
                 item.setDescription(rs.getString("description"));
                 item.setOriginPlace(rs.getString("originPlace"));
                 item.setPicture(rs.getString("picture"));
@@ -54,14 +54,13 @@ public class ShoppingCartDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            /*String sql = "UPDATE `bishe`.`goods`\n" +
-                    "LEFT JOIN shoppingcart sc ON sc.GOODS_UUID = goods.UUID\n" +
+            String sql = "UPDATE `bishe`.`shoppingcart`\n" +
                     "SET `number` = number+1 \n" +
-                    "WHERE sc.UUID = ?";//真*/
-            String sql = "UPDATE `bishe`.`goods`\n" +
+                    "WHERE UUID = ?";//真
+           /* String sql = "UPDATE `bishe`.`goods`\n" +
                     "LEFT JOIN shoppingcart sc ON sc.GOODS_UUID = goods.UUID\n" +
                     "SET `amount` = amount+1 \n" +
-                    "WHERE sc.UUID = ?";//真
+                    "WHERE sc.UUID = ?";//真*/
             pStmt = conn.prepareStatement(sql);
             pStmt.setLong(1, uuid);
             iRow = pStmt.executeUpdate();
@@ -78,14 +77,13 @@ public class ShoppingCartDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            /*String sql = "UPDATE `bishe`.`goods`\n" +
-                    "LEFT JOIN shoppingcart sc ON sc.GOODS_UUID = goods.UUID\n" +
+            String sql = "UPDATE `bishe`.`shoppingcart`\n" +
                     "SET `number` = number-1 \n" +
-                    "WHERE sc.UUID = ?";//真*/
-            String sql = "UPDATE `bishe`.`goods`\n" +
+                    "WHERE UUID = ?";//真
+           /* String sql = "UPDATE `bishe`.`goods`\n" +
                     "LEFT JOIN shoppingcart sc ON sc.GOODS_UUID = goods.UUID\n" +
                     "SET `amount` = amount-1 \n" +
-                    "WHERE sc.UUID = ?";//真
+                    "WHERE sc.UUID = ?";//真*/
             //String sql = "update shoppingcart set isexist=0 where uuid=?";//伪
             pStmt = conn.prepareStatement(sql);
             pStmt.setLong(1, uuid);
@@ -152,7 +150,8 @@ public class ShoppingCartDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "DELETE from  shoppingcart  WHERE username  = ?";
+            String sql = " UPDATE `bishe`.`shoppingcart` SET  `ISEXIST` = 0 WHERE `USERNAME` =?";
+            /*  String sql = "DELETE from  shoppingcart  WHERE username  = ?";*/
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, userNameForCart);
             iRow = pStmt.executeUpdate();
@@ -180,5 +179,27 @@ public class ShoppingCartDao extends DbOpenHelper {
         }
         return iRow;
     }
+
+
+    /*查询goodsAmount*/
+    public static int getGoodsAmount(long uuid) {
+        Log.i("TAG", "getGoodsAmount: " +uuid);
+        int goodsAmount = 0;
+        try {
+            getConnection();
+            String sql = "SELECT number AS goodsAmount FROM shoppingcart WHERE UUID = ?";
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setLong(1, uuid);
+            rs = pStmt.executeQuery();
+            while (rs.next()) {
+                goodsAmount = (int) rs.getLong("goodsAmount");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        Log.i("TAG", "??: " + goodsAmount);
+        return goodsAmount;
+    }
+
 
 }

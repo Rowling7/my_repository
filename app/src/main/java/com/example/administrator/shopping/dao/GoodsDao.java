@@ -16,7 +16,7 @@ public class GoodsDao extends DbOpenHelper {
         List<GoodsEntity> list = new ArrayList<>();
         try {
             getConnection();
-            String sql = "select uuid,name,price,description,originPlace,picture,uuid from bishe.goods";
+            String sql = "select uuid,name,price,description,originPlace,picture,uuid from bishe.goods where goods.isexist = 1";
             pStmt = conn.prepareStatement(sql);
             rs = pStmt.executeQuery();
             while (rs.next()) {
@@ -75,7 +75,7 @@ public class GoodsDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "INSERT INTO shoppingcart(GOODS_UUID, ISEXIST, USERNAME) VALUES (?, '1', ?);\n";
+            String sql = "INSERT INTO shoppingcart(GOODS_UUID, ISEXIST, USERNAME,NUMBER) VALUES (?, '1', ?,1);\n";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, uuid);
             pStmt.setString(2, username);
@@ -211,27 +211,6 @@ public class GoodsDao extends DbOpenHelper {
         return iRow;
     }
 
-    /*查询goodsAmount*/
-    public static int getGoodsAmount(long uuid) {
-        int goodsAmount = 0;
-        try {
-            getConnection();
-            String sql = "SELECT amount AS goodsAmount\n" +
-                    "FROM goods g\n" +
-                    "LEFT JOIN shoppingcart sc ON sc.GOODS_UUID = g.UUID\n" +
-                    "WHERE SC.UUID =?";
-            pStmt = conn.prepareStatement(sql);
-            pStmt.setLong(1, uuid);
-            rs = pStmt.executeQuery();
-            while (rs.next()) {
-                goodsAmount = (int) rs.getLong("goodsAmount");
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        Log.i("TAG", "??: " + uuid);
-        return goodsAmount;
-    }
 
 
     public static String getGoodsPicture(String uuid) {
