@@ -174,12 +174,12 @@ public class NotPayActivity extends AppCompatActivity {
                                 String isnull = EntityUserDao.confWallet(goodsPrice, username);
                                 if (isnull.equals(0 + "")) {
                                     Intent intent = null;
-                                   // EntityUserDao.reConfWallet(goodsPrice, username);
+                                    // EntityUserDao.reConfWallet(goodsPrice, username);
                                     intent = new Intent(NotPayActivity.this, WalletActivity.class);
                                     intent.putExtra("passValue", username);
                                     startActivity(intent);
                                     ToastUtils.showMsg(NotPayActivity.this, "余额不足无法完成支付！");
-                                } else if(isnull.equals(1+"")) {
+                                } else if (isnull.equals(1 + "")) {
                                     // OrderDao.updateStatus(username);//更新订单
                                     EntityUserDao.updateWallet(goodsPrice, username);//更新钱包余额
                                     ToastUtils.showMsg(NotPayActivity.this, "支付完成,可在待收货中查看");

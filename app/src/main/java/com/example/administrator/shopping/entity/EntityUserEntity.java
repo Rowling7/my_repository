@@ -16,6 +16,7 @@ public class EntityUserEntity {
     private String realName;
     private String create_time;
     private String head;
+    private String birthday;
 
     private String numbForNopay;
     private String numbForReceived;
@@ -42,10 +43,19 @@ public class EntityUserEntity {
                 ", realName='" + realName + '\'' +
                 ", create_time='" + create_time + '\'' +
                 ", head='" + head + '\'' +
+                ", birthday='" + birthday + '\'' +
                 ", numbForNopay='" + numbForNopay + '\'' +
                 ", numbForReceived='" + numbForReceived + '\'' +
                 ", isnull='" + isnull + '\'' +
                 '}';
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getHead() {

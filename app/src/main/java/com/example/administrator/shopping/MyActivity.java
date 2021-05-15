@@ -380,9 +380,16 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         Intent intent = getIntent();
         final String userName = intent.getStringExtra("passValue");//登陆后的传值
         String imgHead = EntityUserDao.getHead(userName);
-        byte[] imageBytes = Base64.decode(imgHead, Base64.DEFAULT);
-        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-        imgLogin.setImageBitmap(decodedImage);
+        if (imgHead != null) {
+            byte[] imageBytes = Base64.decode(imgHead, Base64.DEFAULT);
+            Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            imgLogin.setImageBitmap(decodedImage);
+        } else if (imgHead == null) {
+
+            imgLogin.setBackgroundResource(R.drawable.default_avatar);
+
+        }
+
 
     }
 

@@ -212,7 +212,6 @@ public class GoodsDao extends DbOpenHelper {
     }
 
 
-
     public static String getGoodsPicture(String uuid) {
         String imgGoods = null;
         try {

@@ -183,7 +183,7 @@ public class ShoppingCartDao extends DbOpenHelper {
 
     /*查询goodsAmount*/
     public static int getGoodsAmount(long uuid) {
-        Log.i("TAG", "getGoodsAmount: " +uuid);
+        Log.i("TAG", "getGoodsAmount: " + uuid);
         int goodsAmount = 0;
         try {
             getConnection();

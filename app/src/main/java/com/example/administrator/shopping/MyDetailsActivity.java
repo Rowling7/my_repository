@@ -162,9 +162,15 @@ public class MyDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String userName = intent.getStringExtra("passValueForUser");//登陆后的传值
         String imgHead = EntityUserDao.getHead(userName);
-        byte[] imageBytes = Base64.decode(imgHead, Base64.DEFAULT);
-        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-        img_head.setImageBitmap(decodedImage);
+        if (imgHead != null) {
+            byte[] imageBytes = Base64.decode(imgHead, Base64.DEFAULT);
+            Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            img_head.setImageBitmap(decodedImage);
+        } else if (imgHead == null) {
+
+            img_head.setBackgroundResource(R.drawable.default_avatar);
+
+        }
 
     }
 

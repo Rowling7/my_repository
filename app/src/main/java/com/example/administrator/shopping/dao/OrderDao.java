@@ -78,6 +78,7 @@ public class OrderDao extends DbOpenHelper {
         Log.i("iRow2", "updateStatus: " + iRow);
         return iRow;
     }
+
     public static int updateStatus2(String datetime) {
         int iRow = 0;
         try {
@@ -94,7 +95,6 @@ public class OrderDao extends DbOpenHelper {
         Log.i("iRow2", "updateStatus: " + iRow);
         return iRow;
     }
-
 
 
     // 查询所有订单信息
@@ -125,7 +125,7 @@ public class OrderDao extends DbOpenHelper {
     // 查询所有订单信息
     public List<OrderEntity> getNotPayOrderList(String username) {
         List<OrderEntity> list = new ArrayList<>();
-       // Log.i("TAG", "payOrder: "+uuid);
+        // Log.i("TAG", "payOrder: "+uuid);
         try {
             getConnection();
             String sql = "select * from bishe.order where username = ? and status = 0 and isexist = 1";
@@ -168,7 +168,7 @@ public class OrderDao extends DbOpenHelper {
 
     public static int payOrder(long uuid) {
         int iRow = 0;
-        Log.i("TAG", "payOrder: "+uuid);
+        Log.i("TAG", "payOrder: " + uuid);
         try {
             getConnection();   // 取得连接信息
             String sql = "UPDATE `bishe`.`order` SET `status` = '1' WHERE `UUID` = ?";//真

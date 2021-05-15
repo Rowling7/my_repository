@@ -12,7 +12,7 @@ public class DbOpenHelper {
 
     /*全局静态 */
     private static final String DRIVERS = "com.mysql.jdbc.Driver";
-     //private static final String URL = "jdbc:mysql://172.30.243.110:3306/bishe?useUnicode=true&characterEncoding=utf8";
+    //private static final String URL = "jdbc:mysql://172.30.243.110:3306/bishe?useUnicode=true&characterEncoding=utf8";
     private static final String URL = "jdbc:mysql://172.29.90.224:3306/bishe?useUnicode=true&characterEncoding=utf8";
     private static final String USER = "cys";
     private static final String PWD = "123456";
@@ -21,6 +21,7 @@ public class DbOpenHelper {
     public static Statement stmt;    // 命令集
     public static PreparedStatement pStmt;   // 预编译命令集
     public static ResultSet rs;     // 结果集
+
 
     // 连接方法
     public static void getConnection() {
@@ -55,4 +56,5 @@ public class DbOpenHelper {
             ex.printStackTrace();
         }
     }
+
 }
