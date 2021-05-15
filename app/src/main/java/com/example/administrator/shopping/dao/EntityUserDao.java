@@ -42,16 +42,16 @@ public class EntityUserDao extends DbOpenHelper {
         int iRow = 0;
         try {
             getConnection();   // 取得连接信息
-            String sql = "INSERT INTO entityuser(PASSWORD, USERNAME, SEX, PHONE, AGE, realname,area,create_time,isexist) VALUES (?,?,?,?,?,?,?,?,1)";
+            String sql = "INSERT INTO entityuser(PASSWORD, USERNAME, SEX, PHONE, realname,area,create_time,isexist) VALUES (?,?,?,?,?,?,?,1)";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, entityUserEntity.getPassword());
             pStmt.setString(2, entityUserEntity.getUserName());
             pStmt.setString(3, entityUserEntity.getSex());
             pStmt.setString(4, entityUserEntity.getPhone());
-            pStmt.setString(5, entityUserEntity.getAge());
-            pStmt.setString(6, entityUserEntity.getRealName());
-            pStmt.setString(7, entityUserEntity.getArea());
-            pStmt.setString(8, entityUserEntity.getCreate_time());
+            //pStmt.setString(5, entityUserEntity.getAge());
+            pStmt.setString(5, entityUserEntity.getRealName());
+            pStmt.setString(6, entityUserEntity.getArea());
+            pStmt.setString(7, entityUserEntity.getCreate_time());
             iRow = pStmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();

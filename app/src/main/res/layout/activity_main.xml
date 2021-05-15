@@ -58,6 +58,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
+
             android:background="@drawable/bgk_right_notwhite"
             android:orientation="vertical">
 
@@ -74,10 +75,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_weight="1"
+                android:background="@drawable/bgk_bottom_notwhite"
                 android:gravity="center"
                 android:text="农产品"
-                android:background="@drawable/bgk_bottom_notwhite"
                 android:textColor="#000000"
+
                 android:textSize="18dp" />
         </LinearLayout>
 

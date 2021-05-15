@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         et_userName = findViewById(R.id.et_LoginName);
         et_newPassword = findViewById(R.id.et_newPassword);
         et_phone = findViewById(R.id.et_phone);
-        et_age = findViewById(R.id.et_age);
+        //et_age = findViewById(R.id.et_age);
         et_sex = findViewById(R.id.et_sex);
         et_area = findViewById(R.id.et_area);
         et_realName = findViewById(R.id.et_realName);
@@ -81,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         final String etuserName = et_userName.getText().toString().trim();
         final String etnewPassword = et_newPassword.getText().toString().trim();
         final String etarea = et_area.getText().toString().trim();
-        final String etage = et_age.getText().toString().trim();
+        //final String etage = et_age.getText().toString().trim();
         final String etsex = et_sex.getText().toString().trim();
         final String etphone = et_phone.getText().toString().trim();
         final String etrealName = et_realName.getText().toString().trim();
@@ -101,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             entityUserEntity.setUserName(etuserName);
             entityUserEntity.setPassword(etnewPassword);
             entityUserEntity.setRealName(etrealName);
-            entityUserEntity.setAge(etage);
+            //entityUserEntity.setAge(etage);
             entityUserEntity.setSex(etsex);
             entityUserEntity.setPhone(etphone);
             entityUserEntity.setArea(etarea);

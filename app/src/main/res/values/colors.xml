@@ -7,7 +7,8 @@
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorSilver">#CCCCCC</color>
-    <color name="colorbackground">#EFEEEE</color>
+    <color name="colorbackground3">#EFEEEE</color>
+    <color name="colorbackground">#EFEFF6</color>
     <color name="colorOrange">#FF5722</color>
     <color name="colorRed">#FF0000</color>
     <color name="colorTopBar">#CCFFFF</color>
